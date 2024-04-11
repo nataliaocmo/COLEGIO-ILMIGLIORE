@@ -6,10 +6,7 @@
   <title>Iniciar sesión</title>
   <link rel="stylesheet" href="log_in.css">
 </head>
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap">
-
-
 <body>
   <div class="container">
     <div class="left-side">
@@ -20,19 +17,20 @@
             <h2>Gimnasio Colombo Italiano</h2>
             <h1>IL MIGLIORE</h1>
         </div>
-      <form id="login-form">
+      <form id="login-form" action="" method="post">
         <label for="rol">ROL</label>
         <br>
         <select id="rol" name="rol">
+          <option value=" "></option>
           <option value="estudiante">Estudiante</option>
           <option value="profesor">Profesor</option>
           <option value="administrativo">Administrativo</option>
-          <option value="administrativo">Acudiente</option>
+          <option value="acudiente">Acudiente</option>
         </select>
         <br>
         <label for="id">ID</label>
         <br>
-        <input type="text" id="id" name="id" required>
+        <input type="text" name="IdIngreso" required>
         <br>
         <button type="submit">Entrar</button>
       </form>
