@@ -73,13 +73,13 @@ body {
   
   button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color:#042d3f;
     color: #fff;
     border: none;
     cursor: pointer;
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color:#06202b;
   }
   
