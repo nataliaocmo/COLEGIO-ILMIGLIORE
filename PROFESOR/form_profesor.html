@@ -12,26 +12,16 @@
         <h2>Registro de Profesor</h2>
     
         <form id="formulario" class="" action="form_profesor.php" method="post" onsubmit="return validarFormulario()">
-          <input type="number" name="IdProf" placeholder="Id Profesor" required>
-          <input type="text" name="Nombre" placeholder="Nombre" required>
-          <input type="text" name="Apellido" placeholder="Apellido" required>
-          <input type="text" name="Genero" placeholder="Género" required>
-          <!--
-            <select name="Genero" required>
-            <option value="">Seleccione Género</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
-            <option value="Otro">Otro</option>
-          </select>
-          -->
-          <input type="text" name="Telefono" placeholder="Teléfono" required>
-          <input type="text" name="EPS" placeholder="EPS" required>
-          <input type="text" name="RH" placeholder="RH" required>
-          <input type="text" name="Direccion" placeholder="Dirección" required>
-          <input type="date" name="FechaDeContratacion" placeholder="Fecha de contratacion" required>
-          <input type="number" name="Salario" placeholder="Salario" required>
-          <input type="text" name="CorreoInstitucional" placeholder="Correo Institucional" required>
-          <input type="text" name="DocId" placeholder="Documento de Identidad" required>
+          <input type="text" name="nombre" placeholder="Nombre" required>
+          <input type="text" name="apellido" placeholder="Apellido" required>
+          <input type="text" name="genero" placeholder="Género" required>
+          <input type="text" name="telefono" placeholder="Teléfono" required>
+          <input type="text" name="eps" placeholder="EPS" required>
+          <input type="text" name="rh" placeholder="RH" required>
+          <input type="text" name="direccion" placeholder="Dirección" required>
+          <input type="date" name="fechaDeContratacion" placeholder="Fecha de contratacion" required>
+          <input type="number" name="salario" placeholder="Salario" required>
+          <input type="text" name="docId" placeholder="Documento de Identidad" required>
           <button type="submit">Guardar Profesor</button>
         </form>
         <div id="error-message" style="color: red;"></div>
@@ -40,63 +30,90 @@
 
       <script>
         function validarFormulario() {
-            var nombre = document.getElementsByName("Nombre")[0].value;
-            var apellido = document.getElementsByName("Apellido")[0].value;
-            var genero = document.getElementsByName("Genero")[0].value;
-            var telefono = document.getElementsByName("Telefono")[0].value;
-            var eps = document.getElementsByName("EPS")[0].value;
-            var rh = document.getElementsByName("RH")[0].value;
-            var fechaContratacion = document.getElementsByName("FechaDeContratacion")[0].value;
-            var salario = document.getElementsByName("Salario")[0].value;
-            var correo = document.getElementsByName("CorreoInstitucional")[0].value;
-            var docId = document.getElementsByName("DocId")[0].value;
+            var nombre = document.getElementsByName("Nombre")[0].value.trim();
+            var apellido = document.getElementsByName("Apellido")[0].value.trim();
+            var genero = document.getElementsByName("Genero")[0].value.trim();
+            var telefono = document.getElementsByName("Telefono")[0].value.trim();
+            var eps = document.getElementsByName("EPS")[0].value.trim();
+            var rh = document.getElementsByName("RH")[0].value.trim();
+            var direccion = document.getElementsByName("Direccion")[0].value.trim();
+            var fechaContratacion = document.getElementsByName("FechaDeContratacion")[0].value.trim();
+            var salario = document.getElementsByName("Salario")[0].value.trim();
+            var docId = document.getElementsByName("DocId")[0].value.trim();
             var errorMessage = "";
 
             // Validaciones
-            if (!/^[a-zA-Z]+$/.test(nombre)) {
+            if (nombre === "") {
+                errorMessage += "El campo Nombre es obligatorio.<br>";
+            } else if (!/^[a-zA-Z]+$/.test(nombre)) {
                 errorMessage += "El campo Nombre solo debe contener letras.<br>";
             }
-            if (!/^[a-zA-Z]+$/.test(apellido)) {
+
+            if (apellido === "") {
+                errorMessage += "El campo Apellido es obligatorio.<br>";
+            } else if (!/^[a-zA-Z]+$/.test(apellido)) {
                 errorMessage += "El campo Apellido solo debe contener letras.<br>";
             }
-            if (genero !== "Masculino" && genero !== "Femenino" && genero !== "Otro") {
+
+            if (genero === "") {
+                errorMessage += "El campo Género es obligatorio.<br>";
+            } else if (genero !== "Masculino" && genero !== "Femenino" && genero !== "Otro") {
                 errorMessage += "Seleccione una opción válida para el campo Género.<br>";
             }
-            if (isNaN(telefono)) {
+
+            if (telefono === "") {
+                errorMessage += "El campo Teléfono es obligatorio.<br>";
+            } else if (isNaN(telefono)) {
                 errorMessage += "El campo Teléfono solo debe contener números.<br>";
             }
-            if (!isNaN(eps)) {
+
+            if (eps === "") {
+                errorMessage += "El campo EPS es obligatorio.<br>";
+            } else if (!isNaN(eps)) {
                 errorMessage += "El campo EPS no debe contener números.<br>";
             }
-            if (!/^[a-zA-Z][+-]$|^[a-zA-Z]{2}[+-]$/.test(rh)) {
+
+            if (rh === "") {
+                errorMessage += "El campo RH es obligatorio.<br>";
+            } else if (!/^[a-zA-Z][+-]$|^[a-zA-Z]{2}[+-]$/.test(rh)) {
                 errorMessage += "El campo RH debe contener 2 o 3 caracteres, letras seguidas de '+' o '-'.<br>";
             }
+
+            if (direccion === "") {
+                errorMessage += "El campo Dirección es obligatorio.<br>";
+            }
+
             if (new Date(fechaContratacion) > new Date()) {
                 errorMessage += "La Fecha de Contratación no puede ser una fecha futura.<br>";
             }
-            if (isNaN(salario)) {
+
+            if (salario === "") {
+                errorMessage += "El campo Salario es obligatorio.<br>";
+            } else if (isNaN(salario)) {
                 errorMessage += "El campo Salario solo debe contener números.<br>";
             }
-            if (!/@/.test(correo)) {
-                errorMessage += "El campo Correo debe contener un formato válido.<br>";
-            }
-            if (!/^\d+$/.test(docId)) {
+
+            if (docId === "") {
+                errorMessage += "El campo Documento de Identidad es obligatorio.<br>";
+            } else if (!/^\d+$/.test(docId)) {
                 errorMessage += "El campo Documento de Identidad solo debe contener números.<br>";
             }
+    
 
             // Mostrar mensaje de error si hay alguno
             if (errorMessage !== "") {
                 document.getElementById("error-message").innerHTML = errorMessage;
                 document.getElementById("success-message").style.display = "none"; // Ocultar mensaje de éxito
                 return false; // Detener el envío del formulario
+            } else {
+                // Mostrar mensaje de éxito y limpiar formulario
+                document.getElementById("success-message").style.display = "block";
+                document.getElementById("error-message").innerHTML = ""; // Limpiar mensajes de error
+                document.getElementById("formulario").reset(); // Limpiar formulario
+                return true; // Permitir el envío del formulario si no hay errores
             }
-
-            // Mostrar mensaje de éxito y limpiar formulario
-            document.getElementById("success-message").style.display = "block";
-            document.getElementById("error-message").innerHTML = ""; // Limpiar mensajes de error
-            document.getElementById("formulario").reset(); // Limpiar formulario
-            return true; // Permitir el envío del formulario si no hay errores
         }
+        
     </script>
 </body>
 </html>
