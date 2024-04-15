@@ -9,7 +9,7 @@ $Telefono = $_POST["telefono"];
 $EPS = $_POST["eps"];
 $RH = $_POST["rh"];
 $Direccion = $_POST["direccion"];
-$FechaDeContratacion = $_POST["fechaDeContratacion"];
+$Fecha_de_nacimiento = $_POST["fechadenacimiento"];
 
 $sql = "SELECT COUNT(*) AS total FROM ESTUDIANTE";
 $result = sqlsrv_query($conn,$sql);
@@ -20,12 +20,12 @@ $total = sqlsrv_get_field($result, 0);
 
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
-$IdProfesor = "PROF".$nuevo_numero;
-$fechaFormateada = date('Y-m-d H:i:s', strtotime($FechaDeContratacion));
+$IdEstudiante = "ESTU".$nuevo_numero;
+$fechaFormateada = date('Y-m-d H:i:s', strtotime($Fecha_de_nacimiento));
 
 $CorreoInstitucional=$Nombre.$Apellido.'@ims.edu.co';
 
-$query = "INSERT INTO ESTUDIANTE(ID_ESTUDIANTE,NOMBRE,APELLIDO,GENERO,TELEFONO,EPS,RH,DIRECCION,FECHA_DE_CONTRATACION,CORREO_INSTITUCIONAL,DOCUMENTO_IDENTIDAD) VALUES ('$IdEstudiante','$Nombre','$Apellido','$Genero','$Telefono','$EPS','$RH','$Direccion','$fechaFormateada','$CorreoInstitucional')";
+$query = "INSERT INTO ESTUDIANTE(ID_ESTUDIANTE,DOCUMENTO_IDENTIDAD,NOMBRE,APELLIDO,GENERO,FECHA_DE_NACIMIENTO,CORREO_INSTITUCIONAL,TELEFONO,EPS,RH,DIRECCION) VALUES ('$IdEstudiante','$CorreoInstitucional','$Nombre','$Apellido','$Genero','$fechaFormateada','$Telefono','$EPS','$RH','$Direccion')";
 echo $query;
 $res = sqlsrv_prepare($conn, $query);
 
