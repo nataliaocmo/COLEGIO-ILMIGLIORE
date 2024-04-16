@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Registro de Acudiente</title>
+  <link rel="stylesheet" href="form_historial.css">
+</head>
+<body>
+  <div class="formulario">
+    <h2>Registro del Historial Academico</h2>
+    <form id="formulario" class="" action="form_historial.php" method="post" onsubmit="return validarFormulario()">
+      <p>GRADO</p>
+      <select id="grado" name="grado">
+        <option value=""></option>
+        <option value="Preescolar">Preescolar</option>
+        <option value="Primero">Primero</option>
+        <option value="Segundo">Segundo</option>
+        <option value="Tercero">Tercero</option>
+        <option value="Cuarto">Cuarto</option>
+        <option value="Quinto">Quinto</option>
+        <option value="Sexto">Sexto</option>
+        <option value="Septimo">Septimo</option>
+        <option value="Octavo">Octavo</option>
+        <option value="Noveno">Noveno</option>
+        <option value="Decimo">Decimo</option>
+        <option value="Undecimo">Undecimo</option>
+      </select>
+      <p>Institucion donde curso</p>
+      <input type="text" name="institucion" placeholder="Institucion Educativa a la que pertenecio" required>
+      <p>Año</p>
+      <input type="text" name="año" placeholder="Año cursado" required>
+      <button type="submit" >Añadir otro grado</button>
+      <button type="submit" >Siguiente</button>
+    </form>
+    <div id="error-message" style="color: red;"></div>
+    <div id="success-message" style="color: green; display: none;">¡Historial registrado correctamente!</div>
+  </div>
+
+  <script>
+    function validarFormulario() {
+      var grado = document.getElementsByName("grado")[0].value;
+      var institucion = document.getElementsByName("institucion")[0].value;
+      var año = document.getElementsByName("año")[0].value;
+      var errorMessage = "";
+
+      if (/\d/.test(institucion)) {
+        errorMessage += "El campo 'Institución Educativa' no puede contener números.<br>";
+      }
+      var currentYear = (new Date()).getFullYear();
+      if (!/^\d{4}$/.test(año) || año > currentYear) {
+        errorMessage += "Ingrese un año válido no mayor al presente.<br>";
+      }
+
+      // Mostrar mensaje de error si hay alguno
+      if (errorMessage !== "") {
+        document.getElementById("error-message").innerHTML = errorMessage;
+        document.getElementById("success-message").style.display = "none"; // Ocultar mensaje de éxito
+        return false; // Detener el envío del formulario
+      } else {
+        // Mostrar mensaje de éxito y limpiar formulario
+        document.getElementById("success-message").style.display = "block";
+        document.getElementById("error-message").innerHTML = ""; // Limpiar mensajes de error
+        document.getElementById("formulario").reset(); 
+        return true; 
+      }
+    }
+  </script>
+</body>
+</html>

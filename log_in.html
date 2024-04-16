@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión</title>
+  <link rel="stylesheet" href="log_in.css">
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap">
+<body>
+  <div class="container">
+    <div class="left-side">
+      <img src="IMG/IL MIGLIORE LOGO.png" alt="Logo del colegio">
+    </div>
+    <div class="right-side">
+        <div class="school-name">
+            <h2>Gimnasio Colombo Italiano</h2>
+            <h1>IL MIGLIORE</h1>
+        </div>
+      <form id="login-form" action="procesar_login.php" method="post">
+        <label for="rol">ROL</label>
+        <br>
+        <select id="rol" name="rol">
+          <option value=" "></option>
+          <option value="estudiante">Estudiante</option>
+          <option value="profesor">Profesor</option>
+          <option value="administrativo">Administrativo</option>
+          <option value="acudiente">Acudiente</option>
+        </select>
+        <br>
+        <label for="id">ID</label>
+        <br>
+        <input type="text" name="IdIngreso" id="IdIngreso" required>
+        <br>
+        <button id="entrar" type="submit">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="log_in.js"></script>
+</body>
+</html>

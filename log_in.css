@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left-side {
+    flex: 1;
+    background-color: #af184b; /* Fondo rojo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .left-side img {
+    max-width: 80%;
+    height: auto;
+  }
+  
+  .right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px   ;
+  }
+  
+  .right-side h1 {
+    margin-bottom: 20px;
+  }
+
+  .school-name {
+    text-align: center;
+  }
+
+  .school-name h2 {
+    font-size: 43px;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  
+  .school-name h1 {
+    font-size: 41.6px;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-top: 10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-family: 'Sorce Sans Pro', sans-serif;
+    color: #af184b;
+    text-align: left;
+    
+  }
+  
+  input, select {
+    margin-bottom: 10px;
+    padding: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: left;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

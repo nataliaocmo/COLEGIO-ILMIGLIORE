@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Registro de Acudiente</title>
+  <link rel="stylesheet" href="form_administrativo.css">
+</head>
+<body>
+  <div class="formulario">
+    <h2>Registro de Administrativo</h2>
+    <form id="formulario" class="" action="form_administrativo.php" method="post" onsubmit="return validarFormulario()">
+      <input type="text" name="docId" placeholder="Documento de Identidad" required>
+      <input type="text" name="nombre" placeholder="Nombre" required>
+      <input type="text" name="apellido" placeholder="Apellido" required>
+      <select id="genero" name="genero">
+        <option value=""></option>
+        <option value="Femenino">Femenino</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Otro">Otro</option>
+      </select>
+      <input type="text" name="cargo" placeholder="Cargo" required>
+      <input type="text" name="telefono" placeholder="Telefono" required>
+      <input type="text" name="eps" placeholder="EPS" required>
+      <select id="rh" name="rh">
+        <option value=" "></option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="AB+">AB-</option>
+        <option value="AB-">AB-</option>
+      </select>
+      <input type="text" name="direccion" placeholder="Direccion" required>
+      <input type="date" name="fechaDeContratacion" placeholder="Fecha de contratacion" required>
+      <input type="number" name="salario" placeholder="Salario" required>
+      <select id="departamento" name="departamento">
+        <option value=" "></option>
+        <option value="Tecnologias de la Información(TI)">Tecnologias de la Información(TI)</option>
+        <option value="Académico">Académico</option>
+        <option value="Admisiones y Registro">Admisiones y Registro</option>
+        <option value="Desarrollo Estudiantil">Desarrollo Estudiantil</option>
+        <option value="Gerencia">Gerencia</option>
+        <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
+        <option value="Relaciones Públicas">Relaciones Publicas</option>
+        <option value="Servicios Estudiantiles">Servicios Estudiantiles</option>
+        <option value="Planificación y Desarrollo Institucional">Planificación y Desarrollo Institucional</option>
+        <option value="Biblioteca y Recursos de Información">Biblioteca y Recursos de Información</option>
+        <option value="Relaciones Internacionales">Relaciones Internacionales</option>
+        <option value="Extensión Universitaria">Extensión Universitaria</option>
+        <option value="Logistica">Logistica</option>
+      </select>
+      <button type="submit" >Guardar Acudiente</button>
+    </form>
+    <div id="error-message" style="color: red;"></div>
+    <div id="success-message" style="color: green; display: none;">¡Acudiente registrado correctamente!</div>
+  </div>
+
+  <script>
+    function validarFormulario() {
+      // var idAcu = document.getElementsByName("IdAcu")[0].value;
+      var docId = document.getElementsByName("DocId")[0].value.trim();
+      var nombre = document.getElementsByName("Nombre")[0].value.trim();
+      var apellido = document.getElementsByName("Apellido")[0].value.trim();
+      var cargo = document.getElementsByName("Cargo")[0].value.trim();
+      var telefono = document.getElementsByName("Telefono")[0].value.trim();
+      var eps = document.getElementsByName("EPS")[0].value.trim();
+      var direccion = document.getElementsByName("Direccion")[0].value.trim();
+      var fechaContratacion = document.getElementsByName("FechaDeContratacion")[0].value.trim();
+      var salario = document.getElementsByName("Salario")[0].value.trim();
+      var errorMessage = "";
+
+      if (!/^\d+$/.test(docId)) {
+        errorMessage += "El campo Documento de Identidad solo debe contener números.<br>";
+      }
+      if (!/^[a-zA-Z]+$/.test(nombre)) {
+        errorMessage += "El campo Nombre solo debe contener letras.<br>";
+      }
+      if (!/^[a-zA-Z]+$/.test(apellido)) {
+        errorMessage += "El campo Apellido solo debe contener letras.<br>";
+      }
+      if (!/^[a-zA-Z]+$/.test(cargo)) {
+        errorMessage += "El campo cargo solo debe contener letras.<br>";
+      }
+      if (isNaN(telefono)) {
+        errorMessage += "El campo Teléfono solo debe contener números.<br>";
+      }
+      if (!eps.trim()) {
+      errorMessage += "El campo EPS es obligatorio.<br>";
+      }
+      if (direccion.trim() === "") {
+        errorMessage += "El campo Dirección es obligatorio.<br>";
+      }
+      if (new Date(fechaContratacion) > new Date()) {
+                errorMessage += "La Fecha de Contratación no puede ser una fecha futura.<br>";
+      }
+      if (salario === "") {
+                errorMessage += "El campo Salario es obligatorio.<br>";
+            } else if (isNaN(salario)) {
+                errorMessage += "El campo Salario solo debe contener números.<br>";
+            }
+
+      // Mostrar mensaje de error si hay alguno
+      if (errorMessage !== "") {
+        document.getElementById("error-message").innerHTML = errorMessage;
+        document.getElementById("success-message").style.display = "none"; // Ocultar mensaje de éxito
+        return false; // Detener el envío del formulario
+      }
+      else{document.getElementById("success-message").style.display = "block";
+        document.getElementById("error-message").innerHTML = ""; // Limpiar mensajes de error
+        document.getElementById("formulario").reset(); // Limpiar formulario
+        return true; // Permitir el envío del formulario si no hay errores
+      }
+    }
+  </script>
+</body>
+</html>
