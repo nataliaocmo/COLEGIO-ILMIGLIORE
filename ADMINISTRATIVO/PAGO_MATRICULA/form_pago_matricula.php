@@ -1,14 +1,23 @@
 <?php
 include("conexion.php");
 
-$idPagoMatricula = $_POST["idPagoMatricula"];
 $idEstudiante = $_POST["idEstudiante"];
 $monto = $_POST["monto"];
 $fecha = $_POST["fecha"];
 $metodoPago = $_POST["metodoPago"];
 $tipoPago = $_POST["tipoPago"];
 
-$sql = "INSERT INTO PAGO_MATRICULA (ID_PAGO_MATRICULA, ID_ESTUDIANTE, MONTO_PAGADO, FECHA_PAGO, METODO_PAGO, TIPO_PAGO) VALUES (?, ?, ?, ?, ?, ?)";
+$sql = "SELECT COUNT(*) AS total FROM PAGO_MATRICULA";
+$result = sqlsrv_query($conn,$sql);
+$row = sqlsrv_fetch($result);
+//Obtener el valor numerico
+$total = sqlsrv_get_field($result, 0); 
+
+// Generar el nuevo ID
+$nuevo_numero = $total + 1;
+$idPagoMatricula = "PM".$nuevo_numero;
+
+$sql = "INSERT INTO PAGO_MATRICULA (ID_PAGO_MATRICULA, ID_ESTUDIANTE, MONTO_PAGADO, FECHA_PAGO, METODO_PAGO, TIPO_PAGO) VALUES ($idPagoMatricula, $idEstudiante, $monto, $fecha, $metodoPago, $tipoPago)";
 $params = array($idPagoMatricula, $idEstudiante, $monto, $fecha, $metodoPago, $tipoPago);
 $res = sqlsrv_query($conn, $sql, $params);
 
