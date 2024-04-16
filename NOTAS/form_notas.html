@@ -45,7 +45,7 @@
             }
 
             if (Nota1 === "") {
-                errorMessage += "El campo TNota del periodo 1 es obligatorio.<br>";
+                errorMessage += "El campo Nota del periodo 1 es obligatorio.<br>";
             } else if (isNaN(telefono)) {
                 errorMessage += "El campo Nota del periodo 1 solo debe contener números.<br>";
             }
@@ -63,6 +63,8 @@
                 errorMessage += "El campo Nota del periodo 4 es obligatorio.<br>";
             } else if (isNaN(telefono)) {
                 errorMessage += "El campo Nota del periodo 4 solo debe contener números.<br>";
+            }else if (Nota4 < 0 || Nota4 > 5) {
+                errorMessage += "El campo Nota del periodo 4 debe estar entre 0 y 5.<br>";
             }
             if ( Notafinal=== "") {
                 errorMessage += "El campo Nota Final es obligatorio.<br>";
