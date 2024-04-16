@@ -12,12 +12,11 @@
         <h2>Registro de Notas</h2>
     
         <form id="formulario" class="" action="form_notas.php" method="post" onsubmit="return validarFormulario()">
-          <input type="text" name="Numerofallas" placeholder="Numero de fallas" required>
-          <input type="text" name="Nota1" placeholder="Nota del periodo 1" required>
-          <input type="text" name="Nota2" placeholder="Nota del periodo 2" required>
-          <input type="text" name="Nota3" placeholder="Nota del periodo 3" required>
-          <input type="text" name="Nota4" placeholder="Nota del periodo 4" required>
-          <input type="text" name="Notafinal" placeholder="Nota final" required>
+          <input type="number" name="Numerofallas" placeholder="Numero de fallas" required>
+          <input type="number" name="Nota1" placeholder="Nota del periodo 1" required>
+          <input type="number" name="Nota2" placeholder="Nota del periodo 2" required>
+          <input type="number" name="Nota3" placeholder="Nota del periodo 3" required>
+          <input type="number" name="Nota4" placeholder="Nota del periodo 4" required>
           <input type="text" name="Aprobo" placeholder="Aprobado" required>
           <button type="submit">Guardar Notas</button>
         </form>
