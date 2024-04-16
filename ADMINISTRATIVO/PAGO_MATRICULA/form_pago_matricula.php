@@ -7,18 +7,26 @@ $fecha = $_POST["fecha"];
 $metodoPago = $_POST["metodoPago"];
 $tipoPago = $_POST["tipoPago"];
 
-$sql = "SELECT COUNT(*) AS total FROM PAGO_MATRICULA";
-$result = sqlsrv_query($conn,$sql);
-$row = sqlsrv_fetch($result);
-//Obtener el valor numerico
-$total = sqlsrv_get_field($result, 0); 
-
-// Generar el nuevo ID
+$sql2 = "SELECT COUNT(*) AS total FROM PAGO_MATRICULA";
+$result2 = sqlsrv_query($conn,$sql2);
+$row2 = sqlsrv_fetch($result2);
+$total = sqlsrv_get_field($result2, 0); 
 $nuevo_numero = $total + 1;
-$idPagoMatricula = "PM".$nuevo_numero;
+$IdPagoMatricula = "PM".$nuevo_numero;
 
-$sql = "INSERT INTO PAGO_MATRICULA (ID_PAGO_MATRICULA, ID_ESTUDIANTE, MONTO_PAGADO, FECHA_PAGO, METODO_PAGO, TIPO_PAGO) VALUES ($idPagoMatricula, $idEstudiante, $monto, $fecha, $metodoPago, $tipoPago)";
-$params = array($idPagoMatricula, $idEstudiante, $monto, $fecha, $metodoPago, $tipoPago);
+//BUSCADOR ID ESTUDIANTE
+$sql3 = "SELECT COUNT(*) AS total FROM ESTUDIANTE";
+$result3 = sqlsrv_query($conn,$sql3);
+$row3 = sqlsrv_fetch($result3);
+//Obtener el valor numerico
+$total2 = sqlsrv_get_field($result3, 0); 
+// ID ESTUDIANTE
+$IdEstduiante = "EST".$total2;
+
+$fechaFormateada = date('Y-m-d H:i:s', strtotime($fecha));
+
+$sql = "INSERT INTO PAGO_MATRICULA (ID_PAGO_MATRICULA, ID_ESTUDIANTE, MONTO_PAGADO, FECHA_PAGO, METODO_PAGO, TIPO_PAGO) VALUES ($IdPagoMatricula, $IdEstudiante, $monto, $fechaFormateada, $metodoPago, $tipoPago)";
+$params = array($IdPagoMatricula, $IdEstudiante, $monto, $fechaFormateada, $metodoPago, $tipoPago);
 $res = sqlsrv_query($conn, $sql, $params);
 
 if ($res === false) {
