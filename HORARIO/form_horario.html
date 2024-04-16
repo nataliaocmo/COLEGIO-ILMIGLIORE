@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Horario</title>
+    <link rel="stylesheet" href="form_horario.css">
+</head>
+<body>
+    <div class="formulario">
+        <h2>HORARIO</h2>
+        <form action="procesar_horario.php" method="post" onsubmit="return validarFormulario()">
+            <label for="idHorario">Id Horario:</label>
+            <input type="text" id="idHorario" name="idHorario" readonly value="Generado Automaticamente">
+
+            <label for="dia">Día:</label>
+            <br>
+            <select id="dia" name="dia" required>
+                <option value="" selected disabled>Seleccione Día</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+            </select>
+            <br>
+            <br>
+
+            <label for="horaInicio">Hora de Inicio:</label>
+            <br>
+            <select id="horaInicio" name="horaInicio" onchange="actualizarHorasFin()" required>
+                <option value="" selected disabled>Seleccione Hora de Inicio</option>
+                <option value="7:00">7:00</option>
+                <option value="9:00">9:00</option>
+                <option value="11:30">11:30</option>
+                <option value="14:00">14:00</option>
+            </select>
+            <br>
+            <br>
+
+            <label for="horaFin">Hora de fin:</label>
+            <br>
+            <select id="horaFin" name="horaFin" required>
+                <option value="" selected disabled>Seleccione Hora de Fin</option>
+            </select>
+            <br>
+            <br>
+
+            <label for="departamento">Departamento:</label>
+            <br>
+            <select id="departamento" name="departamento" required>
+                <option value="" selected disabled>Seleccione Departamento</option>
+                <!-- Opciones para departamentos -->
+            </select>
+            <br>
+            <br>
+
+            <label for="materia">Materia:</label>
+            <br>
+            <select id="materia" name="materia" required>
+                <option value="" selected disabled>Seleccione Materia</option>
+                <!-- Opciones para materias -->
+            </select>
+            <br>
+            <br>
+
+            <label for="profesor">Profesor:</label>
+            <br>
+            <select id="profesor" name="profesor" required>
+                <option value="" selected disabled>Seleccione Profesor</option>
+                <!-- Opciones para profesores -->
+            </select>
+            <br>
+            <br>
+
+            <button type="submit">Guardar Horario</button>
+        </form>
+    </div>
+
+    <script>
+        function actualizarHorasFin() {
+            var horaInicio = document.getElementById('horaInicio').value;
+            var horaFin = document.getElementById('horaFin');
+            horaFin.innerHTML = ''; // Limpiar opciones anteriores
+
+            switch (horaInicio) {
+                case '7:00':
+                    horaFin.add(new Option('9:00', '9:00'));
+                    break;
+                case '9:00':
+                    horaFin.add(new Option('11:00', '11:00'));
+                    break;
+                case '11:30':
+                    horaFin.add(new Option('13:30', '13:30'));
+                    break;
+                case '14:00':
+                    horaFin.add(new Option('16:00', '16:00'));
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
