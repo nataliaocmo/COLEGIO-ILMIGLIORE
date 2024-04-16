@@ -10,10 +10,6 @@
     <div class="formulario">
     <h2>PAGO MATRICULA</h2>
     <form action="procesar_pago.php" method="post" onsubmit="return validarFormulario()">
-        
-        <label for="idEstudiante">Id Estudiante:</label>
-        <input type="text" id="idEstudiante" name="idEstudiante" placeholder="Ingrese ID Estudiante" required>
-        
         <label for="monto">Monto Pagado:</label>
         <input type="number" id="monto" name="monto" placeholder="Ingrese Monto" required>
 
@@ -38,7 +34,10 @@
         <br>
 
         <label for="estadoPago">Estado de Pago:</label>
-        <input type="text" id="estadoPago" name="estadoPago" readonly>
+        <select id="estadoPago" name="estadoPago">
+            <option value="Aprobado">Aprobado</option>
+            <option value="Pendiente">Pendiente</option>
+        </select>
         
         <button type="submit">Realizar Pago</button>
     </form>
@@ -59,32 +58,21 @@
                 alert('Por favor, ingrese un monto válido.');
                 return false;
             }
-    
             // Validar que se haya seleccionado una fecha
             if (!fecha) {
                 alert('Por favor, seleccione una fecha de pago.');
                 return false;
             }
-    
             // Validar que la fecha no sea anterior a hoy
             if (fecha < hoy) {
                 alert('La fecha de pago no puede ser anterior a hoy.');
                 return false;
             }
-
              // Validar que la fecha no sea posterior a hoy
             if (fecha > hoy) {
                 alert('La fecha de pago no puede ser en el futuro.');
                 return false;
-            }
-    
-            // Validar que se haya seleccionado un método de pago
-            var metodoPago = document.getElementById('metodoPago').value;
-            if (metodoPago === '') {
-                alert('Por favor, seleccione un método de pago.');
-                return false;
-            }
-    
+            }    
             return true;
         }
     </script>
