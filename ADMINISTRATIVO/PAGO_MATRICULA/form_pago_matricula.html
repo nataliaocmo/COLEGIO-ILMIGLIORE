@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pago de Matrícula</title>
+    <link rel="stylesheet" href="form_pago_matricula.css">
+</head>
+<body>
+    <div class="formulario">
+    <h2>PAGO MATRICULA</h2>
+    <form action="procesar_pago.php" method="post" onsubmit="return validarFormulario()">
+        <label for="idPagoMatricula">Id Pago Matricula:</label>
+        <input type="text" id="idPagoMatricula" name="idPagoMatricula" readonly value="Generado Automaticamente">
+
+        <label for="idEstudiante">Id Estudiante:</label>
+        <input type="text" id="idEstudiante" name="idEstudiante" placeholder="Ingrese ID Estudiante" required>
+        
+        <label for="monto">Monto Pagado:</label>
+        <input type="number" id="monto" name="monto" placeholder="Ingrese Monto" required>
+
+        <label for="fecha">Fecha de Pago:</label>
+        <input type="date" id="fecha" name="fecha" required>
+
+        <label for="metodoPago">Método de Pago:</label>
+        <select id="metodoPago" name="metodoPago" required>
+            <option value="" selected disabled>Seleccione Método de Pago</option>
+            <option value="PSE">PSE</option>
+            <option value="Nequi">Nequi</option>
+        </select>
+        <br>
+        <br>
+
+        <label for="tipoPago">Tipo de Pago:</label>
+        <select id="tipoPago" name="tipoPago">
+            <option value="Diferido">Diferido</option>
+            <option value="A cuotas">A cuotas</option>
+        </select>
+        <br>
+        <br>
+
+        <label for="estadoPago">Estado de Pago:</label>
+        <input type="text" id="estadoPago" name="estadoPago" readonly>
+        
+        <button type="submit">Realizar Pago</button>
+    </form>
+    </div>
+
+
+    <script>
+        function validarFormulario() {
+            var monto = document.getElementById('monto').value;
+            var fechaInput = document.getElementById('fecha').value;
+            var fechaPartes = fechaInput.split('-');
+            var fecha = new Date(fechaPartes[0], fechaPartes[1] - 1, fechaPartes[2]);
+            var hoy = new Date();
+            hoy.setHours(0, 0, 0, 0); // Establecer la hora a las 00:00:00 para comparación de fechas
+    
+            // Validar que el monto sea un número positivo
+            if (isNaN(monto) || monto <= 0) {
+                alert('Por favor, ingrese un monto válido.');
+                return false;
+            }
+    
+            // Validar que se haya seleccionado una fecha
+            if (!fecha) {
+                alert('Por favor, seleccione una fecha de pago.');
+                return false;
+            }
+    
+            // Validar que la fecha no sea anterior a hoy
+            if (fecha < hoy) {
+                alert('La fecha de pago no puede ser anterior a hoy.');
+                return false;
+            }
+
+             // Validar que la fecha no sea posterior a hoy
+            if (fecha > hoy) {
+                alert('La fecha de pago no puede ser en el futuro.');
+                return false;
+            }
+    
+            // Validar que se haya seleccionado un método de pago
+            var metodoPago = document.getElementById('metodoPago').value;
+            if (metodoPago === '') {
+                alert('Por favor, seleccione un método de pago.');
+                return false;
+            }
+    
+            return true;
+        }
+    </script>
+    
+</body>
+</html>
