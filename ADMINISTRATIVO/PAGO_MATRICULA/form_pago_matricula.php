@@ -21,7 +21,7 @@ $row3 = sqlsrv_fetch($result3);
 //Obtener el valor numerico
 $total2 = sqlsrv_get_field($result3, 0); 
 // ID ESTUDIANTE
-$IdEstduiante = "EST".$total2;
+$IdEstduiante = "EST".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
 
 $fechaFormateada = date('Y-m-d H:i:s', strtotime($fecha));
 

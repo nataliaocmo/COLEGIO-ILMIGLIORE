@@ -22,7 +22,7 @@ $total = sqlsrv_get_field($result, 0);
 
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
-$IdProfesor = "PROF".$nuevo_numero;
+$IdProfesor = "PROF".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
 $fechaFormateada = date('Y-m-d H:i:s', strtotime($FechaDeContratacion));
 
 $CorreoInstitucional=$Nombre.$Apellido.'@ims.edu.co';

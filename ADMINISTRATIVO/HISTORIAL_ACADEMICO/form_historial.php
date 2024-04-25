@@ -18,7 +18,7 @@ $row = sqlsrv_fetch($result);
 $total = sqlsrv_get_field($result, 0); 
 
 $nuevo_numero = $total + 1;
-$IdHistorial = "HIST".$nuevo_numero;
+$IdHistorial = "HIST".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
 
 $query = "INSERT INTO HISTORIAL_ACADEMICO(ID_HISTORIAL, GRADO, INSTITUCION, AÑO) VALUES ('$IdHistorial', '$grado', '$institucion', '$año')";
 echo $query;

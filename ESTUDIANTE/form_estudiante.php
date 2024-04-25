@@ -29,7 +29,7 @@ $row3 = sqlsrv_fetch($result3);
 //Obtener el valor numerico
 $total2 = sqlsrv_get_field($result3, 0); 
 // ID ACUDIENTE
-$IdAcudiente = "ACU".$total2;
+$IdAcudiente = "ACU".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
 
 //Generar Correo Institucional
 $CorreoInstitucional=$Nombre.$Apellido.'@ims.edu.co';
