@@ -7,7 +7,6 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "administrativo") {
     exit();
 }
 
-// Accede a los datos del acudiente desde la sesión
 $administrativo = $_SESSION['administrativo'];
 ?>
 
@@ -19,7 +18,6 @@ $administrativo = $_SESSION['administrativo'];
     <title>Administrativo</title>
     <link rel="stylesheet" href="administrativo.css">
 </head>
-
 <body>
     <div class="container">
         <div class="left-side">
@@ -60,17 +58,12 @@ $administrativo = $_SESSION['administrativo'];
         <div class="right-side">
             <div class="content">
                 <ul>
-                    <li><span>Admisiones</span><a href="/sql/ACUDIENTE/form_acudiente.html"><button class="circular-button">&#8594;</button></li>
-                    <br>
-                    <li><span>Pago de Matriculas</span><a href="/sql/ADMINISTRATIVO/PAGO_MATRICULA/form_pago_matricula.html"><button class="circular-button">&#8594;</button></li>
-                    <br>
-                    <li><span>Gestión de Horarios</span><button class="circular-button">&#8594;</button></li>
-                    <br>
-                    <li><span>Gestión de Grados</span><a href="/sql/ADMINISTRATIVO/GRADOS/form_grados.html"><button class="circular-button">&#8594;</button></li>
-                    <br>
-                    <li><span>Contrataciones Administrativos</span><a href="/sql/ADMINISTRATIVO/form_administrativo.html"><button class="circular-button">&#8594;</button></li>
-                    <br>
-                    <li><span>Contrataciones Profesores</span><a href="/sql/PROFESOR/form_profesor.html"><button class="circular-button">&#8594;</button></li>                
+                    <li><span>Admisiones</span><a href="/sql/ACUDIENTE/form_acudiente.html"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Pago de Matriculas</span><a href="/sql/ADMINISTRATIVO/PAGO_MATRICULA/form_pago_matricula.php"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Gestión de Grados</span><a href="/sql/ADMINISTRATIVO/GRADOS/form_grados.html"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Contrataciones Administrativos</span><a href="/sql/ADMINISTRATIVO/form_administrativo.html"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Contrataciones Profesores</span><a href="/sql/PROFESOR/form_profesor.html"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Actualizacion de Datos</span><a href="actualizacionDeDatosAdministrativo.php?id_administrativo=<?php echo $administrativo['ID_ADMINISTRATIVO']; ?>"><button class="circular-button">&#8594;</button></a></li>             
                 </ul>
             </div>
         </div>

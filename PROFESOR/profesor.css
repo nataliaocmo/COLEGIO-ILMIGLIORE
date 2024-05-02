@@ -21,8 +21,6 @@ body {
     color: #000;
 }
 
-
-
 .icons img {
     width: 20px;
     height: 20px;
@@ -47,7 +45,6 @@ body {
     display: flex; /* Añadimos display flex */
     align-items: center; /* Centramos verticalmente los elementos */
 }
-
 
 .content {
     padding: 20px;

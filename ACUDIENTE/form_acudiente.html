@@ -4,30 +4,13 @@
   <meta charset="UTF-8">
   <title>Formulario de Registro de Acudiente</title>
   <link rel="stylesheet" href="form_acudiente.css">
-</head>
-<body>
-  <div class="formulario">
-    <h2>Registro de Acudiente</h2>
-    <form id="formulario" class="" action="form_acudiente.php" method="post" onsubmit="return validarFormulario()">
-      <input type="text" name="docId" placeholder="Documento de Identidad" required>
-      <input type="text" name="nombre" placeholder="Nombre" required>
-      <input type="text" name="apellido" placeholder="Apellido" required>
-      <select id="genero" name="genero">
-        <option value=" "></option>
-        <option value="Femenino">Femenino</option>
-        <option value="Masculino">Masculino</option>
-        <option value="Otro">Otro</option>
-      </select>
-      <input type="text" name="correo" placeholder="Correo" required>
-      <input type="text" name="telefono" placeholder="Telefono" required>
-      <input type="text" name="direccion" placeholder="Direccion" required>
-      <button type="submit" >Guardar Acudiente</button>
-    </form>
-    <div id="error-message" style="color: red;"></div>
-    <div id="success-message" style="color: green; display: none;">¡Acudiente registrado correctamente!</div>
-  </div>
-
   <script>
+    window.onload = function() {
+      var confirmar = confirm("Si el acudiente ya existe presione 'ACEPTAR'");
+      if (confirmar) {
+        window.location.href = "/sql/ESTUDIANTE/form_ya_existe_acudiente.php"; // Redirigir a otra página si se selecciona 'Aceptar'
+      }
+    };
     function validarFormulario() {
       // var idAcu = document.getElementsByName("IdAcu")[0].value;
       var docId = document.getElementsByName("DocId")[0].value.trim();
@@ -72,5 +55,27 @@
       }
     }
   </script>
+</head>
+<body>
+  <div class="formulario">
+    <h2>Registro de Acudiente</h2>
+    <form id="formulario" class="" action="form_acudiente.php" method="post" onsubmit="return validarFormulario()">
+      <input type="text" name="docId" placeholder="Documento de Identidad" required>
+      <input type="text" name="nombre" placeholder="Nombre" required>
+      <input type="text" name="apellido" placeholder="Apellido" required>
+      <select id="genero" name="genero">
+        <option value=" "></option>
+        <option value="Femenino">Femenino</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Otro">Otro</option>
+      </select>
+      <input type="text" name="correo" placeholder="Correo" required>
+      <input type="text" name="telefono" placeholder="Telefono" required>
+      <input type="text" name="direccion" placeholder="Direccion" required>
+      <button type="submit" >Guardar Acudiente</button>
+    </form>
+    <div id="error-message" style="color: red;"></div>
+    <div id="success-message" style="color: green; display: none;">¡Acudiente registrado correctamente!</div>
+  </div>
 </body>
 </html>

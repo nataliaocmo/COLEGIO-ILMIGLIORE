@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -47,19 +46,21 @@ $profesor = $_SESSION['profesor'];
                     <input type="text" name="RH" value="<?php echo $profesor['RH']; ?>" readonly>
                     <p>Dirección de residencia</p>
                     <input type="text" name="Direccion" value="<?php echo $profesor['DIRECCION']; ?>" readonly>
-                    <p>Fecha de Contratación</p>
-                    <input type="text" name="FechaDeContratacion" value="<?php echo $profesor['FECHA_DE_CONTRATACION']; ?>" readonly>
                     <p>Salario</p>
                     <input type="text" name="Salario" value="<?php echo $profesor['SALARIO']; ?>" readonly>
+                    <p>Asignatura</p>
+                    <input type="text" name="Salario" value="" readonly>
             </div>
         </div>
         <div class="right-side">
             <div class="content">
                 <ul>
+                    <li><span>Actualizar Datos</span><a href=""><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Control de asistencia</span><a href=""><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Ver Horario</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Ver Materias</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Ver Estudiantes</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Ver Pago Matricula</span><a href=""><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Lista de Estudiantes</span><a href=""><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Asignar Notas</span><a href=""><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Modificar Notas</span><a href=""><button class="circular-button">&#8594;</button></a></li>
                 </ul>
             </div>
         </div>

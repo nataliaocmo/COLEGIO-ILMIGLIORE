@@ -1,11 +1,11 @@
 <?php
 session_start();
-
 // Verifica si se envió un rol y un ID de ingreso
 if(isset($_POST['rol'])) {
     $rol = $_POST['rol'];
+    echo $rol;
     $IdIngreso = $_POST['IdIngreso'];
-
+    echo $IdIngreso;
     switch ($rol) {
         case 'acudiente':
             include("ACUDIENTE/conexion_acudiente.php");

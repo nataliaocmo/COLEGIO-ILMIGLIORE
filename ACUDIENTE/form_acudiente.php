@@ -14,7 +14,6 @@ $result = sqlsrv_query($conn,$sql);
 $row = sqlsrv_fetch($result);
 //Obtener el valor numerico
 $total = sqlsrv_get_field($result, 0); 
-
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
 $IdAcudiente = "ACU".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
@@ -26,7 +25,6 @@ $row2 = sqlsrv_fetch($result2);
 if ($row2==0){
     $query="INSERT INTO ACUDIENTE(ID_ACUDIENTE,DOCUMENTO_DE_IDENTIDAD,NOMBRE,APELLIDO,GENERO,CORREO,TELEFONO,DIRECCION) VALUES('$IdAcudiente','$DocId','$Nombre','$Apellido','$Genero','$Correo','$Telefono','$Direccion')";
         $res=sqlsrv_prepare($conn,$query);
- 
         if (sqlsrv_execute($res)){
             header("Location: /sql/ESTUDIANTE/form_estudiante.html");
             exit();

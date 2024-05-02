@@ -12,25 +12,27 @@
       <p>GRADO</p>
       <select id="grado" name="grado">
         <option value=""></option>
-        <option value="Preescolar">Preescolar</option>
-        <option value="Primero">Primero</option>
-        <option value="Segundo">Segundo</option>
-        <option value="Tercero">Tercero</option>
-        <option value="Cuarto">Cuarto</option>
-        <option value="Quinto">Quinto</option>
-        <option value="Sexto">Sexto</option>
-        <option value="Septimo">Septimo</option>
-        <option value="Octavo">Octavo</option>
-        <option value="Noveno">Noveno</option>
-        <option value="Decimo">Decimo</option>
-        <option value="Undecimo">Undecimo</option>
+        <option value="PREESCOLAR">PREESCOLAR</option>
+        <option value="PRIMERO">PRIMERO</option>
+        <option value="SEGUNDO">SEGUNDO</option>
+        <option value="TERCERO">TERCERO</option>
+        <option value="CUARTO">CUARTO</option>
+        <option value="QUINTO">QUINTO</option>
+        <option value="SEXTO">SEXTO</option>
+        <option value="SEPTIMO">SEPTIMO</option>
+        <option value="OCTAVO">OCTAVO</option>
+        <option value="NOVENO">NOVENO</option>
+        <option value="DECIMO">DECIMO</option>
+        <option value="UNDECIMO">UNDECIMO</option>
       </select>
-      <p>Institucion donde cursó</p>
-      <input type="text" name="institucion" placeholder="Institucion Educativa a la que perteneció" required>
+      <p>Institucion donde curso</p>
+      <input type="text" name="institucion" placeholder="Institucion Educativa a la que pertenecio" required>
       <p>Año</p>
-      <input type="text" name="año" placeholder="Año cursado" required>
-      <button type="submit" >Añadir otro grado</button>
-      <button type="submit" >Siguiente</button>
+      <input type="text" name="ano" placeholder="Año cursado" required>
+      <button type="submit">Añadir grado</button>
+    </form>
+    <form action="/sql/ADMINISTRATIVO/PAGO_MATRICULA/form_pago_matricula.html">
+      <button type="submit">Siguiente</button>
     </form>
     <div id="error-message" style="color: red;"></div>
     <div id="success-message" style="color: green; display: none;">¡Historial registrado correctamente!</div>
@@ -38,19 +40,18 @@
 
   <script>
     function validarFormulario() {
-      var grado = document.getElementsByName("grado")[0].value;
-      var institucion = document.getElementsByName("institucion")[0].value;
-      var año = document.getElementsByName("año")[0].value;
+      var institucion = document.getElementsByName("institucion")[0].value.trim();
+      var ano = document.getElementsByName("ano")[0].value.trim();
       var errorMessage = "";
 
       if (/\d/.test(institucion)) {
         errorMessage += "El campo 'Institución Educativa' no puede contener números.<br>";
       }
       var currentYear = (new Date()).getFullYear();
-      if (!/^\d{4}$/.test(año) || año > currentYear) {
+      if (!/^\d{4}$/.test(ano) || ano > currentYear) {
         errorMessage += "Ingrese un año válido no mayor al presente.<br>";
       }
-
+/*
       // Mostrar mensaje de error si hay alguno
       if (errorMessage !== "") {
         document.getElementById("error-message").innerHTML = errorMessage;
@@ -62,7 +63,7 @@
         document.getElementById("error-message").innerHTML = ""; // Limpiar mensajes de error
         document.getElementById("formulario").reset(); 
         return true; 
-      }
+      }*/
     }
   </script>
 </body>

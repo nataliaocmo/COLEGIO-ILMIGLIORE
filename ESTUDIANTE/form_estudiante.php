@@ -20,16 +20,16 @@ $row = sqlsrv_fetch($result);
 $total = sqlsrv_get_field($result, 0); 
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
-$IdEstudiante= "EST".$nuevo_numero;
+$IdEstudiante= "EST".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
 
-//BUSCADOR ID ACUDIENTE
-$sql3 = "SELECT COUNT(*) AS total FROM ACUDIENTE";
-$result3 = sqlsrv_query($conn,$sql3);
-$row3 = sqlsrv_fetch($result3);
+//BUSCAR EL ID DEL ACUDIENTE
+$sql2 = "SELECT COUNT(*) AS total FROM ACUDIENTE";
+$result2 = sqlsrv_query($conn,$sql2);
+$row2 = sqlsrv_fetch($result2);
 //Obtener el valor numerico
-$total2 = sqlsrv_get_field($result3, 0); 
-// ID ACUDIENTE
-$IdAcudiente = "ACU".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
+$total2 = sqlsrv_get_field($result2, 0); 
+// ID DEL ACUDIENTE
+$IdAcudiente = "ACU".str_pad($total2, 10, "0", STR_PAD_LEFT);
 
 //Generar Correo Institucional
 $CorreoInstitucional=$Nombre.$Apellido.'@ims.edu.co';
@@ -42,7 +42,6 @@ $letra = ['A', 'B', 'C']; // Array con las letras posibles
 $indice = array_rand($letra); // Obtener un índice aleatorio del array
 $letraAleatoria = $letra[$indice]; // Obtener la letra aleatoria
 $Curso = $Grado . ' ' . $letraAleatoria;
-
 //buscar id del curso
 $sql3 = "SELECT * FROM GRADO WHERE NOMBRE='$Curso'";
 $result3 = sqlsrv_query($conn, $sql3);
@@ -57,15 +56,16 @@ if ($row3 === false) {
         $IdGrado = $row3['ID_GRADO'];
         echo "El ID del grado '$Curso' es: $IdGrado";
     } else {
-        echo "No se encontró la columna ID_DEPARTAMENTO en el resultado";
+        echo "No se encontró la columna ID_GRADO en el resultado";
+        echo "Este es el curso: ".$Curso;
     }
 }
 
-$sql2="SELECT * FROM ESTUDIANTE WHERE DOCUMENTO_DE_IDENTIDAD = '$DocId'";
-$result2 = sqlsrv_query($conn,$sql2);
-$row2 = sqlsrv_fetch($result2);
+$sql4="SELECT * FROM ESTUDIANTE WHERE DOCUMENTO_DE_IDENTIDAD = '$DocId'";
+$result4 = sqlsrv_query($conn,$sql4);
+$row4 = sqlsrv_fetch($result4);
 
-if ($row2==0){
+if ($row4==0){
     $query="INSERT INTO ESTUDIANTE(ID_ESTUDIANTE,DOCUMENTO_DE_IDENTIDAD,NOMBRE,APELLIDO,GENERO,FECHA_DE_NACIMIENTO,ID_GRADO,CORREO_INSTITUCIONAL,TELEFONO,EPS,RH,DIRECCION,ID_ACUDIENTE) VALUES('$IdEstudiante','$DocId','$Nombre','$Apellido','$Genero','$fechaFormateada','$IdGrado','$CorreoInstitucional','$Telefono','$EPS','$RH','$Direccion','$IdAcudiente')";
         echo $query;
     $res=sqlsrv_prepare($conn,$query);
@@ -80,7 +80,7 @@ if ($row2==0){
                 }
             }
         }
-    }else if ($row2==1){
+    }else if ($row4==1){
         header("Location: form_acudiente.html");
         exit();
     }

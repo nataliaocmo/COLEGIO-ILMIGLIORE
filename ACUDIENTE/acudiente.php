@@ -1,12 +1,10 @@
 <?php
 session_start();
-
 // Verifica si el usuario está autenticado como acudiente
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "acudiente") {
     header("Location: /sql/log_in.html");
     exit();
 }
-
 // Accede a los datos del acudiente desde la sesión
 $acudiente = $_SESSION['acudiente'];
 ?>
@@ -52,13 +50,13 @@ $acudiente = $_SESSION['acudiente'];
         <div class="right-side">
             <div class="content">
                 <ul>
-                    <li><span>Actualizar Datos</span><a href="actualizacionDeDatosAcudiente.html"><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Actualizar Datos Estudiante</span><a href=" "><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Ver Notas Estudiante</span><a href=" "><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Pagar Matricula</span><a href=" "><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Actualizar Datos</span><a href="actualizacionDeDatosAcudiente.php?id_acudiente=<?php echo $acudiente['ID_ACUDIENTE']; ?>"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Actualizar Datos Estudiante</span><a href="/sql/ESTUDIANTE/actualizacionDeDatosEstudiante.php?id_acudiente=<?php echo $acudiente['ID_ACUDIENTE']; ?>"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Ver Notas Estudiante</span><a href="verNotasEstudiante.html"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Pagar Matricula</span><a href="PagarMatricula.html"><button class="circular-button">&#8594;</button></a></li>
                 </ul>
             </div>
         </div>
     </div>
-</body>
+</body> 
 </html>
