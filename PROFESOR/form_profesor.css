@@ -51,3 +51,30 @@ body {
   .formulario button:hover {
     background-color:  #7e6060;
   }
+
+  .formulario select {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    background-color: #fff;
+    /* Agrega este estilo para que los selectores tengan un fondo blanco */
+    color: #333;
+    /* Agrega este estilo para que el texto dentro de los selectores sea negro */
+}
+
+/* Estilos adicionales para cuando se pasa el ratón sobre los selectores */
+.formulario select:hover {
+    border-color: #af184b;
+    /* Cambia el color del borde al pasar el ratón sobre los selectores */
+}
+
+/* Estilos adicionales para los selectores cuando están enfocados */
+.formulario select:focus {
+    outline: none;
+    /* Elimina el contorno alrededor del selector cuando está enfocado */
+    border-color: #af184b;
+    /* Cambia el color del borde cuando el selector está enfocado */
+}
