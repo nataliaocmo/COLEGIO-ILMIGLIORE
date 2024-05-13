@@ -20,7 +20,8 @@ $total = sqlsrv_get_field($result, 0);
 
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
-$IdNota = "NOTA".$nuevo_numero;
+$IdNota = "NOTA".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
+
 
 $query = "INSERT INTO NOTA(ID_NOTA,NUMERO_DE_FALLAS,NOTA_P1,NOTA_P2,NOTA_P3,NOTA_P4,NOTA_FINAL,APROBO/NO_APROBO) VALUES ('$IdNota','$Numerodefallas','$Nota1','$Nota2','$Nota3','$Nota4','$Notafinal','$Aprobo')";
 echo $query;

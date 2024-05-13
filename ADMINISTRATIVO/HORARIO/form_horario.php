@@ -16,7 +16,8 @@ $total = sqlsrv_get_field($result, 0);
 
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
-$idHorario = "HOR".$nuevo_numero;
+$idHorario = "HOR".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
+
 
 $sql = "INSERT INTO HORARIO (ID_HORARIO, DIA, HORA_INICIO, HORA_FIN, DEPARTAMENTO, MATERIA, PROFESOR) VALUES ($idHorario, $dia, $horaInicio, $horaFin , $departamento, $materia, $profesor)";
 $params = array($idHorario, $dia, $horaInicio, $horaFin, $departamento, $materia, $profesor);

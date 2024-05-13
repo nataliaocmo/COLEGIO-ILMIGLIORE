@@ -18,11 +18,11 @@ $sql = "SELECT COUNT(*) AS total FROM ADMINISTRATIVO";
 $result = sqlsrv_query($conn,$sql);
 $row = sqlsrv_fetch($result);
 //Obtener el valor numerico
-$total = sqlsrv_get_field($result, 0); 
+$total = sqlsrv_get_field($result, 0,); 
 
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
-$IdAdministrativo = "ADMI".$nuevo_numero;
+$IdAdministrativo = "ADMI".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
 $fechaFormateada = date('Y-m-d H:i:s', strtotime($FechaDeContratacion));
 
 $CorreoInstitucional=$Nombre.$Apellido.'@ims.edu.co';
