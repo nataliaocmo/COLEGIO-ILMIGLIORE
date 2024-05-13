@@ -45,7 +45,7 @@ $acudiente = $_SESSION['acudiente'];
                     <p>Direccion de residencia</p>
                     <input type="text" name="Direccion" value="<?php echo $acudiente['DIRECCION']; ?>" readonly>
                     <p>Contraseña</p>
-                    <input type="text" name="contrasena" value="<?php echo $profesor['CONTRASENA']; ?>" readonly>
+                    <input type="text" name="contrasena" value="<?php echo $acudiente['CONTRASENA']; ?>" readonly>
                 </form>
             </div>
         </div>
