@@ -51,8 +51,23 @@ $row3 = sqlsrv_fetch($result3);
 echo $row3;
 echo $IdDepartamento;
 
+//contraseña random
+
+// Caracteres disponibles para la contraseña
+$caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}|:<>?-=[];,./';
+$longitudCaracteres = strlen($caracteres);
+$contrasena = '';
+
+// Generar la contraseña aleatoria
+for ($i = 0; $i < 10; $i++) {
+    // Seleccionar un carácter aleatorio del conjunto de caracteres
+    $indiceAleatorio = rand(0, $longitudCaracteres - 1);
+    // Agregar el carácter aleatorio a la contraseña
+    $contrasena .= $caracteres[$indiceAleatorio];
+} 
+
 if ($row3==0){
-    $query = "INSERT INTO ADMINISTRATIVO(ID_ADMINISTRATIVO,DOCUMENTO_DE_IDENTIDAD,NOMBRE,APELLIDO,GENERO,CARGO,CORREO_INSTITUCIONAL,TELEFONO,EPS,RH,DIRECCION,FECHA_DE_CONTRATACION,SALARIO,ID_DEPARTAMENTO) VALUES ('$IdAdministrativo','$DocId','$Nombre','$Apellido','$Genero','$Cargo','$CorreoInstitucional','$Telefono','$EPS','$RH','$Direccion','$fechaFormateada','$Salario','$IdDepartamento')";
+    $query = "INSERT INTO ADMINISTRATIVO(ID_ADMINISTRATIVO,CEDULA,NOMBRE,APELLIDO,GENERO,CARGO,CORREO,TELEFONO,EPS,RH,DIRECCION,FECHA_DE_CONTRATACION,SALARIO,ID_DEPARTAMENTO,CONTRASENA) VALUES ('$IdAdministrativo','$DocId','$Nombre','$Apellido','$Genero','$Cargo','$CorreoInstitucional','$Telefono','$EPS','$RH','$Direccion','$fechaFormateada','$Salario','$IdDepartamento','$contrasena')";
     echo $query;
     $res=sqlsrv_prepare($conn,$query);
  

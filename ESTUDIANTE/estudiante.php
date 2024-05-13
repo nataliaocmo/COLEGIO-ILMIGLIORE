@@ -46,6 +46,8 @@ $estudiante = $_SESSION['estudiante'];
                     <input type="text" name="RH" value="<?php echo $estudiante['RH']; ?>" readonly>
                     <p>Direccion de residencia</p>
                     <input type="text" name="Direccion" value="<?php echo $estudiante['DIRECCION']; ?>" readonly>
+                    <p>Contraseña</p>
+                    <input type="text" name="contrasena" value="<?php echo $profesor['CONTRASENA']; ?>" readonly>
             </div>
         </div>
         <div class="right-side">

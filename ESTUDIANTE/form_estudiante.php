@@ -61,12 +61,27 @@ if ($row3 === false) {
     }
 }
 
+//contraseña random
+
+// Caracteres disponibles para la contraseña
+$caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}|:<>?-=[];,./';
+$longitudCaracteres = strlen($caracteres);
+$contrasena = '';
+
+// Generar la contraseña aleatoria
+for ($i = 0; $i < 10; $i++) {
+    // Seleccionar un carácter aleatorio del conjunto de caracteres
+    $indiceAleatorio = rand(0, $longitudCaracteres - 1);
+    // Agregar el carácter aleatorio a la contraseña
+    $contrasena .= $caracteres[$indiceAleatorio];
+} 
+
 $sql4="SELECT * FROM ESTUDIANTE WHERE DOCUMENTO_DE_IDENTIDAD = '$DocId'";
 $result4 = sqlsrv_query($conn,$sql4);
 $row4 = sqlsrv_fetch($result4);
 
 if ($row4==0){
-    $query="INSERT INTO ESTUDIANTE(ID_ESTUDIANTE,DOCUMENTO_DE_IDENTIDAD,NOMBRE,APELLIDO,GENERO,FECHA_DE_NACIMIENTO,ID_GRADO,CORREO_INSTITUCIONAL,TELEFONO,EPS,RH,DIRECCION,ID_ACUDIENTE) VALUES('$IdEstudiante','$DocId','$Nombre','$Apellido','$Genero','$fechaFormateada','$IdGrado','$CorreoInstitucional','$Telefono','$EPS','$RH','$Direccion','$IdAcudiente')";
+    $query="INSERT INTO ESTUDIANTE(ID_ESTUDIANTE,DOCUMENTO_DE_IDENTIDAD,NOMBRE,APELLIDO,GENERO,FECHA_DE_NACIMIENTO,ID_GRADO,CORREO_INSTITUCIONAL,TELEFONO,EPS,RH,DIRECCION,ID_ACUDIENTE,CONTRASENA) VALUES('$IdEstudiante','$DocId','$Nombre','$Apellido','$Genero','$fechaFormateada','$IdGrado','$CorreoInstitucional','$Telefono','$EPS','$RH','$Direccion','$IdAcudiente', '$contrasena')";
         echo $query;
     $res=sqlsrv_prepare($conn,$query);
  

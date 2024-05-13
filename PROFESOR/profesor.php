@@ -3,10 +3,11 @@ session_start();
 
 // Verifica si el usuario está autenticado como profesor
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "profesor") {
-    header("Location: /sql/log_in.html");
+   
+    // header("Location: /sql/log_in.html");
+    
     exit();
 }
-
 // Accede a los datos del profesor desde la sesión
 $profesor = $_SESSION['profesor'];
 ?>
@@ -49,7 +50,9 @@ $profesor = $_SESSION['profesor'];
                     <p>Salario</p>
                     <input type="text" name="Salario" value="<?php echo $profesor['SALARIO']; ?>" readonly>
                     <p>Asignatura</p>
-                    <input type="text" name="Salario" value="" readonly>
+                    <input type="text" name="Asignatura" value="<?php echo $profesor['ASIGNATURA']; ?>" readonly>
+                    <p>Contraseña</p>
+                    <input type="text" name="contrasena" value="<?php echo $profesor['CONTRASENA']; ?>" readonly>
             </div>
         </div>
         <div class="right-side">

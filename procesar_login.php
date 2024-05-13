@@ -6,28 +6,33 @@ if(isset($_POST['rol'])) {
     echo $rol;
     $IdIngreso = $_POST['IdIngreso'];
     echo $IdIngreso;
+    $contrasena =$_POST['contrasena'];
+    echo $contrasena;
     switch ($rol) {
         case 'acudiente':
             include("ACUDIENTE/conexion_acudiente.php");
-            if(isset($_POST['IdIngreso'])) {
-                // Realiza la consulta para buscar al acudiente por su ID
-                $query = "SELECT * FROM ACUDIENTE WHERE ID_ACUDIENTE = '$IdIngreso'";
-                $result = sqlsrv_query($conn, $query);
-                // Verifica si se encontró algún acudiente con el ID ingresado
+            if(isset($_POST['IdIngreso']) && isset($_POST['contrasena'])) {
+                $IdIngreso = $_POST['IdIngreso'];
+                $contrasena = $_POST['contrasena'];
+                
+                // Query to retrieve the professor with the given ID
+                $query = "SELECT * FROM ACUDIENTE WHERE ID_ACUDIENTE = ?";
+                $params = array($IdIngreso);
+                $result = sqlsrv_query($conn, $query, $params);
+        
                 if($result && sqlsrv_has_rows($result)) {
-                    // Obtiene los datos del acudiente
+                    // Fetch the professor's data
                     $acudiente = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-                    // Guarda los datos del acudiente en la sesión
-                    $_SESSION['rol'] = "acudiente";
-                    $_SESSION['acudiente'] = $acudiente;
-                    // Redirige al usuario a la página de acudiente
-                    header("Location: ACUDIENTE/acudiente.php");
-                    exit();
-                } else {
-                    // Si no se encontró ningún acudiente con el ID ingresado, redirige de vuelta al formulario de inicio de sesión con un mensaje de error
-                    header("Location: log_in.html"); // Por ejemplo, error 2 puede indicar un ID de acudiente incorrecto
-                    exit();
-                }
+        
+                    // Check if the password matches
+                    if ($acudiente['CONTRASENA'] === $contrasena) {
+                        $_SESSION['rol'] = "acudiente";
+                        $_SESSION['acudiente'] = $acudiente;
+                        $_SESSION['contrasena'] = $contrasena;
+                        header("Location: ACUDIENTE/acudiente.php");
+                        exit();
+                    } 
+                 }
             } else {
                 // Si no se enviaron datos de inicio de sesión, redirige de vuelta al formulario de inicio de sesión
                 header("Location: log_in.html");
@@ -36,58 +41,86 @@ if(isset($_POST['rol'])) {
             break;
         case 'estudiante':
             include("ESTUDIANTE/ConexionEstudiante.php");
-            if(isset($_POST['IdIngreso'])) {
-                $query = "SELECT * FROM ESTUDIANTE WHERE ID_ESTUDIANTE = '$IdIngreso'";
-                $result = sqlsrv_query($conn, $query);
+            if(isset($_POST['IdIngreso']) && isset($_POST['contrasena'])) {
+                $IdIngreso = $_POST['IdIngreso'];
+                $contrasena = $_POST['contrasena'];
+                
+                // Query to retrieve the professor with the given ID
+                $query = "SELECT * FROM ESTUDIANTE WHERE ID_ESTUDIANTE = ?";
+                $params = array($IdIngreso);
+                $result = sqlsrv_query($conn, $query, $params);
+        
                 if($result && sqlsrv_has_rows($result)) {
+                    // Fetch the professor's data
                     $estudiante = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-                    $_SESSION['rol'] = "estudiante";
-                    $_SESSION['estudiante'] = $estudiante;
-                    header("Location: ESTUDIANTE/estudiante.php");
-                    exit();
-                } else {
-                    header("Location: log_in.html");
-                    exit();
+        
+                    // Check if the password matches
+                    if ($estudiante['CONTRASENA'] === $contrasena) {
+                        $_SESSION['rol'] = "estudiante";
+                        $_SESSION['estudiante'] = $estudiante;
+                        $_SESSION['contrasena'] = $contrasena;
+                        header("Location: ESTUDIANTE/estudiante.php");
+                        exit();
+                    } 
                 }
             } else {
                 header("Location: log_in.html");
                 exit();
             }
             break;
-        case 'profesor':
-            include("PROFESOR/ConexionProfesor.php");
-            if(isset($_POST['IdIngreso'])) {
-                $query = "SELECT * FROM PROFESOR WHERE ID_PROFESOR = '$IdIngreso'";
-                $result = sqlsrv_query($conn, $query);
-                if($result && sqlsrv_has_rows($result)) {
-                    $profesor = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-                    $_SESSION['rol'] = "profesor";
-                    $_SESSION['profesor'] = $profesor;
-                    header("Location: PROFESOR/profesor.php");
-                    exit();
-                } else {
-                    header("Location: log_in.html");
-                    exit();
+            case 'profesor':
+                include("PROFESOR/ConexionProfesor.php");
+                if(isset($_POST['IdIngreso']) && isset($_POST['contrasena'])) {
+                    $IdIngreso = $_POST['IdIngreso'];
+                    $contrasena = $_POST['contrasena'];
+                    
+                    // Query to retrieve the professor with the given ID
+                    $query = "SELECT * FROM PROFESOR WHERE ID_PROFESOR = ?";
+                    $params = array($IdIngreso);
+                    $result = sqlsrv_query($conn, $query, $params);
+            
+                    if($result && sqlsrv_has_rows($result)) {
+                        // Fetch the professor's data
+                        $profesor = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+            
+                        // Check if the password matches
+                        if ($profesor['CONTRASENA'] === $contrasena) {
+                            $_SESSION['rol'] = "profesor";
+                            $_SESSION['profesor'] = $profesor;
+                            $_SESSION['contrasena'] = $contrasena;
+                            header("Location: PROFESOR/profesor.php");
+                            exit();
+                        } 
+                    }
                 }
-            } else {
+                // If authentication fails or data is missing, redirect to login page
                 header("Location: log_in.html");
                 exit();
-            }
-            break;
+                break;
+            
         case 'administrativo':
             include("ADMINISTRATIVO/ConexionAdministrativo.php");
-            if(isset($_POST['IdIngreso'])) {
-                $query = "SELECT * FROM ADMINISTRATIVO WHERE ID_ADMINISTRATIVO = '$IdIngreso'";
-                $result = sqlsrv_query($conn, $query);
+            if(isset($_POST['IdIngreso']) && isset($_POST['contrasena'])) {
+                $IdIngreso = $_POST['IdIngreso'];
+                $contrasena = $_POST['contrasena'];
+                
+                // Query to retrieve the professor with the given ID
+                $query = "SELECT * FROM ADMINISTRATIVO WHERE ID_ADMINISTRATIVO = ?";
+                $params = array($IdIngreso);
+                $result = sqlsrv_query($conn, $query, $params);
+        
                 if($result && sqlsrv_has_rows($result)) {
+                    // Fetch the professor's data
                     $administrativo = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-                    $_SESSION['rol'] = "administrativo";
-                    $_SESSION['administrativo'] = $administrativo;
-                    header("Location: ADMINISTRATIVO/administrativo.php");
-                    exit();
-                } else {
-                    header("Location: log_in.html");
-                    exit();
+        
+                    // Check if the password matches
+                    if ($administrativo['CONTRASENA'] === $contrasena) {
+                        $_SESSION['rol'] = "administrativo";
+                        $_SESSION['administrativo'] = $administrativo;
+                        $_SESSION['contrasena'] = $contrasena;
+                        header("Location: ADMINISTRATIVO/administrativo.php");
+                        exit();
+                    } 
                 }
             } else {
                 header("Location: log_in.html");
@@ -97,11 +130,13 @@ if(isset($_POST['rol'])) {
         default:
             // Si se selecciona un rol no válido, redirige al formulario de inicio de sesión
             header("Location: log_in.html");
+            echo  '<p>alert("el usuario no se encuentra registrado")<p>'; 
             exit();
     }
 } else {
     // Si no se enviaron datos de inicio de sesión, redirige al formulario de inicio de sesión
     header("Location: log_in.html");
+    echo '<script type="text/javascript">window.onload = function () { alert("el usuario no se encuentra registrado"); }</script>'; 
     exit();
 }
 ?>
