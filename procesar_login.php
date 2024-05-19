@@ -3,11 +3,8 @@ session_start();
 // Verifica si se envió un rol y un ID de ingreso
 if(isset($_POST['rol'])) {
     $rol = $_POST['rol'];
-    echo $rol;
     $IdIngreso = $_POST['IdIngreso'];
-    echo $IdIngreso;
     $contrasena =$_POST['contrasena'];
-    echo $contrasena;
     switch ($rol) {
         case 'acudiente':
             include("ACUDIENTE/conexion_acudiente.php");
@@ -23,7 +20,6 @@ if(isset($_POST['rol'])) {
                 if($result && sqlsrv_has_rows($result)) {
                     // Fetch the professor's data
                     $acudiente = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
-        
                     // Check if the password matches
                     if ($acudiente['CONTRASENA'] === $contrasena) {
                         $_SESSION['rol'] = "acudiente";
@@ -31,7 +27,10 @@ if(isset($_POST['rol'])) {
                         $_SESSION['contrasena'] = $contrasena;
                         header("Location: ACUDIENTE/acudiente.php");
                         exit();
-                    } 
+                    } else{
+                        echo '<script type="text/javascript">window.onload = function () { alert("ID o Contraseña incorrectas"); }</script>';
+                        echo "<script>window.location = 'log_in.html';</script>"; 
+                    }
                  }
             } else {
                 // Si no se enviaron datos de inicio de sesión, redirige de vuelta al formulario de inicio de sesión
@@ -61,7 +60,10 @@ if(isset($_POST['rol'])) {
                         $_SESSION['contrasena'] = $contrasena;
                         header("Location: ESTUDIANTE/estudiante.php");
                         exit();
-                    } 
+                    }else{
+                        echo '<script type="text/javascript">window.onload = function () { alert("ID o Contraseña incorrectas"); }</script>';
+                        echo "<script>window.location = 'log_in.html';</script>"; 
+                    }
                 }
             } else {
                 header("Location: log_in.html");
@@ -90,7 +92,10 @@ if(isset($_POST['rol'])) {
                             $_SESSION['contrasena'] = $contrasena;
                             header("Location: PROFESOR/profesor.php");
                             exit();
-                        } 
+                        }else{
+                            echo '<script type="text/javascript">window.onload = function () { alert("ID o Contraseña incorrectas"); }</script>';
+                            echo "<script>window.location = 'log_in.html';</script>"; 
+                        }
                     }
                 }
                 // If authentication fails or data is missing, redirect to login page
@@ -120,7 +125,10 @@ if(isset($_POST['rol'])) {
                         $_SESSION['contrasena'] = $contrasena;
                         header("Location: ADMINISTRATIVO/administrativo.php");
                         exit();
-                    } 
+                    }else{
+                        echo '<script type="text/javascript">window.onload = function () { alert("ID o Contraseña incorrectas"); }</script>';
+                        echo "<script>window.location = 'log_in.html';</script>"; 
+                    }
                 }
             } else {
                 header("Location: log_in.html");
@@ -135,8 +143,8 @@ if(isset($_POST['rol'])) {
     }
 } else {
     // Si no se enviaron datos de inicio de sesión, redirige al formulario de inicio de sesión
-    header("Location: log_in.html");
     echo '<script type="text/javascript">window.onload = function () { alert("el usuario no se encuentra registrado"); }</script>'; 
+    echo "<script>window.location = 'log_in.html';</script>";
     exit();
 }
 ?>

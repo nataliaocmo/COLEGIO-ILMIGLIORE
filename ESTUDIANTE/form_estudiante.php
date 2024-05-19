@@ -61,32 +61,30 @@ if ($row3 === false) {
     }
 }
 
-//contraseña random
-
+//Contraseña random
 // Caracteres disponibles para la contraseña
 $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}|:<>?-=[];,./';
 $longitudCaracteres = strlen($caracteres);
 $contrasena = '';
-
 // Generar la contraseña aleatoria
 for ($i = 0; $i < 10; $i++) {
     // Seleccionar un carácter aleatorio del conjunto de caracteres
     $indiceAleatorio = rand(0, $longitudCaracteres - 1);
     // Agregar el carácter aleatorio a la contraseña
     $contrasena .= $caracteres[$indiceAleatorio];
-} 
+}
 
 $sql4="SELECT * FROM ESTUDIANTE WHERE DOCUMENTO_DE_IDENTIDAD = '$DocId'";
 $result4 = sqlsrv_query($conn,$sql4);
 $row4 = sqlsrv_fetch($result4);
 
 if ($row4==0){
-    $query="INSERT INTO ESTUDIANTE(ID_ESTUDIANTE,DOCUMENTO_DE_IDENTIDAD,NOMBRE,APELLIDO,GENERO,FECHA_DE_NACIMIENTO,ID_GRADO,CORREO_INSTITUCIONAL,TELEFONO,EPS,RH,DIRECCION,ID_ACUDIENTE,CONTRASENA) VALUES('$IdEstudiante','$DocId','$Nombre','$Apellido','$Genero','$fechaFormateada','$IdGrado','$CorreoInstitucional','$Telefono','$EPS','$RH','$Direccion','$IdAcudiente', '$contrasena')";
-        echo $query;
+    $query="INSERT INTO ESTUDIANTE(ID_ESTUDIANTE,DOCUMENTO_DE_IDENTIDAD,NOMBRE,APELLIDO,GENERO,FECHA_DE_NACIMIENTO,ID_GRADO,CORREO_INSTITUCIONAL,TELEFONO,EPS,RH,DIRECCION,ID_ACUDIENTE,CONTRASENA) VALUES('$IdEstudiante','$DocId','$Nombre','$Apellido','$Genero','$fechaFormateada','$IdGrado','$CorreoInstitucional','$Telefono','$EPS','$RH','$Direccion','$IdAcudiente','$contrasena')";
     $res=sqlsrv_prepare($conn,$query);
  
         if (sqlsrv_execute($res)){
-            header("Location: /sql/ADMINISTRATIVO/HISTORIAL_ACADEMICO/form_historial.html");
+            echo "<script>alert('Su usuario ha sido creado de manera exitosa, ID:$IdEstudiante CONTRASEÑA:$contrasena.');</script>";
+            echo "<script>window.location = '/sql/ADMINISTRATIVO/HISTORIAL_ACADEMICO/form_historial.html';</script>";
             exit();
         }else{
             if( ($errors = sqlsrv_errors() ) != null) {

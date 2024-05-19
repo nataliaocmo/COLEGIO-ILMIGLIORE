@@ -3,109 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <title>Formulario de Registro de grados</title>
-  <link rel="stylesheet" href="form_grados.css">
 </head>
 <body>
   <div class="formulario">
     <h2>Actualización Director de curso para grados</h2>
-    <form id="formulario" class="" action="form_grados.php" method="post" onsubmit="return validarFormulario()">
-      <select id="genero" name="genero">
-        <option value=" "></option>
-        <option value="PREESCOLAR A">PREESCOLAR A</option>
-        <option value="PREESCOLAR B">PREESCOLAR B</option>
-        <option value="PREESCOLAR C">PREESCOLAR C</option>
-        <option value="PRIMERO A">PRIMERO A</option>
-        <option value="PRIMERO B">PRIMERO B</option>
-        <option value="PRIMERO C">PRIMERO C</option>
-        <option value="SEGUNDA A">SEGUNDO A</option>
-        <option value="SEGUNDO B">SEGUNDO B</option>
-        <option value="SEGUNDO C">SEGUNDO C</option>
-        <option value="TERCERO A">TERCERO A</option>
-        <option value="TERCERO B">TERCERO B</option>
-        <option value="TERCERO C">TERCERO C</option>
-        <option value="CUARTO A">CUARTO A</option>
-        <option value="CUARTO B">CUARTO B</option>
-        <option value="CUARTO C">CUARTO C</option>
-        <option value="QUINTO A">QUINTO A</option>
-        <option value="QUINTO B">QUINTO B</option>
-        <option value="QUINTO C">QUINTO C</option>
-        <option value="SEXTO A">SEXTO A</option>
-        <option value="SEXTO B">SEXTO B</option>
-        <option value="SEXTO C">SEXTO C</option>
-        <option value="SEPTIMO A">SEPTIMO A</option>
-        <option value="SEPTIMO B">SEPTIMO B</option>
-        <option value="SEPTIMO C">SEPTIMO C</option>
-        <option value="OCTAVO A">OCTAVO A</option>
-        <option value="OCTAVO B">OCTAVO B</option>
-        <option value="OCTAVO C">OCTAVO C</option>
-        <option value="NOVENO A">NOVENO A</option>
-        <option value="NOVENO B">NOVENO B</option>
-        <option value="NOVENO C">NOVENO C</option>
-        <option value="DECIMO A">DECIMO A</option>
-        <option value="DECIMO B">DECIMO B</option>
-        <option value="DECIMO C">DECIMO C</option>
-        <option value="UNDECIMO A">UNDECIMO A</option>
-        <option value="UNDECIMO B">UNDECIMO B</option>
-        <option value="UNDECIMO C">UNDECIMO C</option>
-      </select>
-      <input type="number" name="IdNuevoDirector" placeholder="Id Nuevo Director de Curso" required> 
-      <button type="submit">Guardar Acudiente</button>
+    <form id="formulario" action="obtener_nuevo_director.php" method="post" onsubmit="return validarFormulario()">
+      <input type="hidden" name="id_administrativo" value="<?php echo $_GET['id_administrativo']; ?>">
+      <p>GRADO</p>
+      <select id="grado" name="grado">
+            <option value=" "></option>
+            <option value="PREESCOLAR A">PREESCOLAR A</option>
+            <option value="PREESCOLAR B">PREESCOLAR B</option>
+            <option value="PREESCOLAR C">PREESCOLAR C</option>
+            <option value="PRIMERO A">PRIMERO A</option>
+            <option value="PRIMERO B">PRIMERO B</option>
+            <option value="PRIMERO C">PRIMERO C</option>
+            <option value="SEGUNDA A">SEGUNDO A</option>
+            <option value="SEGUNDO B">SEGUNDO B</option>
+            <option value="SEGUNDO C">SEGUNDO C</option>
+            <option value="TERCERO A">TERCERO A</option>
+            <option value="TERCERO B">TERCERO B</option>
+            <option value="TERCERO C">TERCERO C</option>
+            <option value="CUARTO A">CUARTO A</option>
+            <option value="CUARTO B">CUARTO B</option>
+            <option value="CUARTO C">CUARTO C</option>
+            <option value="QUINTO A">QUINTO A</option>
+            <option value="QUINTO B">QUINTO B</option>
+            <option value="QUINTO C">QUINTO C</option>
+            <option value="SEXTO A">SEXTO A</option>
+            <option value="SEXTO B">SEXTO B</option>
+            <option value="SEXTO C">SEXTO C</option>
+            <option value="SEPTIMO A">SEPTIMO A</option>
+            <option value="SEPTIMO B">SEPTIMO B</option>
+            <option value="SEPTIMO C">SEPTIMO C</option>
+            <option value="OCTAVO A">OCTAVO A</option>
+            <option value="OCTAVO B">OCTAVO B</option>
+            <option value="OCTAVO C">OCTAVO C</option>
+            <option value="NOVENO A">NOVENO A</option>
+            <option value="NOVENO B">NOVENO B</option>
+            <option value="NOVENO C">NOVENO C</option>
+            <option value="DECIMO A">DECIMO A</option>
+            <option value="DECIMO B">DECIMO B</option>
+            <option value="DECIMO C">DECIMO C</option>
+            <option value="UNDECIMO A">UNDECIMO A</option>
+            <option value="UNDECIMO B">UNDECIMO B</option>
+            <option value="UNDECIMO C">UNDECIMO C</option>
+        </select>
+            <button type="submit">Siguiente</button>
     </form>
-    <div id="error-message" style="color: red;"></div>
-    <div id="success-message" style="color: green; display: none;">¡Acudiente registrado correctamente!</div>
-  </div>
-
-  <script>
-    function validarFormulario() {
-      var idAcu = document.getElementsByName("IdAcu")[0].value;
-      var docId = document.getElementsByName("DocId")[0].value;
-      var nombre = document.getElementsByName("Nombre")[0].value;
-      var apellido = document.getElementsByName("Apellido")[0].value;
-      var genero = document.getElementsByName("Genero")[0].value;
-      var correo = document.getElementsByName("Correo")[0].value;
-      var telefono = document.getElementsByName("Telefono")[0].value;
-      var direccion = document.getElementsByName("Direccion")[0].value;
-      var errorMessage = "";
-
-      // Validaciones
-      if (isNaN(idAcu)) {
-        errorMessage += "El campo Id Acudiente solo debe contener números.<br>";
-      }
-      if (!/^\d+$/.test(docId)) {
-        errorMessage += "El campo Documento de Identidad solo debe contener números.<br>";
-      }
-      if (!/^[a-zA-Z]+$/.test(nombre)) {
-        errorMessage += "El campo Nombre solo debe contener letras.<br>";
-      }
-      if (!/^[a-zA-Z]+$/.test(apellido)) {
-        errorMessage += "El campo Apellido solo debe contener letras.<br>";
-      }
-      if (genero !== "Masculino" && genero !== "Femenino" && genero !== "Otro") {
-        errorMessage += "Seleccione una opción válida para el campo Género.<br>";
-      }
-      if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correo)) {
-        errorMessage += "Ingrese un correo electrónico válido.<br>";
-      }
-      if (isNaN(telefono)) {
-        errorMessage += "El campo Teléfono solo debe contener números.<br>";
-      }
-      if (direccion.trim() === "") {
-        errorMessage += "El campo Dirección es obligatorio.<br>";
-      }
-
-      // Mostrar mensaje de error si hay alguno
-      if (errorMessage !== "") {
-        document.getElementById("error-message").innerHTML = errorMessage;
-        document.getElementById("success-message").style.display = "none"; // Ocultar mensaje de éxito
-        return false; // Detener el envío del formulario
-      }
-
-      // Mostrar mensaje de éxito y limpiar formulario
-      document.getElementById("success-message").style.display = "block";
-      document.getElementById("error-message").innerHTML = ""; // Limpiar mensajes de error
-      document.getElementById("formulario").reset(); // Limpiar formulario
-      return true; // Permitir el envío del formulario si no hay errores
-    }
-  </script>
+    <form id="login-form" action="http://localhost:8081/sql/ADMINISTRATIVO/administrativo.php" method="post">
+      <input type="hidden" name="rol" value="acudiente">
+      <input type="hidden" name="IdIngreso" value="<?php echo $_GET['id_administrativo'];?>">
+      <button id="volver" type="submit">Volver</button>
+    </form>
+    </div>
 </body>
 </html>

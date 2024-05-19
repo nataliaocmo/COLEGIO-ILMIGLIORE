@@ -19,7 +19,6 @@
         <option value="Telefono">Telefono</option>
         <option value="EPS">EPS</option>
         <option value="Direccion">Direccion</option>
-        <option value="Contrasena">Contraseña</option>
       </select>
       <input type="text" name="dato" style="display: none;">
       <select id="NuevoGenero" name="NuevoGenero" style="display: none;">
@@ -90,10 +89,6 @@ switch ($cambio) {
     $query = "UPDATE ADMINISTRATIVO SET DIRECCION='$nuevoDato' WHERE ID_ADMINISTRATIVO='$id_administrativo'";
     actualizar($conn, $query, $id_administrativo);
     break;
-    case "Contrasena":
-      $query = "UPDATE ADMINISTRATIVO SET CONTRASENA='$nuevoDato' WHERE ID_ADMINISTRATIVO='$id_administrativo'";
-      actualizar($conn, $query, $id_administrativo);
-      break;
   default:
     break;
 }

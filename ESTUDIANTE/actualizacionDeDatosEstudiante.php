@@ -35,10 +35,6 @@ switch ($cambio) {
     $query = "UPDATE ESTUDIANTE SET GENERO='$nuevoGenero' WHERE ID_ESTUDIANTE='$id_estudiante'";
     actualizar($conn,$query,$id_acudiente);
     break;
-  case "Correo":
-    $query = "UPDATE ESTUDIANTE SET CORREO='$nuevoDato' WHERE ID_ESTUDIANTE='$id_estudiante'";
-    actualizar($conn,$query,$id_acudiente);
-    break;
   case "Telefono":
     $query = "UPDATE ESTUDIANTE SET TELEFONO='$nuevoDato' WHERE ID_ESTUDIANTE='$id_estudiante'";
     actualizar($conn,$query,$id_acudiente);
@@ -93,7 +89,6 @@ function actualizar($conn, $query, $id_acudiente) {
         <option value="Nombre">Nombre</option>
         <option value="Apellido">Apellido</option>
         <option value="Genero">Genero</option>
-        <option value="Correo">Correo</option>
         <option value="Telefono">Telefono</option>
         <option value="EPS">EPS</option>
         <option value="Direccion">Direccion</option>

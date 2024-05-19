@@ -2,20 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Actualizacion de datos Acudiente</title>
+  <title>Actualizacion de datos Profesor</title>
 </head>
 <body>
   <div class="formulario">
-    <h2>Actualizacion de datos Acudiente</h2>
-    <form id="Actualizacion" class="" action="actualizacionDeDatosAcudiente.php" method="post" onsubmit="return validarFormulario()">
-      <input type="hidden" name="id_acudiente" value="<?php echo $_GET['id_acudiente']; ?>">
+    <h2>Actualizacion de datos Profesor</h2>
+    <form id="Actualizacion" class="" action="actualizacionDeDatosProfesor.php" method="post" onsubmit="return validarFormulario()">
+      <input type="hidden" name="id_profesor" value="<?php echo $_GET['id_profesor']; ?>">
       <p>Dato a cambiar</p>
       <select id="cambio" name="cambio" onchange="mostrarOcultarCampo()">
         <option value=" "></option>
         <option value="Nombre">Nombre</option>
         <option value="Apellido">Apellido</option>
         <option value="Genero">Genero</option>
-        <option value="Correo">Correo</option>
         <option value="Telefono">Telefono</option>
         <option value="Direccion">Direccion</option>
       </select>
@@ -26,11 +25,11 @@
         <option value="Masculino">Masculino</option>
         <option value="Otro">Otro</option>
       </select>
-      <button type="submit">Actualizar Acudiente</button>
+      <button type="submit">Actualizar Profesor</button>
     </form>
     <form id="login-form" action="http://localhost:8081/sql/procesar_login.php" method="post">
       <input type="hidden" name="rol" value="acudiente">
-      <input type="hidden" name="IdIngreso" value="<?php echo $_GET['id_acudiente']; ?>">
+      <input type="hidden" name="IdIngreso" value="<?php echo $_GET['id_profesor']; ?>">
       <button id="volver" type="submit">Volver</button>
     </form>
     <div id="error-message" style="color: red;"></div>
@@ -56,42 +55,38 @@
 
 <?php
 include("conexion.php");
-$id_acudiente = $_POST['id_acudiente'];
+$id_acudiente = $_POST['id_profesor'];
 $cambio = $_POST["cambio"];
 $nuevoDato = $_POST["dato"];
 switch ($cambio) {
   case "Nombre":
-    $query = "UPDATE ACUDIENTE SET NOMBRE='$nuevoDato' WHERE ID_ACUDIENTE='$id_acudiente'";
-    actualizar($conn, $query, $id_acudiente);
+    $query = "UPDATE PROFESOR SET NOMBRE='$nuevoDato' WHERE ID_PROFESOR='$id_profesor'";
+    actualizar($conn, $query, $id_profesor);
     break;
   case "Apellido":
-    $query = "UPDATE ACUDIENTE SET APELLIDO='$nuevoDato' WHERE ID_ACUDIENTE='$id_acudiente'";
-    actualizar($conn, $query, $id_acudiente);
+    $query = "UPDATE PROFESOR SET APELLIDO='$nuevoDato' WHERE ID_PROFESOR='$id_profesor'";
+    actualizar($conn, $query, $id_profesor);
     break;
   case "Genero":
-    $query = "UPDATE ACUDIENTE SET GENERO='$nuevoDato' WHERE ID_ACUDIENTE='$id_acudiente'";
-    actualizar($conn, $query, $id_acudiente);
-    break;
-  case "Correo":
-    $query = "UPDATE ACUDIENTE SET CORREO='$nuevoDato' WHERE ID_ACUDIENTE='$id_acudiente'";
-    actualizar($conn, $query,$id_acudiente);
+    $query = "UPDATE PROFESOR SET GENERO='$nuevoDato' WHERE ID_PROFESOR='$id_profesor'";
+    actualizar($conn, $query, $id_profesor);
     break;
   case "Telefono":
-    $query = "UPDATE ACUDIENTE SET TELEFONO='$nuevoDato' WHERE ID_ACUDIENTE='$id_acudiente'";
-    actualizar($conn, $query, $id_acudiente);
+    $query = "UPDATE PROFESOR SET TELEFONO='$nuevoDato' WHERE ID_PROFESOR='$id_profesor'";
+    actualizar($conn, $query, $id_profesor);
     break;
   case "Direccion":
-    $query = "UPDATE ACUDIENTE SET DIRECCION='$nuevoDato' WHERE ID_ACUDIENTE='$id_acudiente'";
-    actualizar($conn, $query, $id_acudiente);
+    $query = "UPDATE PROFESOR SET DIRECCION='$nuevoDato' WHERE ID_PROFESOR='$id_profesor'";
+    actualizar($conn, $query, $id_profesor);
     break;
   default:
     break;
 }
-function actualizar($conn, $query, $id_acudiente) {
+function actualizar($conn, $query, $id_profesor) {
   $res = sqlsrv_prepare($conn, $query);
   if (sqlsrv_execute($res)) {
-      echo $id_acudiente;
-      header("Location: /sql/ACUDIENTE/actualizacionDeDatosAcudiente.php?id_acudiente=$id_acudiente");
+      echo $id_profesor;
+      header("Location: /sql/PROFESOR/actualizacionDeDatosProfesor.php?id_profesor=$id_profesor");
       exit();
   } else {
       if (($errors = sqlsrv_errors()) != null) {

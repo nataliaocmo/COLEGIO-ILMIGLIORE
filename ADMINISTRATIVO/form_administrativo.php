@@ -11,18 +11,19 @@ $EPS = $_POST["eps"];
 $RH = $_POST["rh"];
 $Direccion = $_POST["direccion"];
 $FechaDeContratacion = $_POST["fechaDeContratacion"];
-$Salario = $_POST["salario"];
 $Departamento = $_POST["departamento"];
+
+$Salario = '2000000';
 
 $sql = "SELECT COUNT(*) AS total FROM ADMINISTRATIVO";
 $result = sqlsrv_query($conn,$sql);
 $row = sqlsrv_fetch($result);
 //Obtener el valor numerico
-$total = sqlsrv_get_field($result, 0,); 
+$total = sqlsrv_get_field($result, 0); 
 
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
-$IdAdministrativo = "ADMI".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
+$IdAdministrativo = "ADMI".$nuevo_numero;
 $fechaFormateada = date('Y-m-d H:i:s', strtotime($FechaDeContratacion));
 
 $CorreoInstitucional=$Nombre.$Apellido.'@ims.edu.co';
@@ -51,28 +52,27 @@ $row3 = sqlsrv_fetch($result3);
 echo $row3;
 echo $IdDepartamento;
 
-//contraseña random
-
+//Contraseña random
 // Caracteres disponibles para la contraseña
 $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}|:<>?-=[];,./';
 $longitudCaracteres = strlen($caracteres);
 $contrasena = '';
-
 // Generar la contraseña aleatoria
 for ($i = 0; $i < 10; $i++) {
     // Seleccionar un carácter aleatorio del conjunto de caracteres
     $indiceAleatorio = rand(0, $longitudCaracteres - 1);
     // Agregar el carácter aleatorio a la contraseña
     $contrasena .= $caracteres[$indiceAleatorio];
-} 
+}
 
 if ($row3==0){
-    $query = "INSERT INTO ADMINISTRATIVO(ID_ADMINISTRATIVO,CEDULA,NOMBRE,APELLIDO,GENERO,CARGO,CORREO,TELEFONO,EPS,RH,DIRECCION,FECHA_DE_CONTRATACION,SALARIO,ID_DEPARTAMENTO,CONTRASENA) VALUES ('$IdAdministrativo','$DocId','$Nombre','$Apellido','$Genero','$Cargo','$CorreoInstitucional','$Telefono','$EPS','$RH','$Direccion','$fechaFormateada','$Salario','$IdDepartamento','$contrasena')";
+    $query = "INSERT INTO ADMINISTRATIVO(ID_ADMINISTRATIVO,DOCUMENTO_DE_IDENTIDAD,NOMBRE,APELLIDO,GENERO,CARGO,CORREO_INSTITUCIONAL,TELEFONO,EPS,RH,DIRECCION,FECHA_DE_CONTRATACION,SALARIO,ID_DEPARTAMENTO,CONTRASENA) VALUES ('$IdAdministrativo','$DocId','$Nombre','$Apellido','$Genero','$Cargo','$CorreoInstitucional','$Telefono','$EPS','$RH','$Direccion','$fechaFormateada','$Salario','$IdDepartamento','$contrasena')";
     echo $query;
     $res=sqlsrv_prepare($conn,$query);
  
         if (sqlsrv_execute($res)){
-            header("Location: /sql/log_in.html");
+            echo "<script>alert('Su usuario ha sido creado de manera exitosa, ID:$IdAdministrativo CONTRASEÑA:$contrasena.');</script>";
+            echo "<script>window.location = '/sql/ADMINISTRATIVO/administrativo.php';</script>";
             exit();
         }else{
             if( ($errors = sqlsrv_errors() ) != null) {

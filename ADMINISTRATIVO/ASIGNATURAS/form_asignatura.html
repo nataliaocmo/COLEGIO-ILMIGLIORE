@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Actualizacion Asignaturas</title>
+</head>
+<body>
+<div class="formulario">
+    <h2>Actualización Jefe de Area</h2>
+    <form id="formulario" class="" action="obtener_nuevo_jefe.php" method="post" onsubmit="return validarFormulario()">    
+    <input type="hidden" name="id_administrativo" value="<?php echo $_GET['id_administrativo']; ?>">
+    <p>AREA</p>
+        <select id="area" name="area">
+            <option value=" "></option>
+            <option value="PEDAGOGIA">Pedagogia</option>
+            <option value="LENGUAJE Y LITERATURA">Lenguaje y Literatura</option>
+            <option value="MATEMATICAS">Matematicas</option>
+            <option value="CIENCIAS NATURALES">Ciencias Naturales</option>
+            <option value="BELLAS ARTES">Bellas Artes</option>
+            <option value="CIENCIAS DE LA SALUD Y BIENESTAR">Ciencias de la salud y Bienestar</option>
+            <option value="EDUCACION SOCIOEMOCIONAL">Educacion Socioemocional</option>
+            <option value="ARTES ESCEICAS">Artes Escenicas</option>
+            <option value="CIENCIAS SOCIALES">Ciencias Sociales</option>
+            <option value="LENGUAS EXTRANGERAS">Lenguas Extrangeras</option>
+            <option value="TIC">TIC</option>
+            <option value="TIC">TIC</option>
+        </select>
+        <button type="submit">Siguiente</button>
+    </form>
+    <form id="login-form" action="http://localhost:8081/sql/ADMINISTRATIVO/administrativo.php" method="post">
+      <input type="hidden" name="rol" value="administrativo">
+      <input type="hidden" name="IdIngreso" value="<?php echo $_GET['id_administrativo']; ?>">
+      <button id="volver" type="submit">Volver</button>
+    </form>
+</div>
+</body>
+</html>

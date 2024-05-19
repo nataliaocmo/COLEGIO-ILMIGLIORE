@@ -12,46 +12,60 @@
         <h2>Registro de Profesor</h2>
     
         <form id="formulario" class="" action="form_profesor.php" method="post" onsubmit="return validarFormulario()">
-          <input type="text" name="nombre" placeholder="Nombre" required>
-          <input type="text" name="apellido" placeholder="Apellido" required>
-          <select id="genero" name="genero">
-            <option value=" "></option>
-            <option value="Femenino">Femenino</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Otro">Otro</option>
-          </select>
-          <input type="text" name="telefono" placeholder="Teléfono" required>
-          <input type="text" name="eps" placeholder="EPS" required>
-          <select id="rh" name="rh">
-            <option value=" "></option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="AB+">AB-</option>
-            <option value="AB-">AB-</option>
-          </select>
-          <input type="text" name="direccion" placeholder="Dirección" required>
-          <input type="date" name="fechaDeContratacion" placeholder="Fecha de contratacion" required>
-          <input type="number" name="salario" placeholder="Salario" required>
-          <input type="text" name="docId" placeholder="Documento de Identidad" required>
-          <button type="submit">Guardar Profesor</button>
-        </form>
-        <div id="error-message" style="color: red;"></div>
-        <div id="success-message" style="color: green; display: none;">¡Profesor registrado correctamente!</div>
-      </div>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="apellido" placeholder="Apellido" required>
+            <select id="genero" name="genero">
+                <option value=" "></option>
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <input type="text" name="telefono" placeholder="Teléfono" required>
+            <input type="text" name="eps" placeholder="EPS" required>
+            <select id="rh" name="rh">
+                <option value=" "></option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="AB+">AB-</option>
+                <option value="AB-">AB-</option>
+            </select>
+            <input type="text" name="direccion" placeholder="Dirección" required>
+            <input type="date" name="fechaDeContratacion" placeholder="Fecha de contratacion" required>
+            <input type="text" name="docId" placeholder="Documento de Identidad" required>
+            <select id="area" name="area">
+                <option value=" "></option>
+                <option value="PEDAGOGIA">Pedagogia</option>
+                <option value="LENGUAJE Y LITERATURA">Lenguaje y Literatura</option>
+                <option value="MATEMATICAS">Matematicas</option>
+                <option value="CIENCIAS NATURALES">Ciencias Naturales</option>
+                <option value="BELLAS ARTES">Bellas Artes</option>
+                <option value="CIENCIAS DE LA SALUD Y BIENESTAR">Ciencias de la salud y Bienestar</option>
+                <option value="EDUCACION SOCIOEMOCIONAL">Educacion Socioemocional</option>
+                <option value="ARTES ESCEICAS">Artes Escenicas</option>
+                <option value="CIENCIAS SOCIALES">Ciencias Sociales</option>
+                <option value="LENGUAS EXTRANGERAS">Lenguas Extrangeras</option>
+                <option value="TIC">TIC</option>
+                <option value="TIC">TIC</option>
+            </select>
+            <button type="submit">Guardar Profesor</button>
+            </form>
+            <div id="error-message" style="color: red;"></div>
+            <div id="success-message" style="color: green; display: none;">¡Profesor registrado correctamente!</div>
+        </div>
 
-      <script>
-        function validarFormulario() {
-            var nombre = document.getElementsByName("Nombre")[0].value.trim();
-            var apellido = document.getElementsByName("Apellido")[0].value.trim();
-            var telefono = document.getElementsByName("Telefono")[0].value.trim();
-            var eps = document.getElementsByName("EPS")[0].value.trim();
-            var direccion = document.getElementsByName("Direccion")[0].value.trim();
-            var fechaContratacion = document.getElementsByName("FechaDeContratacion")[0].value.trim();
-            var salario = document.getElementsByName("Salario")[0].value.trim();
-            var docId = document.getElementsByName("DocId")[0].value.trim();
-            var errorMessage = "";
+        <script>
+            function validarFormulario() {
+                var nombre = document.getElementsByName("Nombre")[0].value.trim();
+                var apellido = document.getElementsByName("Apellido")[0].value.trim();
+                var telefono = document.getElementsByName("Telefono")[0].value.trim();
+                var eps = document.getElementsByName("EPS")[0].value.trim();
+                var direccion = document.getElementsByName("Direccion")[0].value.trim();
+                var fechaContratacion = document.getElementsByName("FechaDeContratacion")[0].value.trim();
+                var salario = document.getElementsByName("Salario")[0].value.trim();
+                var docId = document.getElementsByName("DocId")[0].value.trim();
+                var errorMessage = "";
 
             // Validaciones
             if (nombre === "") {

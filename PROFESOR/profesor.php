@@ -3,11 +3,10 @@ session_start();
 
 // Verifica si el usuario está autenticado como profesor
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "profesor") {
-   
-    // header("Location: /sql/log_in.html");
-    
+    header("Location: /sql/log_in.html");
     exit();
 }
+
 // Accede a los datos del profesor desde la sesión
 $profesor = $_SESSION['profesor'];
 ?>
@@ -50,20 +49,19 @@ $profesor = $_SESSION['profesor'];
                     <p>Salario</p>
                     <input type="text" name="Salario" value="<?php echo $profesor['SALARIO']; ?>" readonly>
                     <p>Asignatura</p>
-                    <input type="text" name="Asignatura" value="<?php echo $profesor['ASIGNATURA']; ?>" readonly>
+                    <input type="text" name="Salario" value="" readonly>
                     <p>Contraseña</p>
                     <input type="text" name="contrasena" value="<?php echo $profesor['CONTRASENA']; ?>" readonly>
-            </div>
+                </div>
         </div>
         <div class="right-side">
             <div class="content">
                 <ul>
-                    <li><span>Actualizar Datos</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Control de asistencia</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Ver Horario</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Lista de Estudiantes</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Asignar Notas</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Modificar Notas</span><a href=""><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Actualizar Datos</span><a href="actualizacionDeDatosProfesor.php"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Asistencia Diaria</span><a href="ASISTENCIA/asistencia_diaria.php"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Horario</span><a href=""><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Asignar Notas</span><a href="NOTA/form_notas.php"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Modificar Notas</span><a href="NOTA/modificar_notas.php"><button class="circular-button">&#8594;</button></a></li>
                 </ul>
             </div>
         </div>

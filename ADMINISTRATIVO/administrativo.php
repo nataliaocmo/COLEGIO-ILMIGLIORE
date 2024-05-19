@@ -51,8 +51,6 @@ $administrativo = $_SESSION['administrativo'];
                     <input type="text" name="RH" value="<?php echo $administrativo['RH']; ?>" readonly>
                     <p>Direccion de residencia</p>
                     <input type="text" name="Direccion" value="<?php echo $administrativo['DIRECCION']; ?>" readonly>
-                    <p>Contraseña</p>
-                    <input type="text" name="contrasena" value="<?php echo $administrativo['CONTRASENA']; ?>" readonly>
                 </form>
             </div>
             </div>
@@ -61,11 +59,12 @@ $administrativo = $_SESSION['administrativo'];
             <div class="content">
                 <ul>
                     <li><span>Admisiones</span><a href="/sql/ACUDIENTE/form_acudiente.html"><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Pago de Matriculas</span><a href="/sql/ADMINISTRATIVO/PAGO_MATRICULA/form_pago_matricula.php"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Gestión de Grados</span><a href="/sql/ADMINISTRATIVO/GRADOS/form_grados.html"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Gestión de Horarios</span><a href="HORARIO/form_horario.html"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Contrataciones Administrativos</span><a href="/sql/ADMINISTRATIVO/form_administrativo.html"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Contrataciones Profesores</span><a href="/sql/PROFESOR/form_profesor.html"><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Actualizacion de Datos</span><a href="actualizacionDeDatosAdministrativo.php?id_administrativo=<?php echo $administrativo['ID_ADMINISTRATIVO']; ?>"><button class="circular-button">&#8594;</button></a></li>             
+                    <li><span>Actualizacion de Datos</span><a href="actualizacionDeDatosAdministrativo.php?id_administrativo=<?php echo $administrativo['ID_ADMINISTRATIVO']; ?>"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Gestion Asignaturas</span><a href="ASIGNATURAS/form_asignatura.html"><button class="circular-button">&#8594;</button></a></li>             
                 </ul>
             </div>
         </div>

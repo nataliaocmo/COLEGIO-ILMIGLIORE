@@ -1,25 +1,18 @@
 <?php
 include("conexion.php");
 
-$dia = $_POST["dia"];
-$horaInicio = $_POST["horaInicio"];
-$horaFin = $_POST["horaFin"];
-$departamento = $_POST["departamento"];
-$materia = $_POST["materia"];
-$profesor = $_POST["profesor"];
+$Grado = $_POST["grado"];
 
+//Generar ID
 $sql = "SELECT COUNT(*) AS total FROM HORARIO";
 $result = sqlsrv_query($conn,$sql);
 $row = sqlsrv_fetch($result);
-//Obtener el valor numerico
 $total = sqlsrv_get_field($result, 0); 
-
-// Generar el nuevo ID
 $nuevo_numero = $total + 1;
 $idHorario = "HOR".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
 
 
-$sql = "INSERT INTO HORARIO (ID_HORARIO, DIA, HORA_INICIO, HORA_FIN, DEPARTAMENTO, MATERIA, PROFESOR) VALUES ($idHorario, $dia, $horaInicio, $horaFin , $departamento, $materia, $profesor)";
+$sql = "INSERT INTO HORARIO (ID_HORARIO) VALUES ($idHorario)";
 $params = array($idHorario, $dia, $horaInicio, $horaFin, $departamento, $materia, $profesor);
 $res = sqlsrv_query($conn, $sql, $params);
 

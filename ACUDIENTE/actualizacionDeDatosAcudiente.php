@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Actualizacion de datos Acudiente</title>
+  <link rel="stylesheet" type="text/css" href="actualizacionDeDatosAcudiente.css">
 </head>
 <body>
   <div class="formulario">

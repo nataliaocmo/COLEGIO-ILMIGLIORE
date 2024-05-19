@@ -22,26 +22,25 @@ $sql2="SELECT * FROM ACUDIENTE WHERE DOCUMENTO_DE_IDENTIDAD = '$DocId'";
 $result2 = sqlsrv_query($conn,$sql2);
 $row2 = sqlsrv_fetch($result2);
 
-//contraseña random
-
+//Contraseña random
 // Caracteres disponibles para la contraseña
 $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}|:<>?-=[];,./';
 $longitudCaracteres = strlen($caracteres);
 $contrasena = '';
-
 // Generar la contraseña aleatoria
 for ($i = 0; $i < 10; $i++) {
     // Seleccionar un carácter aleatorio del conjunto de caracteres
     $indiceAleatorio = rand(0, $longitudCaracteres - 1);
     // Agregar el carácter aleatorio a la contraseña
     $contrasena .= $caracteres[$indiceAleatorio];
-} 
+}
 
 if ($row2==0){
     $query="INSERT INTO ACUDIENTE(ID_ACUDIENTE,DOCUMENTO_DE_IDENTIDAD,NOMBRE,APELLIDO,GENERO,CORREO,TELEFONO,DIRECCION,CONTRASENA) VALUES('$IdAcudiente','$DocId','$Nombre','$Apellido','$Genero','$Correo','$Telefono','$Direccion','$contrasena')";
         $res=sqlsrv_prepare($conn,$query);
         if (sqlsrv_execute($res)){
-            header("Location: /sql/ESTUDIANTE/form_estudiante.html");
+            echo "<script>alert('Su usuario ha sido creado de manera exitosa, ID:$IdAcudiente CONTRASEÑA:$contrasena.');</script>";
+            echo "<script>window.location = '/sql/ESTUDIANTE/form_estudiante.html';</script>";
             exit();
         }else{
             if( ($errors = sqlsrv_errors() ) != null) {

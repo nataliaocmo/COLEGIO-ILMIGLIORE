@@ -48,15 +48,14 @@ $estudiante = $_SESSION['estudiante'];
                     <input type="text" name="Direccion" value="<?php echo $estudiante['DIRECCION']; ?>" readonly>
                     <p>Contraseña</p>
                     <input type="text" name="contrasena" value="<?php echo $profesor['CONTRASENA']; ?>" readonly>
-            </div>
+                </div>
         </div>
         <div class="right-side">
             <div class="content">
                 <ul>
-                    <li><span>Ver Notas</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Ver Horario</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Ver Profesores</span><a href=""><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Ver Materias</span><a href=""><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Notas</span><a href="/sql/PROFESOR/NOTA/vista_notas_estudiante.php?id_estudiante=<?php echo $estudiante['ID_ESTUDIANTE']; ?>"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Horario</span><a href=""><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Asignaturas</span><a href=""><button class="circular-button">&#8594;</button></a></li>
                 </ul>
             </div>
         </div>

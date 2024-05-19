@@ -11,10 +11,8 @@ $sql2 = "SELECT COUNT(*) AS total FROM PAGO_MATRICULA";
 $result2 = sqlsrv_query($conn,$sql2);
 $row2 = sqlsrv_fetch($result2);
 $total = sqlsrv_get_field($result2, 0); 
-
 $nuevo_numero = $total + 1;
-$IdPagoMatricula = "PM".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
-
+$IdPagoMatricula = "PM".$nuevo_numero;
 
 //BUSCADOR ID ESTUDIANTE
 $sql3 = "SELECT COUNT(*) AS total FROM ESTUDIANTE";
