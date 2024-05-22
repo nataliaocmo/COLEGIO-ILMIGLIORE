@@ -38,7 +38,27 @@
       </form>
     </div>
   </div>
-
-  <script src="log_in.js"></script>
 </body>
+<script>
+  window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('error')) {
+          const error = params.get('error');
+          let message = '';
+          switch (error) {
+              case 'wrong_password':
+                  message = 'Contraseña incorrecta';
+                  break;
+              case 'wrong_id':
+                  message = 'ID de incorrecto';
+                  break;
+              default:
+                  message = 'Error desconocido';
+          }
+          if (message) {
+              alert(message);
+          }
+      }
+  };
+</script>
 </html>

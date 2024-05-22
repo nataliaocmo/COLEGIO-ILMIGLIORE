@@ -20,7 +20,7 @@ $row = sqlsrv_fetch($result);
 $total = sqlsrv_get_field($result, 0); 
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
-$IdEstudiante= "EST".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
+$IdEstudiante= "EST".str_pad($nuevo_numero, 4, "0", STR_PAD_LEFT);
 
 //BUSCAR EL ID DEL ACUDIENTE
 $sql2 = "SELECT COUNT(*) AS total FROM ACUDIENTE";
@@ -29,7 +29,7 @@ $row2 = sqlsrv_fetch($result2);
 //Obtener el valor numerico
 $total2 = sqlsrv_get_field($result2, 0); 
 // ID DEL ACUDIENTE
-$IdAcudiente = "ACU".str_pad($total2, 10, "0", STR_PAD_LEFT);
+$IdAcudiente = "ACU".str_pad($total2, 4, "0", STR_PAD_LEFT);
 
 //Generar Correo Institucional
 $CorreoInstitucional=$Nombre.$Apellido.'@ims.edu.co';
