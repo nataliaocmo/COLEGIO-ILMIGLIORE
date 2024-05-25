@@ -41,7 +41,7 @@ $fechaFormateada = date('Y-m-d H:i:s', strtotime($FechaDeContratacion));
 
 $CorreoInstitucional=$Nombre.$Apellido.'@ims.edu.co';
 
-$query = "INSERT INTO PROFESOR(ID_PROFESOR,NOMBRE,APELLIDO,GENERO,TELEFONO,EPS,RH,DIRECCION,FECHA_DE_CONTRATACION,SALARIO,CORREO_INSTITUCIONAL,DOCUMENTO_IDENTIDAD,AREA,CONTRASENA) VALUES ('$IdProfesor','$Nombre','$Apellido','$Genero','$Telefono','$EPS','$RH','$Direccion','$fechaFormateada','$Salario','$CorreoInstitucional','$DocId','$Area','$contrasena')";
+$query = "INSERT INTO PROFESOR(ID_PROFESOR,NOMBRE,APELLIDO,GENERO,TELEFONO,EPS,RH,DIRECCION,FECHA_DE_CONTRATACION,SALARIO,CORREO_INSTITUCIONAL,DOCUMENTO_DE_IDENTIDAD,AREA,CONTRASENA) VALUES ('$IdProfesor','$Nombre','$Apellido','$Genero','$Telefono','$EPS','$RH','$Direccion','$fechaFormateada','$Salario','$CorreoInstitucional','$DocId','$Area','$contrasena')";
 echo $query;
 $res = sqlsrv_prepare($conn, $query);
 
