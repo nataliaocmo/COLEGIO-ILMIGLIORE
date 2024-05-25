@@ -7,7 +7,7 @@ if(isset($_POST['rol'])) {
     $contrasena =$_POST['contrasena'];
     switch ($rol) {
     case 'acudiente':
-        include("ACUDIENTE/conexion_acudiente.php");
+        include("ACUDIENTE/conexionAcudiente.php");
         if (isset($_POST['IdIngreso']) && isset($_POST['contrasena'])) {
             $IdIngreso = $_POST['IdIngreso'];
             $contrasena = $_POST['contrasena'];
