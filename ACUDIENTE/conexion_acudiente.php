@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 $serverName="DESKTOP-07UTCOR";
-$connectionInfo=array("Database"=>"Proyecto","UID"=>"Acudientes","PWD"=>"root");
+$connectionInfo=array("Database"=>"Proyecto","UID"=>"Danna","PWD"=>"root");
 $conn=sqlsrv_connect($serverName,$connectionInfo);
 
 if($conn){

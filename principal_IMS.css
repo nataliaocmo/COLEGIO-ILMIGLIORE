@@ -29,7 +29,6 @@ body {
 }
 
 button {
-
     display: block;
     margin: auto;
     margin-top: 20px;
@@ -41,13 +40,18 @@ button {
     cursor: pointer;
     background: #a51f49;
     color: white;
+    outline: none;
+}
+
+button:focus {
+    outline: none; /* Esto elimina el borde azul cuando el botón está enfocado */
 }
 
 h1 {
     color: #264129;
 }
 
-H3 {
+h3 {
     text-transform: uppercase;
     color: white;
 }
