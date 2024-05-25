@@ -7,6 +7,6 @@ if($conn){
 	echo "Conexion establecida.<br/>";
 }else{
 	echo"Conexion no se pudo establecer.<br/>";
-	die(print_r(sqlsrv_erors(),true));
+	die(print_r(sqlsrv_errors(),true));
 }
 ?>

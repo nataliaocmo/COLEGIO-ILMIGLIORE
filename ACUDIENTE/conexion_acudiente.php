@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 $serverName="DESKTOP-07UTCOR";
 $connectionInfo=array("Database"=>"Proyecto","UID"=>"Acudientes","PWD"=>"root");
@@ -9,6 +11,6 @@ if($conn){
     echo "Conexion establecida.<br/>";
 }else{
     echo"Conexion no se pudo establecer.<br/>";
-    die(print_r(sqlsrv_erors(),true));
+    die(print_r(sqlsrv_errors(),true));
 }
 ?>

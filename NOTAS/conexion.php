@@ -1,5 +1,5 @@
 <?php
-$serverName="LAPTOP-3H9G1TCV";
+$serverName="DESKTOP-07UTCOR";
 $connectionInfo=array("Database"=>"Proyecto","UID"=>"Profesor","PWD"=>"root");
 $conn=sqlsrv_connect($serverName,$connectionInfo);
 
