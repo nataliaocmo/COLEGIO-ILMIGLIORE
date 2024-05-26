@@ -57,7 +57,7 @@ $profesor = $_SESSION['profesor'];
         <div class="right-side">
             <div class="content">
                 <ul>
-                    <li><span>Actualizar Datos</span><a href="actualizacionDeDatosProfesor.php"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Actualizar Datos</span><a href="actualizacionDeDatosProfesor.php?id_profesor=<?php echo $profesor['ID_PROFESOR']; ?>&contrasena=<?php echo $profesor['CONTRASENA']; ?>"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Asistencia Diaria</span><a href="ASISTENCIA/asistencia_diaria.php"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Horario</span><a href=""><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Asignar Notas</span><a href="NOTA/form_notas.html"><button class="circular-button">&#8594;</button></a></li>
