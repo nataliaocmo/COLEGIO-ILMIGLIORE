@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $paramsConsult = array($nuevoJefeId);
             $stmtConsult = sqlsrv_query($conn,$sqlConsult,$paramsConsult);
             echo "<script>alert('Actualización exitosa. Tu nuevo salario es de 3'500.000');</script>";
-            echo "<script>window.location = 'form_asignatura.php';</script>";
+            echo "<script>window.location = 'form_asignatura.html';</script>";
         }
     } else {
         echo "No se encontró ningún profesor";
