@@ -13,14 +13,14 @@
       <input type="text" name="nombre" placeholder="Nombre" required>
       <input type="text" name="apellido" placeholder="Apellido" required>
       <select id="genero" name="genero">
-        <option value=" "></option>
+        <option value=" " disabled selected>Genero</option>
         <option value="Femenino">Femenino</option>
         <option value="Masculino">Masculino</option>
         <option value="Otro">Otro</option>
       </select>
       <input type="date" name="fechaDeNacimiento" placeholder="Fecha de Nacimiento" required>
       <select id="grado" name="grado">
-        <option value=" "></option>
+        <option value=" " disabled selected> Grado</option>
         <option value="PREESCOLAR">PREESCOLAR</option>
         <option value="PRIMERO">PRIMERO</option>
         <option value="SEGUNDO">SEGUNDO</option>
@@ -37,7 +37,7 @@
       <input type="text" name="telefono" placeholder="Telefono" required>
       <input type="text" name="eps" placeholder="EPS" required>
       <select id="rh" name="rh">
-        <option value=" "></option>
+        <option value=" " disabled selected>RH</option>
         <option value="O+">O+</option>
         <option value="O-">O-</option>
         <option value="A+">A+</option>
@@ -46,6 +46,8 @@
         <option value="AB-">AB-</option>
       </select>
       <input type="text" name="direccion" placeholder="Direccion" required>
+      <br>
+      <br>
       <button type="submit">Guardar Estudiante</button>
     </form>
     <div id="error-message" style="color: red;"></div>
