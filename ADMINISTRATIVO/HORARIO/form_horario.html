@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Horario</title>
-    <link rel="stylesheet" href="form_horario.css">
 </head>
 <body>
     <div class="formulario">
@@ -13,7 +12,7 @@
             <input type="hidden" name="id_administrativo" value="<?php echo $_GET['id_administrativo']; ?>">
             <p>SELECIONA EL GRADO AL CUAL ASIGNARAS HORARIO</p>
             <select id="grado" name="grado">
-                  <option value=" "></option>
+                  <option value=" " disabled selected>Grado</option>
                   <option value="PREESCOLAR A">PREESCOLAR A</option>
                   <option value="PREESCOLAR B">PREESCOLAR B</option>
                   <option value="PREESCOLAR C">PREESCOLAR C</option>
