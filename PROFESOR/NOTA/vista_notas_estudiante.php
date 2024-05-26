@@ -42,8 +42,6 @@ if ($stmt === false) {
         <thead>
             <tr>
                 <th>Periodo Académico</th>
-                <th>Asignatura</th>
-                <th>Docente</th>
                 <th>Primer Periodo</th>
                 <th>Segundo Periodo</th>
                 <th>Tercer Periodo</th>
@@ -58,8 +56,6 @@ if ($stmt === false) {
             while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
                 echo "<tr>";
                 echo "<td>" . $row['ANO'] . "</td>";
-                echo "<td>" . $row['ID_ASIGNATURA'] . "</td>";
-                echo "<td>" . $row['ID_PROFESOR'] . "</td>";
                 echo "<td>" . $row['NOTA_P1'] . "</td>";
                 echo "<td>" . $row['NOTA_P2'] . "</td>";
                 echo "<td>" . $row['NOTA_P3'] . "</td>";
