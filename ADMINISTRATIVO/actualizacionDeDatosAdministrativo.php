@@ -7,6 +7,7 @@ $contrasena = isset($_GET['contrasena']) ? $_GET['contrasena'] : null;
 <head>
   <meta charset="UTF-8">
   <title>Actualizacion de datos Administrativo</title>
+  <link rel="stylesheet" href="actualizacionDeDatosAdministrativo.css">
 </head>
 <body>
   <div class="formulario">
