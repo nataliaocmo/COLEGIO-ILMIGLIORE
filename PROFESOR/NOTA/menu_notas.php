@@ -7,25 +7,13 @@
 </head>
 <body>
     <select name="grado" id="grado">
-        <?php
-        include("conexion.php");
-        $query = "SELECT NOMBRE FROM GRADO";
-        $result = sqlsrv_query($conn, $query);
-    
-        // Verificar si se obtuvieron resultados de la consulta
-        if ($result === false) {
-            die(print_r(sqlsrv_errors(), true));
-        }
-    
-        // Iterar sobre los resultados y generar las opciones del select
-        while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-            echo "<option>" . htmlspecialchars($row['NOMBRE']) ."</option>";
-        }
-    
-        // Liberar los recursos y cerrar la conexión a la base de datos
-        sqlsrv_free_stmt($result);
-        sqlsrv_close($conn);
-        ?>
+        <?php 
+        include "conexion.php";
+            foreach ($grado_array as $grado): ?>
+                <option value="<?php echo htmlspecialchars($grado); ?>">
+                    <?php echo htmlspecialchars($grado); ?>
+                </option>
+            <?php endforeach; ?>
     </select>
     
 </body>
@@ -58,19 +46,23 @@
         }
         $id_array2 = array();
         while ($row2 = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC)) {
-            $id_array2[] = $row2['ID_HORARIO'];
+            $id_array2[] = $row2['ID_GRADO'];
         }
 
 
-        
+        foreach($id_array2 as $id_grado){
 
-        $query2="SELECT * FROM HORARIO WHERE ID_RELACION_PROFESOR_ASIGNATURA = $id_relacion";
-        $result2 = sqlsrv_query($conn, $query);
+            $query3="SELECT NOMBRE FROM GRADO WHERE ID_GRADO = $id_grado";
+            $params3 = array($id_grado);
+            $result3 = sqlsrv_query($conn, $query, $params);
 
-        while ($row2 = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC)) {
-            $id_array[] = $row2['ID_HORARIO'];
         }
 
-        print_r($id_array2);
+        $grado_array=array();
+        while ($row3 = sqlsrv_fetch_array($result3, SQLSRV_FETCH_ASSOC)) {
+            $grado_array[] = $row3['NOMBRE'];
+        }
+
+        print_r($grado_array);
 
         ?>
