@@ -46,10 +46,6 @@ $profesor = $_SESSION['profesor'];
                     <input type="text" name="RH" value="<?php echo $profesor['RH']; ?>" readonly>
                     <p>Dirección de residencia</p>
                     <input type="text" name="Direccion" value="<?php echo $profesor['DIRECCION']; ?>" readonly>
-                    <!--
-                    <p>Fecha de Contratación</p>
-                    <input type="text" name="FechaContratacion" value="<?php echo $profesor['FECHA_DE_CONTRATACION']; ?>" readonly>
-                    -->
                     <p>Salario</p>
                     <input type="text" name="Salario" value="<?php echo $profesor['SALARIO']; ?>" readonly>
                     <p>Asignatura</p>

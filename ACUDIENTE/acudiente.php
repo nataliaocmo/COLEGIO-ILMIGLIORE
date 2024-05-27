@@ -28,8 +28,6 @@ $acudiente = $_SESSION['acudiente'];
             </div>
             <div class="formulario">
                 <h2>Datos Personales</h2>
-                    <p>Id Acudiente</p>
-                    <input type="text" name="IdAcu" value="<?php echo $acudiente['ID_ACUDIENTE']; ?>" readonly>
                     <p>Documento de Identificación</p>
                     <input type="text" name="DocId" value="<?php echo $acudiente['DOCUMENTO_DE_IDENTIDAD']; ?>" readonly>
                     <p>Nombres</p>
