@@ -9,18 +9,12 @@
 <body>
     <div class="formulario">
     <h2>PAGO MATRICULA</h2>
-    <br>
     <form action="procesar_pago.php" method="post" onsubmit="return validarFormulario()">
         <label for="monto">Monto Pagado:</label>
-        <label id="montoLabel">1'500,000</label> <!-- Monto fijo -->
-        <input type="hidden" id="monto" name="monto" value="1500000"> <!-- Valor fijo para enviar -->
-        <br>
-        <br>
+        <input type="number" id="monto" name="monto" placeholder="Ingrese Monto" required>
 
         <label for="fecha">Fecha de Pago:</label>
         <input type="date" id="fecha" name="fecha" required>
-        <br>
-        <br>
 
         <label for="metodoPago">Método de Pago:</label>
         <select id="metodoPago" name="metodoPago" required>
@@ -38,19 +32,32 @@
         </select>
         <br>
         <br>
+
+        <label for="estadoPago">Estado de Pago:</label>
+        <select id="estadoPago" name="estadoPago">
+            <option value="Aprobado">Aprobado</option>
+            <option value="Pendiente">Pendiente</option>
+        </select>
         
         <button type="submit">Realizar Pago</button>
     </form>
     </div>
 
+
     <script>
         function validarFormulario() {
+            var monto = document.getElementById('monto').value;
             var fechaInput = document.getElementById('fecha').value;
             var fechaPartes = fechaInput.split('-');
             var fecha = new Date(fechaPartes[0], fechaPartes[1] - 1, fechaPartes[2]);
             var hoy = new Date();
             hoy.setHours(0, 0, 0, 0); // Establecer la hora a las 00:00:00 para comparación de fechas
-
+    
+            // Validar que el monto sea un número positivo
+            if (isNaN(monto) || monto <= 0) {
+                alert('Por favor, ingrese un monto válido.');
+                return false;
+            }
             // Validar que se haya seleccionado una fecha
             if (!fecha) {
                 alert('Por favor, seleccione una fecha de pago.');
@@ -61,21 +68,11 @@
                 alert('La fecha de pago no puede ser anterior a hoy.');
                 return false;
             }
-            // Validar que la fecha no sea posterior a hoy
+             // Validar que la fecha no sea posterior a hoy
             if (fecha > hoy) {
                 alert('La fecha de pago no puede ser en el futuro.');
                 return false;
-            }
-
-            // Determinar y mostrar el estado de pago en una ventana emergente
-            var metodoPago = document.getElementById('metodoPago').value;
-            if (metodoPago) {
-                alert('¡Pago aprobado!');
-            } else {
-                alert('El pago está pendiente.');
-            }
-
-            // Enviar el formulario
+            }    
             return true;
         }
     </script>

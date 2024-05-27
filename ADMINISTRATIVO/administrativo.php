@@ -62,7 +62,7 @@ $administrativo = $_SESSION['administrativo'];
                 <ul>
                     <li><span>Admisiones</span><a href="/sql/ACUDIENTE/form_acudiente.html"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Gestión de Grados</span><a href="/sql/ADMINISTRATIVO/GRADOS/form_grados.html"><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Gestión de Horarios</span><a href="HORARIO/form_horario.html"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Gestión de Horarios</span><a href="HORARIO/gestion_horarios.html"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Contrataciones Administrativos</span><a href="/sql/ADMINISTRATIVO/form_administrativo.html"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Contrataciones Profesores</span><a href="/sql/PROFESOR/form_profesor.html"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Actualizacion de Datos</span><a href="actualizacionDeDatosAdministrativo.php?id_administrativo=<?php echo $administrativo['ID_ADMINISTRATIVO']; ?>&contrasena=<?php echo $administrativo['CONTRASENA']; ?>"><button class="circular-button">&#8594;</button></a></li>

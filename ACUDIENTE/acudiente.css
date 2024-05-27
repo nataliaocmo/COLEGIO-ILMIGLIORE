@@ -21,6 +21,8 @@ body {
     color: #000;
 }
 
+
+
 .icons img {
     width: 20px;
     height: 20px;
@@ -45,6 +47,7 @@ body {
     display: flex; /* Añadimos display flex */
     align-items: center; /* Centramos verticalmente los elementos */
 }
+
 
 .content {
     padding: 20px;
@@ -80,16 +83,4 @@ span {
 .circular-button:hover {
     background-color: #af184b;
     color: #fff;
-}
-
-/* Media Queries para diseño responsivo */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .left-side, .right-side {
-        width: 100%;
-        height: 50vh;
-    }
 }
