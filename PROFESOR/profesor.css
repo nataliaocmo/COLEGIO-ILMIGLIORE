@@ -81,3 +81,14 @@ span {
     background-color: #af184b;
     color: #fff;
 }
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-side,
+    .right-side {
+        width: 100%;
+    }
+}
