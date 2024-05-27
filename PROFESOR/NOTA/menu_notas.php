@@ -26,7 +26,7 @@
         $id_profesor=htmlspecialchars($_GET['id_profesor']);
         echo "el id es:".$id_profesor;
 
-        $query = "SELECT ID_RELACION_PROFESOR_ASIGNATURA FROM RELACION_PROFESOR_ASIGNATURA WHERE ID_PROFESOR = $id_profesor";
+        $query = "SELECT ID_RELACION_PROFESOR_ASIGNATURA FROM RELACION_PROFESOR_ASIGNATURA WHERE ID_PROFESOR = ?";
         $params = array($id_profesor);
         $result = sqlsrv_query($conn, $query, $params);
 
@@ -43,7 +43,8 @@
             $query2 = "SELECT ID_GRADO FROM HORARIO WHERE ID_RELACION_PROFESOR_ASIGNATURA = $id_relacion";
             $params2 = array($id_relacion);
             $result2 = sqlsrv_query($conn, $query2,$params2);
-        }
+        }    
+               
         $id_array2 = array();
         while ($row2 = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC)) {
             $id_array2[] = $row2['ID_GRADO'];
