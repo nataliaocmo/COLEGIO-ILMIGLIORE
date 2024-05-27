@@ -38,6 +38,10 @@ $estudiante = $_SESSION['estudiante'];
                     <input type="text" name="Apellido" value="<?php echo $estudiante['APELLIDO']; ?>" readonly>
                     <p>Genero</p>
                     <input type="text" name="Genero" value="<?php echo $estudiante['GENERO']; ?>" readonly>
+                    <!--
+                    <p>Fecha de Nacimiento</p>
+                    <input type="text" name="FechaNacimiento" value="<?php echo $estudiante['FECHA_DE_NACIMIENTO']; ?>" readonly>
+                    -->
                     <p>Telefono</p>
                     <input type="text" name="Telefono" value="<?php echo $estudiante['TELEFONO']; ?>" readonly>
                     <p>EPS</p>

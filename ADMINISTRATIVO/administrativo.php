@@ -51,6 +51,10 @@ $administrativo = $_SESSION['administrativo'];
                     <input type="text" name="RH" value="<?php echo $administrativo['RH']; ?>" readonly>
                     <p>Direccion de residencia</p>
                     <input type="text" name="Direccion" value="<?php echo $administrativo['DIRECCION']; ?>" readonly>
+                    <!--
+                    <p>Fecha de Contratación</p>
+                    <input type="text" name="FechaContratacion" value="<?php echo $administrativo['FECHA_DE_CONTRATACION']; ?>" readonly>
+                    -->
                     <p>Contraseña</p>
                     <input type="text" name="Contraseña" value="<?php echo $administrativo['CONTRASENA']; ?>" readonly>
                 </form>
