@@ -31,8 +31,20 @@ $total2 = sqlsrv_get_field($result2, 0);
 // ID DEL ACUDIENTE
 $IdAcudiente = "ACU".str_pad($total2, 4, "0", STR_PAD_LEFT);
 
-//Generar Correo Institucional
-$CorreoInstitucional=$Nombre.$Apellido.'@ims.edu.co';
+function normalizar($cadena) {
+    // Eliminar espacios
+    $cadena = str_replace(' ', '', $cadena);
+    // Reemplazar caracteres con tildes
+    $originales = 'ÁÉÍÓÚáéíóúñÑ';
+    $modificadas = 'AEIOUaeiounN';
+    $cadena = strtr($cadena, $originales, $modificadas);
+    return $cadena;
+}
+// Normalizar nombre y apellido
+$NombreNormalizado = normalizar($Nombre);
+$ApellidoNormalizado = normalizar($Apellido);
+// Crear el correo institucional
+$CorreoInstitucional = $NombreNormalizado . $ApellidoNormalizado . '@ims.edu.co';
 
 //FECHA DE NACIMIENTO
 $fechaFormateada = date('Y-m-d H:i:s', strtotime($FechaDeNacimiento));
@@ -73,6 +85,8 @@ for ($i = 0; $i < 10; $i++) {
     // Agregar el carácter aleatorio a la contraseña
     $contrasena .= $caracteres[$indiceAleatorio];
 }
+
+
 
 $sql4="SELECT * FROM ESTUDIANTE WHERE DOCUMENTO_DE_IDENTIDAD = '$DocId'";
 $result4 = sqlsrv_query($conn,$sql4);

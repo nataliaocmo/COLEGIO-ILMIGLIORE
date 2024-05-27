@@ -1,3 +1,4 @@
+
 body {
 
     font-family: 'Arial', sans-serif;
@@ -12,7 +13,7 @@ body {
 .formulario {
     width: 100%;
     margin: 10px;
-    margin-top: 300px;
+    margin-top: 500px;
     max-width: 400px;
     background: #fff;
     padding: 20px;
@@ -21,9 +22,9 @@ body {
 }
 
 .formulario h2 {
-    padding: 8%;
+    padding: 10%;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: #333;
 }
 
