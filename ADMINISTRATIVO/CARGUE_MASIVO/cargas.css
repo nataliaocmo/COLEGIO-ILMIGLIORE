@@ -7,7 +7,9 @@ body {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    background-color: #042d3f;
+    justify-content: center;
+    align-items: center;
 }
 .form-group {
     margin-bottom: 20px;
