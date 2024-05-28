@@ -29,22 +29,30 @@ $acudiente = $_SESSION['acudiente'];
             <div class="formulario">
                 <h2>Datos Personales</h2>
                 <form class="datos" action="RolAcudiente.php" method="post">
-                    <input type="text" name="IdAcu" value="<?php echo $IdAcu; ?>" readonly>
-                    <input type="text" name="DocId" value="<?php echo $DocId; ?>" readonly>
-                    <input type="text" name="Nombre" value="<?php echo $Nombre; ?>" readonly>
-                    <input type="text" name="Apellido" value="<?php echo $Apellido; ?>" readonly>
-                    <input type="text" name="Genero" value="<?php echo $Genero; ?>" readonly>
-                    <input type="text" name="Correo" value="<?php echo $Correo; ?>" readonly>
-                    <input type="text" name="Telefono" value="<?php echo $Telefono; ?>" readonly>
-                    <input type="text" name="Direccion" value="<?php echo $Direccion; ?>" readonly>
+                    <p>Documento de Identificación</p>
+                    <input type="text" name="DocId" value="<?php echo $acudiente['DOCUMENTO_DE_IDENTIDAD']; ?>" readonly>
+                    <p>Nombre</p>
+                    <input type="text" name="Nombre" value="<?php echo $acudiente['NOMBRE']; ?>" readonly>
+                    <p>Apellido</p>
+                    <input type="text" name="Apellido" value="<?php echo $acudiente['APELLIDO']; ?>" readonly>
+                    <p>Genero</p>
+                    <input type="text" name="Genero" value="<?php echo $acudiente['GENERO']; ?>" readonly>
+                    <p>Correo</p>
+                    <input type="text" name="Correo" value="<?php echo $acudiente['CORREO']; ?>" readonly>
+                    <p>Telefono</p>
+                    <input type="text" name="Telefono" value="<?php echo $acudiente['TELEFONO']; ?>" readonly>
+                    <p>Direccion</p>
+                    <input type="text" name="Direccion" value="<?php echo $acudiente['DIRECCION']; ?>" readonly>
+                    <p>Contraseña</p>
+                    <input type="text" name="Contrasena" value="<?php echo $acudiente['CONTRASENA']; ?>" readonly>
                 </form>
             </div>
         </div>
         <div class="right-side">
             <div class="content">
                 <ul>
-                    <li><span>Actualizar Datos</span><button class="circular-button" onclick="location.href='form_acudiente.html'">&#8594;</button></li>
-                    <li><span>Actualizar Datos Estudiante</span><button class="circular-button" onclick="location.href='/sql/ESTUDIANTE/form_estudiante.html'">&#8594;</button></li>
+                    <li><span>Actualizacion de Datos</span><a href="actualizacionDeDatosAcudiente.php?id_acudiente=<?php echo $acudiente['ID_ACUDIENTE']; ?>&contrasena=<?php echo $acudiente['CONTRASENA']; ?>"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Actualizar Datos Estudiante</span><a href="/sql/ESTUDIANTE/actualizacionDeDatosEstudiante.php?id_acudiente=<?php echo $acudiente['ID_ACUDIENTE']; ?>&contrasena=<?php echo $acudiente['CONTRASENA']; ?>"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Ver Notas Estudiante</span><button class="circular-button" onclick="location.href='/sql/PROFESOR/NOTA/form_notas.html'">&#8594;</button></li>
                     <li><span>Pagar Matricula</span><button class="circular-button" onclick="location.href='/sql/ADMINISTRATIVO/PAGO_MATRICULA/form_pago_matricula.html'">&#8594;</button></li>
                 </ul>
