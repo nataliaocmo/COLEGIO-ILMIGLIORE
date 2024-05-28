@@ -31,30 +31,30 @@ echo $result;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notas Académicas</title>
     <style>
-       body{font-family: 'Arial', sans-serif;
-        background-color: #042d3f;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;}
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        body{font-family: 'Arial', sans-serif;
+         background-color: #042d3f;
+         }
+         table {
+             width: 100%;
+             border-collapse: collapse;
+         }
+         h1{ 
+            color:  #ddd;
+        text-align: center;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            
-            background-color: #af184b;
-        }
-        td[contenteditable="true"] {
-            background-color: #fff;
-        }
-    </style>
+         th, td {
+             border: 1px solid #ddd;
+             padding: 8px;
+             text-align: left;
+         }
+         th {
+            color: white;
+             background-color: #af184b;
+         }
+         td[contenteditable="true"] {
+             background-color: #fff;
+         }
+     </style>
 </head>
 <body>
 <h1>Insertar Datos en la Base de Datos</h1>
