@@ -1,17 +1,6 @@
 <?php
 include("conexion.php");
  
-//
-//if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //$DocId = strtoupper(trim($_POST["docId"]));
-    //$Nombre = strtoupper(trim($_POST["nombre"]));
-    //$Apellido = strtoupper(trim($_POST["apellido"]));
-    //$Genero = strtoupper(trim($_POST["genero"]));
-    //$Correo = strtoupper(trim($_POST["correo"]));
-    //$Telefono = strtoupper(trim($_POST["telefono"]));
-    //$Direccion = strtoupper(trim($_POST["direccion"]));
-//}
-
 $DocId=$_POST["docId"];
 $Nombre=$_POST["nombre"];
 $Apellido=$_POST["apellido"];

@@ -12,22 +12,22 @@
       }
     };
     function validarFormulario() {
-      // Obtener los valores del formulario y convertirlos a mayúsculas
-      var docId = document.getElementsByName("docId")[0].value.trim().toUpperCase();
-      var nombre = document.getElementsByName("nombre")[0].value.trim().toUpperCase();
-      var apellido = document.getElementsByName("apellido")[0].value.trim().toUpperCase();
-      var correo = document.getElementsByName("correo")[0].value.trim().toUpperCase();
-      var telefono = document.getElementsByName("telefono")[0].value.trim().toUpperCase();
-      var direccion = document.getElementsByName("direccion")[0].value.trim().toUpperCase();
+      // var idAcu = document.getElementsByName("IdAcu")[0].value;
+      var docId = document.getElementsByName("DocId")[0].value.trim();
+      var nombre = document.getElementsByName("Nombre")[0].value.trim();
+      var apellido = document.getElementsByName("Apellido")[0].value.trim();
+      var correo = document.getElementsByName("Correo")[0].value.trim();
+      var telefono = document.getElementsByName("Telefono")[0].value.trim();
+      var direccion = document.getElementsByName("Direccion")[0].value.trim();
       var errorMessage = "";
 
       if (!/^\d+$/.test(docId)) {
         errorMessage += "El campo Documento de Identidad solo debe contener números.<br>";
       }
-      if (!/^[A-Z]+$/.test(nombre)) { // Cambiado a letras mayúsculas
+      if (!/^[a-zA-Z]+$/.test(nombre)) {
         errorMessage += "El campo Nombre solo debe contener letras.<br>";
       }
-      if (!/^[A-Z]+$/.test(apellido)) { // Cambiado a letras mayúsculas
+      if (!/^[a-zA-Z]+$/.test(apellido)) {
         errorMessage += "El campo Apellido solo debe contener letras.<br>";
       }
       if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(correo)) {
@@ -45,16 +45,9 @@
         document.getElementById("error-message").innerHTML = errorMessage;
         document.getElementById("success-message").style.display = "none"; // Ocultar mensaje de éxito
         return false; // Detener el envío del formulario
-      } else {
-        // Establecer los valores convertidos a mayúsculas de nuevo en los campos del formulario
-        document.getElementsByName("docId")[0].value = docId;
-        document.getElementsByName("nombre")[0].value = nombre;
-        document.getElementsByName("apellido")[0].value = apellido;
-        document.getElementsByName("correo")[0].value = correo;
-        document.getElementsByName("telefono")[0].value = telefono;
-        document.getElementsByName("direccion")[0].value = direccion;
-
-        // Mostrar mensaje de éxito y limpiar formulario
+      }
+      else{
+          // Mostrar mensaje de éxito y limpiar formulario
         document.getElementById("success-message").style.display = "block";
         document.getElementById("error-message").innerHTML = ""; // Limpiar mensajes de error
         document.getElementById("formulario").reset(); // Limpiar formulario
@@ -71,7 +64,7 @@
       <input type="text" name="nombre" placeholder="Nombre" required>
       <input type="text" name="apellido" placeholder="Apellido" required>
       <select id="genero" name="genero">
-        <option value=" " disabled selected>Género</option>
+        <option value=" "></option>
         <option value="Femenino">Femenino</option>
         <option value="Masculino">Masculino</option>
         <option value="Otro">Otro</option>
@@ -79,7 +72,7 @@
       <input type="text" name="correo" placeholder="Correo" required>
       <input type="text" name="telefono" placeholder="Telefono" required>
       <input type="text" name="direccion" placeholder="Direccion" required>
-      <button type="submit">Guardar Acudiente</button>
+      <button type="submit" >Guardar Acudiente</button>
     </form>
     <div id="error-message" style="color: red;"></div>
     <div id="success-message" style="color: green; display: none;">¡Acudiente registrado correctamente!</div>

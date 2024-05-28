@@ -88,34 +88,3 @@ span {
     background-color: #af184b;
     color: #fff;
 }
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column; 
-        height: auto; 
-    }
-
-    .left-side, .right-side {
-        width: 100%; /
-    }
-
-    .right-side {
-        font-size: 16px;
-        padding-top: 20px; 
-    }
-
-    .red-bar {
-        padding: 5px; 
-        font-size: 20px;
-    }
-
-    .red-bar .circular-button {
-        margin-left: 5px; 
-    }
-
-    .circular-button {
-        width: 25px; 
-        height: 25px; 
-        font-size: 14px;
-    }
-}
