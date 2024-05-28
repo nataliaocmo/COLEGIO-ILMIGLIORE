@@ -66,14 +66,16 @@
     <title>Menu grados para notas</title>
 </head>
 <body>
-    <select name="grado" id="grado">
-    
-        <?php foreach ($grado_array as $grado): ?>
-            <option value="<?php echo htmlspecialchars($grado); ?>"placeholder="GRADO">
-                <?php echo htmlspecialchars($grado); ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-    
+    <form action="mostrar_grado.php" method="GET">
+        <select name="grado" id="grado" required>
+            <option value="" disabled selected>Seleccione un grado</option>
+            <?php foreach ($grado_array as $grado): ?>
+                <option value="<?php echo htmlspecialchars($grado); ?>">
+                    <?php echo htmlspecialchars($grado); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <button type="submit">Ver notas grado</button>
+    </form>
 </body>
 </html>
