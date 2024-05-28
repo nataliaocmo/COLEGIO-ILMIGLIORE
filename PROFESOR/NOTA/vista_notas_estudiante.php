@@ -1,8 +1,8 @@
 <?php
-include 'conexion.php';
 session_start();
+include ('conexion.php');
 // Verifica si el usuario está autenticado como estudiante
-if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "estudiante") {
+if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "profesor") {
     header("Location: /sql/log_in.html");
     exit();
 }
@@ -10,15 +10,20 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "estudiante") {
 $estudiante = $_SESSION['estudiante'];
 //$id_estudiante = $_SESSION['estudiante']['ID_ESTDUIANTE'];
 
-$sql = "SELECT * FROM NOTA n INNER JOIN RELACION_NOTAS_ASIGNATURAS_ESTUDIANTES rnae ON n.ID_NOTA = rnae.ID_NOTAS INNER JOIN RELACION_PROFESOR_ASIGNATURA rpa ON rnae.ID_RELACION_PROFESORES_ASIGNATURA = rpa.ID_RELACION_PROFESOR_ASIGNATURA WHERE rnae.ID_ESTUDIANTE = '" . $estudiante['ID_ESTUDIANTE'] . "';";
+date_default_timezone_set('America/New_York');
+$fecha_actual = date("Y-m-d H:i:s");
+$anio_actual = date("Y");
 
-$stmt = sqlsrv_query($conn, $sql);
+echo "Fecha actual: " . $fecha_actual . "<br>";
+echo "Año actual: " . $anio_actual;
+echo $anio_actual;
 
-if ($stmt === false) {
-    die(print_r(sqlsrv_errors(), true));
-}
+$query= "SELECT * FROM NOTA WHERE ANO ='$anio_actual'";
+$result = sqlsrv_query($conn, $query);
+echo $result;
+
+
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,23 +32,10 @@ if ($stmt === false) {
     <title>Notas Académicas</title>
 </head>
 <body>
-    <h2>Tabla de Periodo Académico</h2>
-    <label for="periodo">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" value="<?php echo $estudiante['NOMBRE'] . ' ' . $estudiante['APELLIDO']; ?>" readonly><br><br>
-
-    <label for="year">Año Académico:</label>
-    <select id="year" name="year">
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-        <option value="2024">2024</option>
-    </select><br><br>
-
     <table>
         <thead>
             <tr>
                 <th>Periodo Académico</th>
-                <th>Asignatura</th>
-                <th>Docente</th>
                 <th>Primer Periodo</th>
                 <th>Segundo Periodo</th>
                 <th>Tercer Periodo</th>
@@ -58,8 +50,6 @@ if ($stmt === false) {
             while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
                 echo "<tr>";
                 echo "<td>" . $row['ANO'] . "</td>";
-                echo "<td>" . $row['ID_ASIGNATURA'] . "</td>";
-                echo "<td>" . $row['ID_PROFESOR'] . "</td>";
                 echo "<td>" . $row['NOTA_P1'] . "</td>";
                 echo "<td>" . $row['NOTA_P2'] . "</td>";
                 echo "<td>" . $row['NOTA_P3'] . "</td>";
@@ -69,7 +59,6 @@ if ($stmt === false) {
                 echo "<td>" . $row['APROBO/NO_APROBO'] . "</td>";
                 echo "</tr>";
             }
-
             sqlsrv_free_stmt($stmt);
             ?>
         </tbody>
