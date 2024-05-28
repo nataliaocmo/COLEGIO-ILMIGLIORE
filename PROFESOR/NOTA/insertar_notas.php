@@ -35,6 +35,7 @@ echo $result;
 <h1>Insertar Datos en la Base de Datos</h1>
     <form action="insertar_notas.php" method="POST">
         <table>
+            <thead>
             <tr>
                 <th>Periodo Académico</th>
                 <th>Primer Periodo</th>
@@ -44,19 +45,20 @@ echo $result;
                 <th>Fallas</th>
                 <th>Nota Final</th>
                 <th>Observaciones</th>
-            </tr>
+</tr>
+</thead>
             <tbody>
             <?php
             while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                 echo "<tr>";
-                echo "<td>" . $row['ANO'] . "</td>";
-                echo "<td>" . $row['NOTA_P1'] . "</td>";
-                echo "<td>" . $row['NOTA_P2'] . "</td>";
-                echo "<td>" . $row['NOTA_P3'] . "</td>";
-                echo "<td>" . $row['NOTA_P4'] . "</td>";
-                echo "<td>" . $row['NUMERO_DE_FALLAS'] . "</td>";
-                echo "<td>" . $row['NOTA_FINAL'] . "</td>";
-                echo "<td>" . $row['APROBO/NO_APROBO'] . "</td>";
+                echo "<td contenteditable='true'>" . $row['ANO'] . "</td>";
+                echo "<td contenteditable='true'>" . $row['NOTA_P1'] . "</td>";
+                echo "<td contenteditable='true'>". $row['NOTA_P2'] . "</td>";
+                echo "<td contenteditable='true'>". $row['NOTA_P3'] . "</td>";
+                echo "<td contenteditable='true'>" . $row['NOTA_P4'] . "</td>";
+                echo "<td contenteditable='true'>". $row['NUMERO_DE_FALLAS'] . "</td>";
+                echo "<td contenteditable='true'>". $row['NOTA_FINAL'] . "</td>";
+                echo "<td contenteditable='true'>" . $row['APROBO/NO_APROBO'] . "</td>";
                 echo "</tr>";
             }
             ?>
