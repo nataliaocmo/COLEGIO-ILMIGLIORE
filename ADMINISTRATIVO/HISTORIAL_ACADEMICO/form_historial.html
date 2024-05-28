@@ -41,6 +41,14 @@
   </div>
 
   <script>
+    function eliminarTildes(texto) {
+        var original = "ÁÉÍÓÚáéíóú";
+        var sinTilde = "AEIOUaeiou";
+        for (var i = 0; i < original.length; i++) {
+            texto = texto.replace(new RegExp(original[i], "g"), sinTilde[i]);
+        }
+        return texto;
+    }
     function validarFormulario() {
       var institucion = document.getElementsByName("institucion")[0].value.trim();
       var ano = document.getElementsByName("ano")[0].value.trim();
