@@ -1,0 +1,6 @@
+NOMBRE;APELLIDO;GENERO;CORREO;TELEFONO;DIRECCION;DOCUMENTO_DE_IDENTIDAD
+Carlos;Gomez;Masculino;carlos@gomez.com;3001234567;Calle 1 # 2-3;1234567890
+Marth­a;Perez;Femenino;maria@perez.com;3102345678;Carrera 4 # 5-6;2345678901
+Pedro;Lopez;Masculino;pedro@lopez.com;3203456789;Avenida 7 # 8-9;3456789012
+Ana;Martinez;Femenino;ana@martinez.com;3304567890;Diagonal 10 # 11-12;4567890123
+Luis;Garcia;Masculino;luis@garcia.com;3405678901;Transversal 13 # 14-15;5678901234
