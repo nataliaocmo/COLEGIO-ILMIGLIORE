@@ -1,10 +1,10 @@
 <?php
 include("conexion.php");
 
-$IdGrado = $_POST["IdGrado"]; 
-$Escolaridad = $_POST["Escolaridad"]; 
-$IdDirector = $_POST["IdDirector"]; 
-$Administrativo = $_POST["Administrativo"]; 
+$IdGrado =strtoupper( $_POST["IdGrado"]); 
+$Escolaridad = strtoupper($_POST["Escolaridad"]); 
+$IdDirector = strtoupper($_POST["IdDirector"]); 
+$Administrativo = strtoupper($_POST["Administrativo"]); 
 
 $IdAcudiente = 'ACU' . $IdAcu;
 

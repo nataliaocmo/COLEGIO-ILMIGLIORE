@@ -2,14 +2,13 @@
 include("conexion.php");
 
 // $IdProf = $_POST["IdProf"];
-$Numerodefallas = $_POST['Numerofallas'];
-$Nota1 = $_POST['Nota1'];
-$Nota2 = $_POST["Nota3"];
-$Nota3 = $_POST["Nota3"];
-$Nota4= $_POST["Nota4"];
-$Notafinal = $_POST["Notafinal"];
-$Aprobo = $_POST["Aprobo"];
-
+$Numerodefallas = strtoupper($_POST['Numerofallas']);
+$Nota1 = strtoupper($_POST['Nota1']);
+$Nota2 = strtoupper($_POST["Nota3"]);
+$Nota3 = strtoupper($_POST["Nota3"]);
+$Nota4= strtoupper($_POST["Nota4"]);
+$Notafinal = strtoupper($_POST["Notafinal"]);
+$Aprobo =strtoupper($_POST["Aprobo"]) ;
 
 $sql = "SELECT COUNT(*) AS total FROM NOTA";
 $result = sqlsrv_query($conn,$sql);

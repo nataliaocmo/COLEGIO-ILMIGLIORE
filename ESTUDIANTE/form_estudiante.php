@@ -1,16 +1,16 @@
 <?php
 include("conexion.php");
  
-$DocId=$_POST["docId"];
-$Nombre=$_POST["nombre"];
-$Apellido=$_POST["apellido"];
-$Genero=$_POST["genero"];
-$FechaDeNacimiento=$_POST["fechaDeNacimiento"];
-$Grado=$_POST["grado"];
-$Telefono=$_POST["telefono"];
-$EPS=$_POST["eps"];
-$RH=$_POST["rh"];
-$Direccion=$_POST["direccion"];
+$DocId=strtoupper($_POST["docId"]);
+$Nombre=strtoupper($_POST["nombre"]);
+$Apellido=strtoupper($_POST["apellido"]);
+$Genero=strtoupper($_POST["genero"]);
+$FechaDeNacimiento=strtoupper($_POST["fechaDeNacimiento"]);
+$Grado=strtoupper($_POST["grado"]);
+$Telefono=strtoupper($_POST["telefono"]);
+$EPS=strtoupper($_POST["eps"]);
+$RH=strtoupper($_POST["rh"]);
+$Direccion=strtoupper($_POST["direccion"]);
 
 //CREADOR ID ESTUDIANTE
 $sql = "SELECT COUNT(*) AS total FROM ESTUDIANTE";

@@ -2,15 +2,15 @@
 include("conexionProfesor.php");
 
 // $IdProf = $_POST["IdProf"];
-$Nombre = $_POST['nombre'];
-$Apellido = $_POST['apellido'];
-$Genero = $_POST["genero"];
-$Telefono = $_POST["telefono"];
-$EPS = $_POST["eps"];
-$RH = $_POST["rh"];
-$Direccion = $_POST["direccion"];
-$DocId = $_POST["docId"];
-$Area = $_POST["area"];
+$Nombre = strtoupper($_POST['nombre']);
+$Apellido = strtoupper($_POST['apellido']);
+$Genero = strtoupper($_POST["genero"]);
+$Telefono = strtoupper($_POST["telefono"]);
+$EPS = strtoupper($_POST["eps"]);
+$RH = strtoupper($_POST["rh"]);
+$Direccion = strtoupper($_POST["direccion"]);
+$DocId = strtoupper($_POST["docId"]);
+$Area = strtoupper($_POST["area"]);
 
 $Salario = '3000000';
 

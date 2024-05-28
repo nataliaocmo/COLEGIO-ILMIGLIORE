@@ -1,9 +1,9 @@
 <?php
 include("conexion.php");
 
-$Grado = $_POST["grado"];
-$Institucion = $_POST["institucion"];
-$Ano = $_POST["ano"];
+$Grado = strtoupper($_POST["grado"]);
+$Institucion =strtoupper( $_POST["institucion"]);
+$Ano = strtoupper($_POST["ano"]);
 
 //ID HISTORIAL
 $sql = "SELECT COUNT(*) AS total FROM HISTORIAL_ACADEMICO";
