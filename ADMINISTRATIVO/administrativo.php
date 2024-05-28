@@ -58,16 +58,26 @@ $administrativo = $_SESSION['administrativo'];
         <div class="right-side">
             <div class="content">
                 <ul>
+                    <li><span>Actualizacion de Datos</span><a href="actualizacionDeDatosAdministrativo.php?id_administrativo=<?php echo $administrativo['ID_ADMINISTRATIVO']; ?>&contrasena=<?php echo $administrativo['CONTRASENA']; ?>"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Admisiones</span><a href="/sql/ACUDIENTE/form_acudiente.html"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Gestión de Grados</span><a href="/sql/ADMINISTRATIVO/GRADOS/form_grados.html"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Gestión de Horarios</span><a href="HORARIO/gestion_horarios.html"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Gestion Asignaturas</span><a href="ASIGNATURAS/form_asignatura.html"><button class="circular-button">&#8594;</button></a></li>   
                     <li><span>Contrataciones Administrativos</span><a href="/sql/ADMINISTRATIVO/form_administrativo.html"><button class="circular-button">&#8594;</button></a></li>
                     <li><span>Contrataciones Profesores</span><a href="/sql/PROFESOR/form_profesor.html"><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Actualizacion de Datos</span><a href="actualizacionDeDatosAdministrativo.php?id_administrativo=<?php echo $administrativo['ID_ADMINISTRATIVO']; ?>&contrasena=<?php echo $administrativo['CONTRASENA']; ?>"><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Gestion Asignaturas</span><a href="ASIGNATURAS/form_asignatura.html"><button class="circular-button">&#8594;</button></a></li>             
+                    <li>
+                        <span>Transferencias externas</span>
+                        <a href="/sql/ADMINISTRATIVO/CARGUE_MASIVO/cargas_acudientes.php" onclick="return confirmarCargaAcudientes();"><button class="circular-button">&#8594;</button></a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </body>
+<script>
+function confirmarCargaAcudientes() {
+    alert("Para realizar una transferencia externa de estudiantes, primero debemos agregar a sus acudientes.");
+    return true; // permite la navegación después de la alerta
+}
+</script>
 </html>
