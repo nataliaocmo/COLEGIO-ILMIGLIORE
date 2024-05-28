@@ -11,7 +11,7 @@ $result = sqlsrv_query($conn, $sql);
 $row = sqlsrv_fetch($result);
 $total = sqlsrv_get_field($result, 0); 
 $nuevo_numero = $total + 1;
-$IdHistorial = "HIST".str_pad($nuevo_numero, 10, "0", STR_PAD_LEFT);
+$IdHistorial = "HIST".str_pad($nuevo_numero, 4, "0", STR_PAD_LEFT);
 
 //ID ESTUDIANTE
 $sql2 = "SELECT COUNT(*) AS total FROM ESTUDIANTE";

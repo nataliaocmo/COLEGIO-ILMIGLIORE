@@ -50,8 +50,6 @@ $profesor = $_SESSION['profesor'];
                     <input type="text" name="Salario" value="<?php echo $profesor['SALARIO']; ?>" readonly>
                     <p>Asignatura</p>
                     <input type="text" name="Salario" value="" readonly>
-                    <p>Contraseña</p>
-                    <input type="text" name="contrasena" value="<?php echo $profesor['CONTRASENA']; ?>" readonly>
                 </div>
         </div>
         <div class="right-side">

@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+include("conexionAcudiente.php");
  
 $DocId=strtoupper($_POST["docId"]);
 $Nombre=strtoupper($_POST["nombre"]);

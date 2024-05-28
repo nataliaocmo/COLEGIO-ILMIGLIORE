@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+include("conexionEstudiante.php");
  
 $DocId=strtoupper($_POST["docId"]);
 $Nombre=strtoupper($_POST["nombre"]);
