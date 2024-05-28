@@ -23,42 +23,33 @@ $acudiente = $_SESSION['acudiente'];
             <div class="top-bar">
                 <div class="icons">
                     <a href="/sql/log_in.html"><img src="/sql/IMG/inicio.png" alt="Home"></a>
+                    <div class="red-bar">ACUDIENTE</div>
                 </div>
-                <div class="red-bar">ACUDIENTE</div>
             </div>
             <div class="formulario">
                 <h2>Datos Personales</h2>
-                    <p>Id Acudiente</p>
-                    <input type="text" name="IdAcu" value="<?php echo $acudiente['ID_ACUDIENTE']; ?>" readonly>
-                    <p>Documento de Identificación</p>
-                    <input type="text" name="DocId" value="<?php echo $acudiente['DOCUMENTO_DE_IDENTIDAD']; ?>" readonly>
-                    <p>Nombres</p>
-                    <input type="text" name="Nombre" value="<?php echo $acudiente['NOMBRE']; ?>" readonly>
-                    <p>Apellidos</p>
-                    <input type="text" name="Apellido" value="<?php echo $acudiente['APELLIDO']; ?>" readonly>
-                    <p>Genero</p>
-                    <input type="text" name="Genero" value="<?php echo $acudiente['GENERO']; ?>" readonly>
-                    <p>Correo Electronico</p>
-                    <input type="text" name="Correo" value="<?php echo $acudiente['CORREO']; ?>" readonly>
-                    <p>Telefono</p>
-                    <input type="text" name="Telefono" value="<?php echo $acudiente['TELEFONO']; ?>" readonly>
-                    <p>Direccion de residencia</p>
-                    <input type="text" name="Direccion" value="<?php echo $acudiente['DIRECCION']; ?>" readonly>
-                    <p>Contraseña</p>
-                    <input type="text" name="contrasena" value="<?php echo $acudiente['CONTRASENA']; ?>" readonly>
+                <form class="datos" action="RolAcudiente.php" method="post">
+                    <input type="text" name="IdAcu" value="<?php echo $IdAcu; ?>" readonly>
+                    <input type="text" name="DocId" value="<?php echo $DocId; ?>" readonly>
+                    <input type="text" name="Nombre" value="<?php echo $Nombre; ?>" readonly>
+                    <input type="text" name="Apellido" value="<?php echo $Apellido; ?>" readonly>
+                    <input type="text" name="Genero" value="<?php echo $Genero; ?>" readonly>
+                    <input type="text" name="Correo" value="<?php echo $Correo; ?>" readonly>
+                    <input type="text" name="Telefono" value="<?php echo $Telefono; ?>" readonly>
+                    <input type="text" name="Direccion" value="<?php echo $Direccion; ?>" readonly>
                 </form>
             </div>
         </div>
         <div class="right-side">
             <div class="content">
                 <ul>
-                    <li><span>Actualizar Datos</span><a href="actualizacionDeDatosAcudiente.php?id_acudiente=<?php echo $acudiente['ID_ACUDIENTE']; ?>&contrasena=<?php echo $acudiente['CONTRASENA']; ?>"><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Actualizar Datos Estudiante</span><a href="/sql/ESTUDIANTE/actualizacionDeDatosEstudiante.php?id_acudiente=<?php echo $acudiente['ID_ACUDIENTE']; ?>&contrasena=<?php echo $acudiente['CONTRASENA']; ?>"><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Ver Notas Estudiante</span><a href="/sql/PROFESOR/NOTA/vista_notas.php"><button class="circular-button">&#8594;</button></a></li>
-                    <li><span>Pagar Matricula</span><a href="PagarMatricula.html"><button class="circular-button">&#8594;</button></a></li>
+                    <li><span>Actualizar Datos</span><button class="circular-button" onclick="location.href='form_acudiente.html'">&#8594;</button></li>
+                    <li><span>Actualizar Datos Estudiante</span><button class="circular-button" onclick="location.href='/sql/ESTUDIANTE/form_estudiante.html'">&#8594;</button></li>
+                    <li><span>Ver Notas Estudiante</span><button class="circular-button" onclick="location.href='/sql/PROFESOR/NOTA/form_notas.html'">&#8594;</button></li>
+                    <li><span>Pagar Matricula</span><button class="circular-button" onclick="location.href='/sql/ADMINISTRATIVO/PAGO_MATRICULA/form_pago_matricula.html'">&#8594;</button></li>
                 </ul>
             </div>
         </div>
     </div>
-</body> 
+</body>
 </html>

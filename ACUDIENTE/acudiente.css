@@ -1,7 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color:  #042d3f;
 }
 
 .container {
@@ -13,26 +14,20 @@ body {
     width: 50%;
     background-color: #042d3f; /* Azul */
     color: #fff;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
 }
 
 .right-side {
     width: 50%;
     background-color: #fff; /* Blanco */
     color: #000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    font-size: 20px;
+    padding-top: 50px;
 }
 
-.icons {
-    display: flex;
-    align-items: center;
-    width: 100%;
+.top-bar {
+    padding: 20px;
+    font-weight: bold;
+    position: relative; /* Añadimos posicionamiento relativo */
 }
 
 .icons img {
@@ -42,29 +37,23 @@ body {
 }
 
 .red-bar {
-    color: #fff;
-    background-color: #af184b;
+    color: #fff; 
+    background-color: #af184b; 
+    padding: 10px; 
+    border-radius: 5px; 
     width: 100%;
-    text-align: left;
-    margin-left: 10px;
-    padding: 20px 0;
-    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Spectral SC', serif;
 }
 
-.top-bar {
-    display: flex;
-    width: 105%;
-    align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 0px solid #af184b; /* Rojo */
+.red-bar span {
+    position: relative; /* Añadimos posicionamiento absoluto */
+    top: -10px;
+    left: 0; /* Cambiamos a la izquierda */
 }
 
-.formulario {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
+.red-bar .circular-button {
+    margin-left: 10px; /* Añadimos espacio entre el texto y la flecha */
 }
 
 .content {
@@ -73,7 +62,6 @@ body {
 
 ul {
     list-style-type: none;
-    padding: 0;
 }
 
 li {
@@ -93,48 +81,10 @@ span {
     color: #af184b;
     font-weight: bold;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     transition: background-color 0.3s ease;
 }
 
 .circular-button:hover {
     background-color: #af184b;
     color: #fff;
-}
-
-/* Media Queries para hacer el diseño responsive */
-@media screen and (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .left-side, .right-side {
-        width: 100%;
-    }
-
-    .left-side {
-        height: 50vh; /* Ajustar la altura del lado izquierdo en pantallas más pequeñas */
-    }
-
-    .right-side {
-        height: 50vh; /* Ajustar la altura del lado derecho en pantallas más pequeñas */
-    }
-
-    .top-bar {
-        justify-content: center; /* Centrar el contenido horizontalmente */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .top-bar {
-        flex-direction: column; /* Colocar los elementos en columna en pantallas muy pequeñas */
-        text-align: center; /* Centrar el texto */
-    }
-
-    .circular-button {
-        width: 40px;
-        height: 40px;
-    }
 }
