@@ -1,11 +1,11 @@
 <?php
 include("conexion.php");
 
-$idEstudiante = $_POST["idEstudiante"];
-$monto = $_POST["monto"];
-$fecha = $_POST["fecha"];
-$metodoPago = $_POST["metodoPago"];
-$tipoPago = $_POST["tipoPago"];
+$idEstudiante = strtoupper($_POST["idEstudiante"]);
+$monto = strtoupper($_POST["monto"]);
+$fecha = strtoupper($_POST["fecha"]);
+$metodoPago = strtoupper($_POST["metodoPago"]);
+$tipoPago = strtoupper($_POST["tipoPago"]);
 
 $sql2 = "SELECT COUNT(*) AS total FROM PAGO_MATRICULA";
 $result2 = sqlsrv_query($conn,$sql2);
