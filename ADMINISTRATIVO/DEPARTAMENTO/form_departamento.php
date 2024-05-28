@@ -1,8 +1,8 @@
 <?php
 include("conexion.php");
  
-$IdDep=$_POST["IdDep"];
-$Nombre=$_POST["Nombre"];
+$IdDep=strtoupper($_POST["IdDep"]);
+$Nombre=strtoupper($_POST["Nombre"]);
 
  
 $query="INSERT INTO DEPARTAMENTO(ID_DEPARTAMENTO,NOMBRE)

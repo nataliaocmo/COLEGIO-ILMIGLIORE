@@ -1,13 +1,13 @@
 <?php
 include("conexion.php");
  
-$DocId=$_POST["docId"];
-$Nombre=$_POST["nombre"];
-$Apellido=$_POST["apellido"];
-$Genero=$_POST["genero"];
-$Correo=$_POST["correo"];
-$Telefono=$_POST["telefono"];
-$Direccion=$_POST["direccion"];
+$DocId=strtoupper($_POST["docId"]);
+$Nombre=strtoupper($_POST["nombre"]);
+$Apellido=strtoupper($_POST["apellido"]);
+$Genero=strtoupper($_POST["genero"]);
+$Correo=strtoupper($_POST["correo"]);
+$Telefono=strtoupper($_POST["telefono"]);
+$Direccion=strtoupper($_POST["direccion"]);
 
 $sql = "SELECT COUNT(*) AS total FROM ACUDIENTE";
 $result = sqlsrv_query($conn,$sql);
