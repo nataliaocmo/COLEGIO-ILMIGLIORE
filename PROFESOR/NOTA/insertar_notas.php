@@ -34,6 +34,13 @@ echo $result;
     <title>Notas Académicas</title>
 </head>
     <style>
+       body{font-family: 'Arial', sans-serif;
+        background-color: #042d3f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;}
         table {
             width: 100%;
             border-collapse: collapse;
@@ -44,7 +51,8 @@ echo $result;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            
+            background-color: #af184b;
         }
         td[contenteditable="true"] {
             background-color: #fff;
