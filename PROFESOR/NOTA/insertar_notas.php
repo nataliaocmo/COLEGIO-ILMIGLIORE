@@ -7,7 +7,7 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "profesor") {
     exit();
 }
 // Accede al ID del estudiante desde la sesión
-$estudiante = $_SESSION['estudiante'];
+$profesor = $_SESSION['profesor'];
 //$id_estudiante = $_SESSION['estudiante']['ID_ESTDUIANTE'];
 
 date_default_timezone_set('America/New_York');
@@ -32,8 +32,9 @@ echo $result;
     <title>Notas Académicas</title>
 </head>
 <body>
-    <table>
-        <thead>
+<h1>Insertar Datos en la Base de Datos</h1>
+    <form action="insertar_notas.php" method="POST">
+        <table>
             <tr>
                 <th>Periodo Académico</th>
                 <th>Primer Periodo</th>
@@ -44,10 +45,9 @@ echo $result;
                 <th>Nota Final</th>
                 <th>Observaciones</th>
             </tr>
-        </thead>
-        <tbody>
+            <tbody>
             <?php
-            while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
                 echo "<tr>";
                 echo "<td>" . $row['ANO'] . "</td>";
                 echo "<td>" . $row['NOTA_P1'] . "</td>";
@@ -59,9 +59,11 @@ echo $result;
                 echo "<td>" . $row['APROBO/NO_APROBO'] . "</td>";
                 echo "</tr>";
             }
-            sqlsrv_free_stmt($stmt);
             ?>
         </tbody>
-    </table>
+        </table>
+        <br>
+        <input type="submit" value="Insertar Datos">
+    </form>
 </body>
 </html>
