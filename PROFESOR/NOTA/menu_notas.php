@@ -75,7 +75,7 @@
                 </option>
             <?php endforeach; ?>
         </select>
-        <button type="submit"> Siguiente</button>
+        <a href="PROFESOR/NOTA/vista_notas_estudiante.php"><button class="circular-button">Siguiente</button></a>
     </form>
 </body>
 </html>
