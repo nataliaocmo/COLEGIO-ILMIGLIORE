@@ -29,8 +29,6 @@ $administrativo = $_SESSION['administrativo'];
                 <div class="red-bar">ADMINISTRATIVO<button class="circular-button">&#8594;</button></div>
                 <div class="formulario">
                 <h2>Datos Personales</h2>
-                    <p>Id Administrativo</p>
-                    <input type="text" name="IdAcu" value="<?php echo $administrativo['ID_ADMINISTRATIVO']; ?>" readonly>
                     <p>Documento de Identificación</p>
                     <input type="text" name="DocId" value="<?php echo $administrativo['DOCUMENTO_DE_IDENTIDAD']; ?>" readonly>
                     <p>Nombres</p>

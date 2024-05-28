@@ -4,59 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subir Archivo CSV</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input[type="file"] {
-            display: none;
-        }
-        .form-group .custom-file-upload {
-            border: 1px solid #ccc;
-            display: inline-block;
-            padding: 6px 12px;
-            cursor: pointer;
-            background-color: #ffffff;
-            border-radius: 5px;
-        }
-        .form-group .custom-file-upload:hover {
-            background-color: #f0f0f0;
-        }
-        .form-group .custom-file-upload input[type="file"] {
-            display: none;
-        }
-        .form-group .file-name {
-            margin-left: 10px;
-        }
-        .btn-submit {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .btn-submit:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
