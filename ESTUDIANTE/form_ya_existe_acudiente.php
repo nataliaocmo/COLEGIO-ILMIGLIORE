@@ -18,16 +18,19 @@ margin: 0;
 
 .formulario {
 width: 100%;
+margin: 10px;
+margin-top: 300px;
 max-width: 400px;
 background: #fff;
 padding: 20px;
 border-radius: 10px;
-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .formulario h2 {
+padding: 8%;
 text-align: center;
-margin-bottom: 20px;
+margin-bottom: 10px;
 color: #333;
 }
 
@@ -44,13 +47,14 @@ box-sizing: border-box;
 .formulario button {
 background-color: #af184b;
 color: white;
+padding: 20px;
 border: none;
 cursor: pointer;
 transition: background-color 0.3s ease;
 }
 
 .formulario button:hover {
-background-color:  #7e6060;
+background-color: #7e6060;
 }
 
 .formulario select {
