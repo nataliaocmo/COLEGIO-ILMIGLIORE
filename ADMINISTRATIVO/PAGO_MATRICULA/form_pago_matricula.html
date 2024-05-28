@@ -44,6 +44,14 @@
     </div>
 
     <script>
+        function eliminarTildes(texto) {
+        var original = "ÁÉÍÓÚáéíóú";
+        var sinTilde = "AEIOUaeiou";
+        for (var i = 0; i < original.length; i++) {
+            texto = texto.replace(new RegExp(original[i], "g"), sinTilde[i]);
+        }
+        return texto;
+    }
         function validarFormulario() {
             var fechaInput = document.getElementById('fecha').value;
             var fechaPartes = fechaInput.split('-');

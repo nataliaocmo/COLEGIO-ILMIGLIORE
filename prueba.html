@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Notas</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td[contenteditable="true"] {
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabla de Notas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Periodo Académico</th>
+                <th>Primer Periodo</th>
+                <th>Segundo Periodo</th>
+                <th>Tercer Periodo</th>
+                <th>Cuarto Periodo</th>
+                <th>Fallas</th>
+                <th>Nota Final</th>
+                <th>Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td contenteditable="true">2024</td>
+                <td contenteditable="true">85</td>
+                <td contenteditable="true">90</td>
+                <td contenteditable="true">88</td>
+                <td contenteditable="true">92</td>
+                <td contenteditable="true">2</td>
+                <td contenteditable="true">89.5</td>
+                <td contenteditable="true">Aprobado</td>
+            </tr>
+            <tr>
+                <td contenteditable="true">2024</td>
+                <td contenteditable="true">75</td>
+                <td contenteditable="true">82</td>
+                <td contenteditable="true">80</td>
+                <td contenteditable="true">78</td>
+                <td contenteditable="true">3</td>
+                <td contenteditable="true">78.5</td>
+                <td contenteditable="true">Aprobado</td>
+            </tr>
+            <!-- Agrega más filas según sea necesario -->
+        </tbody>
+    </table>
+</body>
+</html>
