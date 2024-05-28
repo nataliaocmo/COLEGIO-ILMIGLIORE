@@ -43,7 +43,7 @@ $acudiente = $_SESSION['acudiente'];
                     <input type="text" name="Telefono" value="<?php echo $acudiente['TELEFONO']; ?>" readonly>
                     <p>Direccion</p>
                     <input type="text" name="Direccion" value="<?php echo $acudiente['DIRECCION']; ?>" readonly>
-                    </form>
+                </form>
             </div>
         </div>
         <div class="right-side">
