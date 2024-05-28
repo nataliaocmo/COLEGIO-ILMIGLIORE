@@ -15,8 +15,6 @@ body {
     color: #fff;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding: 20px;
 }
 
@@ -31,29 +29,42 @@ body {
     padding: 20px;
 }
 
+.icons {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
 .icons img {
     width: 20px;
     height: 20px;
     filter: invert(100%);
-    font-size: 24px;
-    font-family: 'Spectral SC', serif;
 }
 
 .red-bar {
     color: #fff;
     background-color: #af184b;
     width: 100%;
-    position: relative;
-    left: 0;
+    text-align: left;
     margin-left: 10px;
+    padding: 20px 0;
+    font-weight: bold;
 }
 
 .top-bar {
-    padding: 20px;
-    border-bottom: 2px solid #af184b; /* Rojo */
-    font-weight: bold;
     display: flex;
+    width: 105%;
     align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 0px solid #af184b; /* Rojo */
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
 }
 
 .content {
