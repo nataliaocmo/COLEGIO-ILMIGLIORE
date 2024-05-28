@@ -87,6 +87,7 @@ function actualizar($conn, $query, $params, $id_acudiente, $contrasenaAcudiente)
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="actualizacionDeDatosProfesor.css">
   <title>Actualización de datos Estudiante</title>
 </head>
 <body>
