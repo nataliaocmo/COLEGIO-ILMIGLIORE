@@ -69,7 +69,7 @@
     <select name="grado" id="grado">
     
         <?php foreach ($grado_array as $grado): ?>
-            <option value="<?php echo htmlspecialchars($grado); ?>">
+            <option value="<?php echo htmlspecialchars($grado); ?>"placeholder="GRADO">
                 <?php echo htmlspecialchars($grado); ?>
             </option>
         <?php endforeach; ?>
