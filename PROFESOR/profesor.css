@@ -1,7 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color:  #042d3f;
 }
 
 .container {
@@ -19,31 +20,40 @@ body {
     width: 50%;
     background-color: #fff; /* Blanco */
     color: #000;
+    font-size: 20px;
+    padding-top: 50px;
+}
+
+.top-bar {
+    padding: 20px;
+    font-weight: bold;
+    position: relative; /* Añadimos posicionamiento relativo */
 }
 
 .icons img {
     width: 20px;
     height: 20px;
     filter: invert(100%);
-    font-size: 24px;
-    font-family: 'Spectral SC', serif;
 }
 
 .red-bar {
     color: #fff; 
     background-color: #af184b; 
+    padding: 10px; 
+    border-radius: 5px; 
     width: 100%;
-    position: relative; /* Añadimos posicionamiento absoluto */
-    left: 0; 
-    margin-left: 10px; /* Añadimos margen izquierdo para separar de los íconos */
+    font-size: 24px;
+    font-family: 'Spectral SC', serif;
 }
 
-.top-bar {
-    padding: 20px;
-    border-bottom: 2px solid #af184b; /* Rojo */
-    font-weight: bold;
-    display: flex; /* Añadimos display flex */
-    align-items: center; /* Centramos verticalmente los elementos */
+.red-bar span {
+    position: relative; /* Añadimos posicionamiento absoluto */
+    top: -10px;
+    left: 0; /* Cambiamos a la izquierda */
+}
+
+.red-bar .circular-button {
+    margin-left: 10px; /* Añadimos espacio entre el texto y la flecha */
 }
 
 .content {
@@ -71,24 +81,10 @@ span {
     color: #af184b;
     font-weight: bold;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     transition: background-color 0.3s ease;
 }
 
 .circular-button:hover {
     background-color: #af184b;
     color: #fff;
-}
-
-@media screen and (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .left-side,
-    .right-side {
-        width: 100%;
-    }
 }

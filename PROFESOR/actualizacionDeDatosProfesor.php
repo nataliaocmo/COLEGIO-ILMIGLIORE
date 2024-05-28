@@ -78,6 +78,7 @@ function actualizar($conn, $query, $params, $id_profesor, $contrasena, $cambio) 
 <head>
   <meta charset="UTF-8">
   <title>Actualización de datos Profesor</title>
+  <link rel="stylesheet" href="actualizacionDeDatosProfesor.css">
 </head>
 <body>
   <div class="formulario">
