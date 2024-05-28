@@ -1,7 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color:  #042d3f;
 }
 
 .container {
@@ -11,39 +12,48 @@ body {
 
 .left-side {
     width: 50%;
-    background-color: #042d3f; 
+    background-color: #042d3f; /* Azul */
     color: #fff;
 }
 
 .right-side {
     width: 50%;
-    background-color: #fff; 
+    background-color: #fff; /* Blanco */
     color: #000;
+    font-size: 20px;
+    padding-top: 50px;
+}
+
+.top-bar {
+    padding: 20px;
+    font-weight: bold;
+    position: relative; /* Añadimos posicionamiento relativo */
 }
 
 .icons img {
     width: 20px;
     height: 20px;
     filter: invert(100%);
-    font-size: 24px;
-    font-family: 'Spectral SC', serif;
 }
 
 .red-bar {
     color: #fff; 
     background-color: #af184b; 
+    padding: 10px; 
+    border-radius: 5px; 
     width: 100%;
-    position: relative;
-    left: 0; 
-    margin-left: 10px; 
+    font-size: 24px;
+    font-family: 'Spectral SC', serif;
 }
 
-.top-bar {
-    padding: 20px;
-    border-bottom: 2px solid #af184b; 
-    font-weight: bold;
-    display: flex; 
-    align-items: center;
+.red-bar span {
+    position: relative; /* Añadimos posicionamiento absoluto */
+    top: -10px;
+    left: 0; /* Cambiamos a la izquierda */
+}
+
+.red-bar .circular-button {
+    margin-left: 10px; /* Añadimos espacio entre el texto y la flecha */
 }
 
 .content {
@@ -52,7 +62,6 @@ body {
 
 ul {
     list-style-type: none;
-    padding: 0; 
 }
 
 li {
@@ -72,45 +81,10 @@ span {
     color: #af184b;
     font-weight: bold;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     transition: background-color 0.3s ease;
 }
 
 .circular-button:hover {
     background-color: #af184b;
     color: #fff;
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .left-side,
-    .right-side {
-        width: 100%;
-        height: 50vh;
-    }
-}
-
-@media (max-width: 480px) {
-    .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .icons img {
-        margin-bottom: 10px;
-    }
-
-    .red-bar {
-        margin-left: 0;
-    }
-
-    .circular-button {
-        width: 25px;
-        height: 25px;
-    }
 }
