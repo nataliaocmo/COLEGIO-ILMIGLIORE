@@ -65,6 +65,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu grados para notas</title>
     <link rel="stylesheet" href="menu_notas.css">
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background-color: #042d3f;
+}
+
+select {
+    color: white;
+    background-color: #af184b;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+option {
+    color: black;
+    background-color: white;
+}
+
+.circular-button {
+    display: inline-block;
+    background-color: #af184b;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.circular-button:hover {
+    background-color: #d62828;
+}
+     </style>
 </head>
 <body>
     <select name="grado" id="grado">
