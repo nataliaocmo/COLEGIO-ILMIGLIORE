@@ -75,7 +75,7 @@
                 </option>
             <?php endforeach; ?>
         </select>
-        <button type="submit">Ver notas grado</button>
+        <button type="submit"> Siguiente</button>
     </form>
 </body>
 </html>
