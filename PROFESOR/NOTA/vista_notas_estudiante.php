@@ -1,21 +1,35 @@
 <?php
 include 'conexion.php';
 session_start();
+
 // Verifica si el usuario está autenticado como estudiante
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== "estudiante") {
     header("Location: /sql/log_in.html");
     exit();
 }
+
 // Accede al ID del estudiante desde la sesión
 $estudiante = $_SESSION['estudiante'];
-//$id_estudiante = $_SESSION['estudiante']['ID_ESTDUIANTE'];
 
-$sql = "SELECT * FROM NOTA n INNER JOIN RELACION_NOTAS_ASIGNATURAS_ESTUDIANTES rnae ON n.ID_NOTA = rnae.ID_NOTAS INNER JOIN RELACION_PROFESOR_ASIGNATURA rpa ON rnae.ID_RELACION_PROFESORES_ASIGNATURA = rpa.ID_RELACION_PROFESOR_ASIGNATURA WHERE rnae.ID_ESTUDIANTE = '" . $estudiante['ID_ESTDUIANTE'] . "';";
+// Verifica si se ha enviado un grado desde el formulario
+if (isset($_GET['grado'])) {
+    $grado = htmlspecialchars($_GET['grado']);
 
-$stmt = sqlsrv_query($conn, $sql);
+    // Consulta para obtener las notas del estudiante por grado
+    $sql = "SELECT n.*, rpa.ID_GRADO, rpa.ID_ASIGNATURA, rpa.ID_PROFESOR 
+            FROM NOTA n
+            INNER JOIN RELACION_NOTAS_ASIGNATURAS_ESTUDIANTES rnae ON n.ID_NOTA = rnae.ID_NOTAS
+            INNER JOIN RELACION_PROFESOR_ASIGNATURA rpa ON rnae.ID_RELACION_PROFESORES_ASIGNATURA = rpa.ID_RELACION_PROFESOR_ASIGNATURA
+            WHERE rnae.ID_ESTUDIANTE = ? AND rpa.ID_GRADO = ?";
+    $params = array($estudiante['ID_ESTUDIANTE'], $grado);
+    $stmt = sqlsrv_query($conn, $sql, $params);
 
-if ($stmt === false) {
-    die(print_r(sqlsrv_errors(), true));
+    if ($stmt === false) {
+        die(print_r(sqlsrv_errors(), true));
+    }
+} else {
+    echo "No se ha seleccionado ningún grado.";
+    exit();
 }
 ?>
 
@@ -27,8 +41,8 @@ if ($stmt === false) {
     <title>Notas Académicas</title>
 </head>
 <body>
-    <h2>Tabla de Periodo Académico</h2>
-    <label for="periodo">Nombre:</label>
+    <h2>Notas del Estudiante</h2>
+    <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" value="<?php echo $estudiante['NOMBRE'] . ' ' . $estudiante['APELLIDO']; ?>" readonly><br><br>
 
     <label for="year">Año Académico:</label>
@@ -38,7 +52,7 @@ if ($stmt === false) {
         <option value="2024">2024</option>
     </select><br><br>
 
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>Periodo Académico</th>
@@ -57,16 +71,16 @@ if ($stmt === false) {
             <?php
             while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
                 echo "<tr>";
-                echo "<td>" . $row['ANO'] . "</td>";
-                echo "<td>" . $row['ID_ASIGNATURA'] . "</td>";
-                echo "<td>" . $row['ID_PROFESOR'] . "</td>";
-                echo "<td>" . $row['NOTA_P1'] . "</td>";
-                echo "<td>" . $row['NOTA_P2'] . "</td>";
-                echo "<td>" . $row['NOTA_P3'] . "</td>";
-                echo "<td>" . $row['NOTA_P4'] . "</td>";
-                echo "<td>" . $row['NUMERO_DE_FALLAS'] . "</td>";
-                echo "<td>" . $row['NOTA_FINAL'] . "</td>";
-                echo "<td>" . $row['APROBO/NO_APROBO'] . "</td>";
+                echo "<td>" . htmlspecialchars($row['ANO']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['ID_ASIGNATURA']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['ID_PROFESOR']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['NOTA_P1']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['NOTA_P2']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['NOTA_P3']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['NOTA_P4']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['NUMERO_DE_FALLAS']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['NOTA_FINAL']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['APROBO/NO_APROBO']) . "</td>";
                 echo "</tr>";
             }
 
