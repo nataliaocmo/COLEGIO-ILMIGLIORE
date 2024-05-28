@@ -1,0 +1,6 @@
+﻿Nombre;Apellido;Género;Fecha de Nacimiento;Teléfono;EPS;RH;Dirección;Documento de Identidad del Acudiente;Grado al que va a ingresar;Documento de Identidad
+Juan;Pérez;Masculino;2005-05-10;3101234567;Sura;O+;Calle 1 # 2-3;1234567890;PRIMERO;555555555
+María;García;Femenino;2006-08-15;3127654321;Coomeva;A+;Carrera 4 # 5-6;2345678901;SEGUNDO;666666666
+Pedro;López;Masculino;2007-03-20;3149876543;Sanitas;B+;Avenida 7 # 8-9;3456789012;TERCERO;777777777
+Lucía;Martínez;Femenino;2006-11-25;3176543210;Famisanar;O-;Calle 10 # 11-12;4567890123;CUARTO;999999999
+Carlos;Hernández;Masculino;2005-01-30;3004567890;Nueva EPS;AB+;Carrera 13 # 14-15;5678901234;QUINTO;111111111
