@@ -64,19 +64,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu grados para notas</title>
-    <link rel="stylesheet" href="menu_notas.css>
 </head>
 <body>
-    <form action="mostrar_grado.php" method="GET">
-        <select name="grado" id="grado" required>
-            <option value="" disabled selected>Seleccione un grado</option>
-            <?php foreach ($grado_array as $grado): ?>
-                <option value="<?php echo htmlspecialchars($grado); ?>">
-                    <?php echo htmlspecialchars($grado); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-        <a href="PROFESOR/NOTA/vista_notas_estudiante.php"><button class="circular-button">Siguiente</button></a>
-    </form>
+    <select name="grado" id="grado">
+    
+        <?php foreach ($grado_array as $grado): ?>
+            <option value="<?php echo htmlspecialchars($grado); ?>"placeholder="GRADO">
+                <?php echo htmlspecialchars($grado); ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    <?php echo $grado;?>
+    <a href="/PROFESOR/NOTA/insertar_notas.php?grado=<?php echo $grado;?>"><button class="circular-button">Siguiente</button></a>
+    
 </body>
 </html>
