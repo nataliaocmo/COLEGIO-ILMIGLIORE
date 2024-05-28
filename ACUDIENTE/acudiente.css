@@ -13,41 +13,59 @@ body {
     width: 50%;
     background-color: #042d3f; /* Azul */
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .right-side {
     width: 50%;
     background-color: #fff; /* Blanco */
     color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-
+.icons {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
 
 .icons img {
     width: 20px;
     height: 20px;
     filter: invert(100%);
-    font-size: 24px;
-    font-family: 'Spectral SC', serif;
 }
 
 .red-bar {
-    color: #fff; 
-    background-color: #af184b; 
+    color: #fff;
+    background-color: #af184b;
     width: 100%;
-    position: relative; /* Añadimos posicionamiento absoluto */
-    left: 0; 
-    margin-left: 10px; /* Añadimos margen izquierdo para separar de los íconos */
+    text-align: left;
+    margin-left: 10px;
+    padding: 20px 0;
+    font-weight: bold;
 }
 
 .top-bar {
-    padding: 20px;
-    border-bottom: 2px solid #af184b; /* Rojo */
-    font-weight: bold;
-    display: flex; /* Añadimos display flex */
-    align-items: center; /* Centramos verticalmente los elementos */
+    display: flex;
+    width: 105%;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 0px solid #af184b; /* Rojo */
 }
 
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
 
 .content {
     padding: 20px;
@@ -55,6 +73,7 @@ body {
 
 ul {
     list-style-type: none;
+    padding: 0;
 }
 
 li {
@@ -83,4 +102,39 @@ span {
 .circular-button:hover {
     background-color: #af184b;
     color: #fff;
+}
+
+/* Media Queries para hacer el diseño responsive */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-side, .right-side {
+        width: 100%;
+    }
+
+    .left-side {
+        height: 50vh; /* Ajustar la altura del lado izquierdo en pantallas más pequeñas */
+    }
+
+    .right-side {
+        height: 50vh; /* Ajustar la altura del lado derecho en pantallas más pequeñas */
+    }
+
+    .top-bar {
+        justify-content: center; /* Centrar el contenido horizontalmente */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .top-bar {
+        flex-direction: column; /* Colocar los elementos en columna en pantallas muy pequeñas */
+        text-align: center; /* Centrar el texto */
+    }
+
+    .circular-button {
+        width: 40px;
+        height: 40px;
+    }
 }

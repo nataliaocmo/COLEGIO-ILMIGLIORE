@@ -11,7 +11,6 @@
     <form id="formulario" class="" action="form_historial.php" method="post" onsubmit="return validarFormulario()">
       <p>GRADO</p>
       <select id="grado" name="grado">
-        <option value=""></option>
         <option value="" disabled selected>Grado</option>
         <option value="PREESCOLAR">PREESCOLAR</option>
         <option value="PRIMERO">PRIMERO</option>
@@ -26,10 +25,12 @@
         <option value="DECIMO">DECIMO</option>
         <option value="UNDECIMO">UNDECIMO</option>
       </select>
-      <p>Institucion donde curso</p>
-      <input type="text" name="institucion" placeholder="Institucion Educativa a la que pertenecio" required>
+      <p>Institucion donde cursó</p>
+      <input type="text" name="institucion" placeholder="Institucion Educativa a la que perteneció" required>
       <p>Año</p>
       <input type="text" name="ano" placeholder="Año cursado" required>
+      <br>
+      <br>
       <button type="submit">Añadir grado</button>
     </form>
     <form action="/sql/ADMINISTRATIVO/PAGO_MATRICULA/form_pago_matricula.html">

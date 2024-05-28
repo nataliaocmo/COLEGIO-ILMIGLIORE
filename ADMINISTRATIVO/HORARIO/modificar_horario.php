@@ -19,7 +19,7 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
   <h1>Modificar Horario</h1>
   <form action="generar_horario.php" method="post">
     <label for="grado">Seleccione un grado:</label>
-    <select name="id_grado" id="grado">
+    <select name="grado" id="grado">
       <?php foreach ($grados as $grado): ?>
         <option value="<?= $grado['ID_GRADO'] ?>"><?= $grado['NOMBRE'] ?></option>
       <?php endforeach; ?>
