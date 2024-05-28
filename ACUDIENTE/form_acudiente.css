@@ -35,8 +35,7 @@ body {
   }
 
   .formulario button {
-    background-color: #570000;
-    color: white;
+    background-color: #af184b;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;

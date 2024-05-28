@@ -11,15 +11,17 @@ body {
 
 .left-side {
     width: 50%;
-    background-color: #042d3f; 
+    background-color: #042d3f; /* Azul */
     color: #fff;
 }
 
 .right-side {
     width: 50%;
-    background-color: #fff; 
+    background-color: #fff; /* Blanco */
     color: #000;
 }
+
+
 
 .icons img {
     width: 20px;
@@ -33,18 +35,19 @@ body {
     color: #fff; 
     background-color: #af184b; 
     width: 100%;
-    position: relative;
+    position: relative; /* Añadimos posicionamiento absoluto */
     left: 0; 
-    margin-left: 10px; 
+    margin-left: 10px; /* Añadimos margen izquierdo para separar de los íconos */
 }
 
 .top-bar {
     padding: 20px;
-    border-bottom: 2px solid #af184b; 
+    border-bottom: 2px solid #af184b; /* Rojo */
     font-weight: bold;
-    display: flex; 
-    align-items: center;
+    display: flex; /* Añadimos display flex */
+    align-items: center; /* Centramos verticalmente los elementos */
 }
+
 
 .content {
     padding: 20px;
@@ -52,7 +55,6 @@ body {
 
 ul {
     list-style-type: none;
-    padding: 0; 
 }
 
 li {
@@ -81,36 +83,4 @@ span {
 .circular-button:hover {
     background-color: #af184b;
     color: #fff;
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .left-side,
-    .right-side {
-        width: 100%;
-        height: 50vh;
-    }
-}
-
-@media (max-width: 480px) {
-    .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .icons img {
-        margin-bottom: 10px;
-    }
-
-    .red-bar {
-        margin-left: 0;
-    }
-
-    .circular-button {
-        width: 25px;
-        height: 25px;
-    }
 }

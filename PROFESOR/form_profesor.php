@@ -51,7 +51,6 @@ for ($i = 0; $i < 10; $i++) {
 // Generar el nuevo ID
 $nuevo_numero = $total + 1;
 $IdProfesor = "PROF".str_pad($nuevo_numero, 4, "0", STR_PAD_LEFT);
-$fechaFormateada = date('Y-m-d H:i:s', strtotime($FechaDeContratacion));
 
 // Establecer la zona horaria, si es necesario
 date_default_timezone_set('America/Bogota');

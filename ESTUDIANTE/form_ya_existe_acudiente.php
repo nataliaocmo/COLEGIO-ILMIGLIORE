@@ -21,7 +21,7 @@
       </select>
       <input type="date" name="fechaDeNacimiento" placeholder="Fecha de Nacimiento" required>
       <select id="grado" name="grado">
-        <option value=" " disabled selected>Grado</option>
+        <option value=" "></option>
         <option value="PREESCOLAR">PREESCOLAR</option>
         <option value="PRIMERO">PRIMERO</option>
         <option value="SEGUNDA">SEGUNDO</option>
