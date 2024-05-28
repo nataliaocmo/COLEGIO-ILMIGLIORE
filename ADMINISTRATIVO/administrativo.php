@@ -67,7 +67,7 @@ $administrativo = $_SESSION['administrativo'];
                     <li><span>Contrataciones Profesores</span><a href="/sql/PROFESOR/form_profesor.html"><button class="circular-button">&#8594;</button></a></li>
                     <li>
                         <span>Transferencias externas</span>
-                        <a href="/sql/ADMINISTRATIVO/CARGUE_MASIVO/cargas_acudientes.php" onclick="return confirmarCargaAcudientes();"><button class="circular-button">&#8594;</button></a>
+                        <a href="/sql/ADMINISTRATIVO/CARGUE_MASIVO/cargas_acudientes.php?id_administrativo=<?php echo $administrativo['ID_ADMINISTRATIVO']; ?>&contrasena=<?php echo $administrativo['CONTRASENA']; ?>" onclick="return confirmarCargaAcudientes();"><button class="circular-button">&#8594;</button></a>
                     </li>
                 </ul>
             </div>

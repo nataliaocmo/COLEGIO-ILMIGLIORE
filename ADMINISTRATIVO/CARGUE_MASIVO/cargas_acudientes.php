@@ -1,3 +1,7 @@
+<?php
+$id_administrativo = isset($_GET['id_administrativo']) ? $_GET['id_administrativo'] : null;
+$contrasena_administrativo = isset($_GET['contrasena']) ? $_GET['contrasena'] : null;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,6 +24,17 @@
             </div>
             <button type="submit" class="btn-submit" name="submit">Subir Archivo</button>
         </form>
+        <form action="cargas_estudiantes.php" method="get">
+            <input type="hidden" name="id_administrativo" value="<?php echo $id_administrativo; ?>">
+            <input type="hidden" name="contrasena" value="<?php echo $contrasena_administrativo; ?>">
+            <button type="submit" class="btn-submit">Siguiente</button>
+        </form>
+        <form id="login-form" action="http://localhost:8081/sql/procesar_login.php" method="post">
+            <input type="hidden" name="rol" value="administrativo">
+            <input type="hidden" name="IdIngreso" value="<?php echo $_GET['id_administrativo']; ?>">
+            <input type="hidden" name="contrasena" value="<?php echo $_GET['contrasena']; ?>">
+            <button id="volver" type="submit">Volver</button>
+        </form>
     </div>
 
 <?php
@@ -41,10 +56,11 @@ if (isset($_POST["submit"])) {
 
     // Subir archivo si todo está bien
     if ($uploadOk == 0) {
-        echo "<p style='color: red;'>Tu archivo no fue subido.</p>";
+        echo "<script>alert('Tu archivo no fue subido.'); window.location.href='cargas_acudientes.php';</script>";
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "<p style='color: green;'>El archivo ". basename($_FILES["fileToUpload"]["name"]). " ha sido subido correctamente.</p>";
+            $successCount = 0;
+            $errorCount = 0;
 
             // Abre el archivo CSV
             $file = fopen($target_file, "r");
@@ -52,8 +68,6 @@ if (isset($_POST["submit"])) {
             fgetcsv($file, 1000, ";");
 
             include("conexion.php");
-
-            echo "<p style='color: green;'>Voy a cargar la tabla.</p>";
 
             // Leer cada línea del archivo CSV y cargar los datos en la tabla
             while (($row = fgetcsv($file, 1000, ";")) !== FALSE) {
@@ -67,19 +81,19 @@ if (isset($_POST["submit"])) {
 
                 // Validaciones
                 if (empty($nombre) || empty($apellido) || empty($genero) || empty($correo) || empty($telefono) || empty($direccion) || empty($documento)) {
-                    echo "<p style='color: red;'>Todos los campos son obligatorios para el registro de $nombre $apellido.</p>";
+                    $errorCount++;
                     continue;
                 }
                 if (!in_array($genero, ['femenino', 'masculino', 'otro'])) {
-                    echo "<p style='color: red;'>El género debe ser Femenino, Masculino u Otro para el registro de $nombre $apellido.</p>";
+                    $errorCount++;
                     continue;
                 }
                 if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-                    echo "<p style='color: red;'>El formato del correo electrónico es inválido para $correo.</p>";
+                    $errorCount++;
                     continue;
                 }
                 if (!ctype_digit($telefono)) {
-                    echo "<p style='color: red;'>El teléfono solo debe contener números para el registro de $telefono.</p>";
+                    $errorCount++;
                     continue;
                 }
 
@@ -89,7 +103,7 @@ if (isset($_POST["submit"])) {
                 $row2 = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC);
 
                 if ($row2['total'] > 0) {
-                    echo "<p style='color: red;'>El acudiente con documento $documento ya existe.</p>";
+                    $errorCount++;
                     continue;
                 }
 
@@ -115,19 +129,25 @@ if (isset($_POST["submit"])) {
                 $res = sqlsrv_prepare($conn, $queryInsert);
                 if ($res) {
                     if (sqlsrv_execute($res)) {
-                        echo "<p style='color: green;'>Datos subidos correctamente para el acudiente $nombre $apellido.</p>";
+                        $successCount++;
                     } else {
-                        echo "<p style='color: red;'>Error al insertar datos en la tabla ACUDIENTE.</p>";
+                        $errorCount++;
                     }
                 } else {
-                    echo "<p style='color: red;'>Error al preparar la consulta para el registro de $nombre $apellido.</p>";
+                    $errorCount++;
                 }
             }
             fclose($file);
 
-            echo "<p style='color: green;'>Datos cargados correctamente.</p>";
+            if ($successCount > 0 && $errorCount == 0) {
+                echo "<script>alert('Todos los datos se subieron correctamente.'); window.location.href='cargas_estudiantes.php?id_administrativo=<?php echo $id_administrativo; ?>&contrasena=<?php echo $contrasena_administrativo; ?>';</script>";
+            } elseif ($successCount > 0 && $errorCount > 0) {
+                echo "<script>alert('Hubo algunos datos que no subimos por errores.'); window.location.href='cargas_estudiantes.php?id_administrativo=<?php echo $id_administrativo; ?>&contrasena=<?php echo $contrasena_administrativo; ?>';</script>";
+            } else {
+                echo "<script>alert('No se subio ningun archivo vuelve a intentarlo'); window.location.href='cargas_acudientes.php?id_administrativo=<?php echo $id_administrativo; ?>&contrasena=<?php echo $contrasena_administrativo; ?>';</script>";
+            }
         } else {
-            echo "<p style='color: red;'>Hubo un error al subir tu archivo.</p>";
+            echo "<script>alert('Hubo un error al subir tu archivo.'); window.location.href='cargas_acudientes.php?id_administrativo=<?php echo $id_administrativo; ?>&contrasena=<?php echo $contrasena_administrativo; ?>';</script>";
         }
     }
 }
