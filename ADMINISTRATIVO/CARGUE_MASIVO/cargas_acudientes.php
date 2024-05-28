@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carga Masiva de Acudientes</title>
+    <title>Transferencia externa de Acudientes</title>
+    <link rel="stylesheet" href="cargas.css">
 </head>
 <body>
     <div class="container">
-        <h2>Carga Masiva de Acudientes</h2>
+        <h2>Transferencia externa de Acudientes</h2>
         <form action="cargar_acudientes.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="fileToUpload">Archivo de Acudientes</label>
-                <input type="file" name="fileToUpload" id="fileToUpload" accept=".csv">
+                <label class="custom-file-upload">
+                    <input type="file" name="fileToUpload" id="fileToUpload" accept=".csv">
+                    Seleccionar Archivo
+                </label>
+                <span class="file-name"></span>
             </div>
-            <button type="submit" name="submit">Subir Archivo</button>
+            <button type="submit" class="btn-submit" name="submit">Subir Archivo</button>
         </form>
     </div>
 
@@ -80,7 +85,7 @@ if (isset($_POST["submit"])) {
             fclose($file);
             if ($allRecordsValid) {
                 echo "<p style='color: green;'>DATOS CARGADOS CORRECTAMENTE.</p>";
-                echo "<script>window.location.href='cargar_estudiantes.php';</script>";
+                echo "<script>window.location.href='cargas_estudiantes.php';</script>";
             } else {
                 echo "<p style='color: red;'>Algunos registros no se pudieron cargar. Revise los errores y vuelva a intentarlo.</p>";
             }

@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carga Masiva de Estudiantes</title>
+    <title>Transferencia externa de Estudiantes</title>
+    <link rel="stylesheet" href="cargas.css">
 </head>
 <body>
     <div class="container">
-        <h2>Carga Masiva de Estudiantes</h2>
-        <form action="cargar_estudiantes.php" method="post" enctype="multipart/form-data">
+        <h2>Transferencia externa de Estudiantes</h2>
+        <form action="cargar_acudientes.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="fileToUpload">Archivo de Estudiantes</label>
-                <input type="file" name="fileToUpload" id="fileToUpload" accept=".csv">
+                <label class="custom-file-upload">
+                    <input type="file" name="fileToUpload" id="fileToUpload" accept=".csv">
+                    Seleccionar Archivo
+                </label>
+                <span class="file-name"></span>
             </div>
-            <button type="submit" name="submit">Subir Archivo</button>
+            <button type="submit" class="btn-submit" name="submit">Subir Archivo</button>
         </form>
     </div>
 
