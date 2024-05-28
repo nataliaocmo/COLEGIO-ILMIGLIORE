@@ -1,114 +1,116 @@
 <?php
-session_start();
 include("conexion.php");
 
-// Función para generar un nuevo ID
-function generarNuevoID($conn, $prefix, $table, $column) {
-    $query = "SELECT COUNT(*) AS total FROM $table";
+function verificarConflicto($conn, $id_grado, $id_horario_unico, $id_profesor) {
+    // Verificar conflictos de horarios para el grado
+    $queryGrado = "SELECT COUNT(*) as total FROM HORARIO WHERE ID_GRADO = ? AND ID_HORARIO_UNICO = ?";
+    $paramsGrado = array($id_grado, $id_horario_unico);
+    $resultGrado = sqlsrv_query($conn, $queryGrado, $paramsGrado);
+    $rowGrado = sqlsrv_fetch_array($resultGrado, SQLSRV_FETCH_ASSOC);
+
+    if ($rowGrado['total'] > 0) {
+        return true;
+    }
+
+    // Verificar conflictos de horarios para el profesor
+    $queryProfesor = "SELECT COUNT(*) as total FROM HORARIO WHERE ID_HORARIO_UNICO = ? AND ID_RELACION_PROFESOR_ASIGNATURA IN (SELECT ID_RELACION_PROFESOR_ASIGNATURA FROM RELACION_PROFESOR_ASIGNATURA WHERE ID_PROFESOR = ?)";
+    $paramsProfesor = array($id_horario_unico, $id_profesor);
+    $resultProfesor = sqlsrv_query($conn, $queryProfesor, $paramsProfesor);
+    $rowProfesor = sqlsrv_fetch_array($resultProfesor, SQLSRV_FETCH_ASSOC);
+
+    if ($rowProfesor['total'] > 0) {
+        return true;
+    }
+
+    return false;
+}
+
+function generarNuevoID($conn, $prefix) {
+    $query = "SELECT COUNT(*) AS total FROM HORARIO";
     $result = sqlsrv_query($conn, $query);
-    $row = sqlsrv_fetch_array($result);
-    $total = $row['total'];
-    $nuevo_numero = $total + 1;
-    $IdHorario = $prefix . str_pad($nuevo_numero, 4, "0", STR_PAD_LEFT);
-    return $IdHorario;
+    $row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+    $total = $row['total'] + 1;
+    return $prefix . str_pad($total, 4, "0", STR_PAD_LEFT);
 }
 
-// Obtener el grado seleccionado
-$idGrado = $_POST['id_grado'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id_grado = $_POST['id_grado'];
 
-// Obtener la escolaridad del grado
-$query2 = "SELECT ESCOLARIDAD FROM GRADO WHERE ID_GRADO = '$idGrado'";
-$result2 = sqlsrv_query($conn, $query2);
-$escolaridadRow = sqlsrv_fetch_array($result2, SQLSRV_FETCH_ASSOC);
-$escolaridad = $escolaridadRow['ESCOLARIDAD'];
+    // Obtener las asignaturas para el grado
+    $queryAsignaturas = "SELECT ID_ASIGNATURA, INTENSIDAD_HORARIO FROM ASIGNATURA WHERE ESCOLARIDAD = (SELECT ESCOLARIDAD FROM GRADO WHERE ID_GRADO = ?)";
+    $paramsAsignaturas = array($id_grado);
+    $resultAsignaturas = sqlsrv_query($conn, $queryAsignaturas, $paramsAsignaturas);
 
-// Obtener las asignaturas para el grado
-$query = "SELECT ID_ASIGNATURA, INTENSIDAD_HORARIO FROM ASIGNATURA WHERE ESCOLARIDAD = '$escolaridad'";
-$result = sqlsrv_query($conn, $query);
-$asignaturas = [];
-while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-    $asignaturas[] = $row;
-}
+    $asignaturas = array();
+    while ($rowAsignaturas = sqlsrv_fetch_array($resultAsignaturas, SQLSRV_FETCH_ASSOC)) {
+        $asignaturas[] = $rowAsignaturas;
+    }
 
-// Definir los límites de horario según la escolaridad
-$limitesHorario = [
-    'PREESCOLAR' => '13:30:00',
-    'PRIMARIA' => '15:45:00',
-    'SECUNDARIA' => '15:45:00',
-    'PREPARATORIA' => '18:00:00'
-];
+    // Obtener los horarios únicos disponibles
+    $queryHorariosUnicos = "SELECT ID_HORARIO_UNICO FROM HORARIO_UNICO";
+    $resultHorariosUnicos = sqlsrv_query($conn, $queryHorariosUnicos);
 
-// Obtener los horarios únicos disponibles hasta el límite correspondiente
-$query = "SELECT * FROM HORARIO_UNICO WHERE HORA_DE_FIN <= '{$limitesHorario[$escolaridad]}'";
-$result = sqlsrv_query($conn, $query);
+    $horariosUnicos = array();
+    while ($rowHorariosUnicos = sqlsrv_fetch_array($resultHorariosUnicos, SQLSRV_FETCH_ASSOC)) {
+        $horariosUnicos[] = $rowHorariosUnicos['ID_HORARIO_UNICO'];
+    }
 
-$horariosUnicos = [];
-while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-    $horariosUnicos[] = $row;
-}
+    $horarioGenerado = array();
+    $conflictos = false;
 
-// Generar el horario
-$horarioGenerado = [];
-$horarioConflicto = false;
+    foreach ($asignaturas as $asignatura) {
+        $intensidad = $asignatura['INTENSIDAD_HORARIO'];
+        $id_asignatura = $asignatura['ID_ASIGNATURA'];
 
-foreach ($asignaturas as $asignatura) {
-    $intensidad = $asignatura['INTENSIDAD_HORARIO'];
-    $idAsignatura = $asignatura['ID_ASIGNATURA'];
-    $query = "SELECT ID_RELACION_PROFESOR_ASIGNATURA FROM RELACION_PROFESOR_ASIGNATURA WHERE ID_ASIGNATURA = '$idAsignatura'";
-    $result = sqlsrv_query($conn, $query);
-    $relacionProfesorAsignatura = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)['ID_RELACION_PROFESOR_ASIGNATURA'];
+        // Obtener un profesor para la asignatura
+        $queryProfesor = "SELECT TOP 1 ID_PROFESOR FROM RELACION_PROFESOR_ASIGNATURA WHERE ID_ASIGNATURA = ?";
+        $paramsProfesor = array($id_asignatura);
+        $resultProfesor = sqlsrv_query($conn, $queryProfesor, $paramsProfesor);
+        $rowProfesor = sqlsrv_fetch_array($resultProfesor, SQLSRV_FETCH_ASSOC);
+        $id_profesor = $rowProfesor['ID_PROFESOR'];
 
-    $horasAsignadas = 0;
-    $diasAsignados = [];
+        // Asignar las horas necesarias para la asignatura
+        for ($i = 0; $i < $intensidad; $i++) {
+            $id_horario_unico = array_shift($horariosUnicos);
 
-    foreach ($horariosUnicos as $horarioUnico) {
-        if ($horasAsignadas >= $intensidad) {
-            break;
-        }
-
-        $idHorarioUnico = $horarioUnico['ID_HORARIO_UNICO'];
-
-        // Verificar conflictos con otros grados y profesores
-        $queryConflictoGrado = "SELECT COUNT(*) AS total FROM HORARIO WHERE ID_GRADO = '$idGrado' AND ID_HORARIO_UNICO = '$idHorarioUnico'";
-        $resultConflictoGrado = sqlsrv_query($conn, $queryConflictoGrado);
-        $totalConflictoGrado = sqlsrv_fetch_array($resultConflictoGrado)['total'];
-
-        $queryConflictoProfesor = "SELECT COUNT(*) AS total FROM HORARIO WHERE ID_RELACION_PROFESOR_ASIGNATURA = '$relacionProfesorAsignatura' AND ID_HORARIO_UNICO = '$idHorarioUnico'";
-        $resultConflictoProfesor = sqlsrv_query($conn, $queryConflictoProfesor);
-        $totalConflictoProfesor = sqlsrv_fetch_array($resultConflictoProfesor)['total'];
-
-        $diaHorario = $horarioUnico['DIA'];
-        if (!in_array($diaHorario, $diasAsignados) && $totalConflictoGrado == 0 && $totalConflictoProfesor == 0) {
-            $idHorario = generarNuevoID($conn, 'HOR', 'HORARIO', 'ID_HORARIO');
-            $queryInsert = "INSERT INTO HORARIO (ID_HORARIO, ID_RELACION_PROFESOR_ASIGNATURA, ID_GRADO, ID_HORARIO_UNICO) VALUES ('$idHorario', '$relacionProfesorAsignatura', '$idGrado', '$idHorarioUnico')";
-            if (sqlsrv_query($conn, $queryInsert)) {
-                $horarioGenerado[] = [
-                    'ID_HORARIO' => $idHorario,
-                    'ID_RELACION_PROFESOR_ASIGNATURA' => $relacionProfesorAsignatura,
-                    'ID_GRADO' => $idGrado,
-                    'ID_HORARIO_UNICO' => $idHorarioUnico,
-                ];
-                $horasAsignadas += 2; // Asumimos que cada "INTENSIDAD_HORARIO" representa 2 horas.
-                $diasAsignados[] = $diaHorario; // Registrar el día en el que se asignó esta asignatura
-            } else {
-                echo "<script>alert('Error al insertar horario: " . print_r(sqlsrv_errors(), true) . "');</script>";
-                $horarioConflicto = true;
+            if (verificarConflicto($conn, $id_grado, $id_horario_unico, $id_profesor)) {
+                $conflictos = true;
                 break;
             }
+
+            $id_horario = generarNuevoID($conn, "HOR");
+
+            $queryInsertHorario = "INSERT INTO HORARIO (ID_HORARIO, ID_RELACION_PROFESOR_ASIGNATURA, ID_GRADO, ID_HORARIO_UNICO) VALUES (?, (SELECT ID_RELACION_PROFESOR_ASIGNATURA FROM RELACION_PROFESOR_ASIGNATURA WHERE ID_PROFESOR = ? AND ID_ASIGNATURA = ?), ?, ?)";
+            $paramsInsertHorario = array($id_horario, $id_profesor, $id_asignatura, $id_grado, $id_horario_unico);
+
+            if (!sqlsrv_query($conn, $queryInsertHorario, $paramsInsertHorario)) {
+                echo "Error al insertar horario: ";
+                print_r(sqlsrv_errors());
+                $conflictos = true;
+                break;
+            }
+
+            $horarioGenerado[] = array(
+                'ID_HORARIO' => $id_horario,
+                'ID_RELACION_PROFESOR_ASIGNATURA' => $id_profesor,
+                'ID_GRADO' => $id_grado,
+                'ID_HORARIO_UNICO' => $id_horario_unico
+            );
+        }
+
+        if ($conflictos) {
+            break;
         }
     }
 
-    if ($horasAsignadas < $intensidad) {
-        $horarioConflicto = true;
-        break;
+    if ($conflictos) {
+        echo "<script>alert('No se pudo generar el horario debido a conflictos de asignación.');</script>";
+        echo "<script>window.location = 'asignar_horario.php';</script>";
+    } else {
+        // Redirigir a la página para mostrar el horario generado
+        $_SESSION['horario_generado'] = $horarioGenerado;
+        header("Location: mostrar_horario.php");
+        exit();
     }
-}
-
-if ($horarioConflicto) {
-    echo "<script>alert('No se pudo generar el horario debido a conflictos de asignación.'); window.location.href='asignar_horario.php';</script>";
-    exit();
-} else {
-    $_SESSION['horario_generado'] = $horarioGenerado;
-    echo "<script>alert('Horario generado exitosamente para el grado $idGrado'); window.location.href='mostrar_horario.php';</script>";
 }
 ?>

@@ -8,8 +8,9 @@
 </head>
 <body>
     <div class="formulario">
+
         <h2>Registro de Notas</h2>
-        <br>
+    
         <form id="formulario" class="" action="form_notas.php" method="post" onsubmit="return validarFormulario()">
           <input type="text" name="Numerofallas" placeholder="Numero de fallas" required>
           <input type="text" name="Nota1" placeholder="Nota del periodo 1" required>
@@ -18,8 +19,6 @@
           <input type="text" name="Nota4" placeholder="Nota del periodo 4" required>
           <input type="text" name="Notafinal" placeholder="Nota final" required>
           <input type="text" name="Aprobo" placeholder="Aprobado" required>
-          <br>
-          <br>   
           <button type="submit">Guardar Notas</button>
         </form>
         <div id="error-message" style="color: red;"></div>

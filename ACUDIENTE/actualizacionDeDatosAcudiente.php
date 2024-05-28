@@ -33,8 +33,6 @@ $contrasena = isset($_GET['contrasena']) ? $_GET['contrasena'] : null;
         <option value="Masculino">Masculino</option>
         <option value="Otro">Otro</option>
       </select>
-      <br>
-      <br>
       <button type="submit">Actualizar</button>
     </form>
     <form id="login-form" action="http://localhost:8081/sql/procesar_login.php" method="post">
