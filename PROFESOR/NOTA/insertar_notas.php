@@ -23,6 +23,8 @@ $result = sqlsrv_query($conn, $query);
 echo $result;
 
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,6 +32,7 @@ echo $result;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notas Académicas</title>
+</head>
     <style>
         body{font-family: 'Arial', sans-serif;
          background-color: #042d3f;
@@ -57,11 +60,12 @@ echo $result;
      </style>
 </head>
 <body>
-<h1>Insertar Datos en la Base de Datos</h1>
+<h1>NOTAS ACADEMICAS GRADO <?php echo htmlspecialchars($grado); ?></h1>
     <form action="insertar_notas.php" method="POST">
         <table>
             <thead>
             <tr>
+                <th>Estudiante</th>
                 <th>Periodo Académico</th>
                 <th>Primer Periodo</th>
                 <th>Segundo Periodo</th>
